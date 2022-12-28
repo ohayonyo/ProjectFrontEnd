@@ -1,0 +1,73 @@
+.selection-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.selection-list__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.selection-list__select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #555;
+  appearance: none;
+  background-color: white;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F");
+  background-position: right 8px top 50%;
+  background-repeat: no-repeat;
+}
+
+.selection-list__option-image {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.selection-list__option-actions {
+  display: flex;
+  align-items: center;
+}
+
+.selection-list__option-action {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.selection-list__option-action--approve {
+  color: white;
+  background-color: #4caf50;
+}
+
+.selection-list__option-action--approve:hover {
+  background-color: #43a047;
+}
+
+.selection-list__option-action--decline {
+  color: white;
+  background-color: #f44336;
+}
+
+.selection-list__option-action--decline:hover {
+  background-color: #e53935;
+}

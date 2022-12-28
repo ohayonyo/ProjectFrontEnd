@@ -1,0 +1,77 @@
+.App {
+  font-family: sans-serif;
+}
+
+.list-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-page h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.list-page ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-page li {
+  cursor: pointer;
+  padding: 12px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.list-page li:hover {
+  background-color: lightgray;
+}
+
+.details-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-page h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.details-page form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-page form input,
+.details-page form textarea,
+.details-page form select {
+  margin: 8px 0;
+  padding: 12px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+.details-page form button {
+  cursor: pointer;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: blue;
+  color: white;
+}
+
+.details-page form button:hover {
+  background-color: darkblue;
+}
