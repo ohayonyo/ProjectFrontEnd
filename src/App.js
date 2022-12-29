@@ -67,6 +67,11 @@ function App() {
 
 
 
+const studentMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/studentMenu$');
+
+const teacherMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/teacherMenu$');
+
+
   // return (
   //   <>
   //     {/* This is the alias of BrowserRouter i.e. Router */}
@@ -121,7 +126,7 @@ function App() {
           }></Route>
           <Route exact path='/login' element={<Login></Login>}></Route>
           <Route exact path='/register' element={<Register></Register>}></Route>
-          <Route exact path='/teacherMenu' element={
+          <Route exact path='/studentMenu' element={
             <div>
               <TeacherMenu></TeacherMenu>
 

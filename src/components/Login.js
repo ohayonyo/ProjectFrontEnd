@@ -5,7 +5,8 @@ const Login = () => {
   const [username,setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccessfully,setLoginSuccessfully]= useState(false);
-  const [newDest,setNewDest] = useState('/login');
+  // const [newDest,setNewDest] = useState('/login');
+  let newDest='/login';
   const asyncCallWithTimeout = (asyncPromise, timeLimit) => {};
   const [x,setX] = useState(true);
 
@@ -26,18 +27,66 @@ const Login = () => {
     console.log('password:'+password);
 
     if(username!=''&&password!=''){
-      const url='http://localhost:5000/login?username=' + username + '&password='+password;
-      const result = await fetch(url);
-      // if(result.status==200){
-        const res = result.body;
-        const myArray = res.split(" ");
+      const urlToFetch='http://localhost:5000/login?username=' + username + '&password='+password;
+
+      const response = await fetch(urlToFetch);
+      if(response.status==200){
+        const body = await response.text();
+        const myArray = body.split(" ");
         if(myArray[0]==1){
-          setNewDest('/'+myArray[1]+'/teacherMenu');
+          // setNewDest('/'+myArray[1]+'/teacherMenu');
+          newDest='/'+myArray[1]+'/teacherMenu';
         }else if(myArray[0]==2){
-          setNewDest('/'+myArray[1]+'/studentMenu');
+          // setNewDest('/'+myArray[1]+'/studentMenu');
+          newDest='/'+myArray[1]+'/studentMenu';
+        }else{
+          newDest='/login';
         }
-        setNewDest('/')
-      // }
+
+        const navigateTo = window.location.href;
+        const myArray2 = navigateTo.split("/");
+        // console.log('myArray2:'+myArray2);
+        // console.log('http://'+myArray2[2]+newDest);
+        // console.log('newDest:'+newDest);
+        window.location.assign('http://'+myArray2[2]+newDest);
+      }
+      
+
+    
+
+      // let result = fetch(url);
+      // const res = (await result);
+      // const reader = res.then(
+      //   (val)=>{
+      //     console.log('val:'+val)
+      //   }
+      // )
+      // const reader = res.body.getReader();
+      // reader.read().then(
+      //   (done,val)=>
+      //   !done ? console.log(val) : 'done'
+      // )
+
+      
+      // fetch(url).then((result)=>{
+      //   if(result.status==200){
+      //     const json = await result.json();
+      //     const res = json.then((value)=>{
+      //       console.log('start');
+      //       console.log(value);
+      //     })
+      //     console.log(res);
+      //     const myArray = res.split(" ");
+      //     console.log('hello');
+          
+          
+      
+      //     newDest = '/login'; 
+      //     // setNewDest('/login')
+      //   }
+      // })
+      
+      
       // try{        
         
 
