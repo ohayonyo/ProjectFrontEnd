@@ -20,7 +20,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Checkbox } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 
 
@@ -35,32 +35,20 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
   
 });
-/* 
-const fetchData = async ()=> {
-  console.log('username:'+username);
-  console.log('password:'+password);
 
-  if(username!=''&&password!=''){
-    const url='http://localhost:5000/login?username=' + username + '&password='+password;
-    const result = await fetch(url);
-    // if(result.status==200){
-      const res = result.body;
-      const myArray = res.split(" ");
-      if(myArray[0]==1){
-        setNewDest('/'+myArray[1]+'/teacherMenu');
-      }else if(myArray[0]==2){
-        setNewDest('/'+myArray[1]+'/studentMenu');
-      }
-      setNewDest('/')
+const fetchData = async () =>{
 
-    
-    
-  }
- } */
+  //todo make this use the teacher name
+  const url = "http://localhost:5000/getClasses?teacher=dan1"
+  const result = await fetch(url)      
+  const jsonResult = await result.json();
+  console.log("json result is ")
+  console.log(jsonResult)
+  return jsonResult;
+}
 
 export default function TeacherClasses() {
- 
-
+    const [count, setCount] = useState(0);
     const [messages, setMessages] = useState([{
       id: 1,
     primary: 'Brunch this week?',
@@ -77,41 +65,31 @@ export default function TeacherClasses() {
 
     }]);
 
+    useEffect(()=>{
 
+      async function fetchDataCall(){
+          const a = await fetchData()
+          console.log("in use effect")
+          setMessages(a)
+      }
+    fetchDataCall()
+    },[]);
 
 
 
   async function deleteElement(id){
 
-    const fetchData = async () =>{
-      const url = "http://localhost:5000/getClasses?teacher=dan1"
-      console.log("sending request " + url);
 
-      //need to read about promise, something here is fishy.
-      const result = await fetch(url)
-      /* const result =  fetch(url)
-                      .then(function(response) {
-                        return response.json();
-                      }).then(function(data) {
-                        console.log(data)
-                        return data
-                      }); */
-                      //result.resolve()
-        console.log("this is the result of the url fetch "+ result)
-        const jsonResult = await result.json;
-        console.log("this is the json of the result" + jsonResult)
-        //console.log(jsonResult);
-        //setMessages(jsonResult);
+    const ClassToDelete = messages.filter((value)=> value.id === id)
 
-      //console.log(result)
-      return jsonResult;
-    }
-    const a = fetchData()
-    console.log(a)
-    //setMessages(result);
-    //setMessages(messages.filter((value)=>value.primary!=primary));
-    // need to add the call for delete from backend
-    //deleteClass(id)
+    const className = ClassToDelete[0].primary
+    const url = "http://localhost:5000/removeClass?teacher=dan1&className=" + className
+    const promise =  await fetch(url)
+    if(promise.status ===200)
+      setMessages(messages.filter((value)=>value.id!=id));
+    else
+      console.log("didn't work try again")
+
   }
 
 
@@ -129,7 +107,7 @@ export default function TeacherClasses() {
         <div>
 
           <List sx={{ mb: 2 }}>
-            {messages.map(({ id,primary, secondary,person }) => (
+            {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
                 <ListItem button>
 
@@ -141,9 +119,7 @@ export default function TeacherClasses() {
                 <ListItemText 
                 primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
                 secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
-                  <ListItemAvatar>
-                    <Avatar alt="Profile Picture" src={person}/>
-                </ListItemAvatar>
+
                 </ListItem>
               </React.Fragment>
             ))}
