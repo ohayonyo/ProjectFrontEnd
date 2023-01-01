@@ -37,15 +37,7 @@ const Login = () => {
           setNewDest('/'+myArray[1]+'/studentMenu');
         }
         setNewDest('/')
-      // }
-      // try{        
-        
-
-      //   console.log('after');
-      // }catch(exception){
-      //   await sleep(500);
-      //   fetchData();
-      // }
+ 
       
       
     }
