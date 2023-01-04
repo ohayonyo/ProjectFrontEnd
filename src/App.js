@@ -1,6 +1,6 @@
 
 // importing components from react-router-dom package
-import {BrowserRouter as Router, Route,Routes} from 'react-router-dom'
+import {BrowserRouter as Router, Route,Routes,useParams} from 'react-router-dom'
   
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
@@ -23,6 +23,10 @@ import Form1 from './components/Form1'
 import SelectionList from './components/SelectionList';
 import SelectionListForm from './components/SelectionListForm';
 import UserForm from './React_Step_Form/Components/UserForm'
+import SingleSelection from './components/selectionElements/SingleSelection';
+import MutlipleSelection from './components/selectionElements/MutlipleSelection';
+// import MultiStep from './components/templateForm/MultiStep';
+import CreateUnitForm from './components/templateForm/CreateUnitForm';
 function App() {
 
   const styles = `
@@ -70,6 +74,66 @@ function App() {
 const studentMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/studentMenu$');
 
 const teacherMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/teacherMenu$');
+
+const regex = "/^(a|b).*/"
+
+const idRegex = '([0-9a-zA-Z]*)';
+
+const options1 = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
+
+function ValidateStudent(){
+  let params = useParams();
+  let userId = params.username.match(/[a-zA-Z0-9]+/);
+  if (!userId) {
+    return <div><h1>page not found</h1></div>
+  }
+  return <StudentMenu userName={params.username}></StudentMenu>;
+}
+
+
+function ValidateTeacher(){
+  let params = useParams();
+  let userId = params.username.match(/[a-zA-Z0-9]+/);
+  if (!userId) {
+    return <div><h1>page not found</h1></div>
+  }
+  return <TeacherMenu></TeacherMenu>;
+}
+
+
+
+// function App() {
+//   return (
+//     <Routes>
+//       <Route path="/users/:id" element={<ValidateUser />} />
+//       <Route path="/users/*" element={<NotFound />} />
+//     </Routes>
+//   );
+// }
+
+// function ValidateUser() {
+//   let params = useParams();
+//   let userId = params.id.match(/\d+/);
+//   if (!userId) {
+//     return <NotFound />;
+//   }
+//   return <User id={params.userId} />;
+// }
+
+// function User(props) {
+//   let id = props.id;
+//   // ...
+// }
+
+
+
+{/* <Route path={`/-${idRegex}`} component={Home} /> */}
+
 
 
   // return (
@@ -125,6 +189,11 @@ const teacherMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/teacherMenu$');
             // </div>
           }></Route>
           <Route exact path='/login' element={<Login></Login>}></Route>
+
+          <Route path="/:username/studentMenu" element={<ValidateStudent></ValidateStudent>}></Route>
+
+          <Route path="/:username/teacherMenu" element={<ValidateTeacher></ValidateTeacher>}></Route>
+
           <Route exact path='/register' element={<Register></Register>}></Route>
           <Route exact path='/studentMenu' element={
             <div>
@@ -250,7 +319,21 @@ const teacherMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/teacherMenu$');
             
           }></Route>
 
+          
+          <Route exact path='/selectionSingle' element={
+            <div>
+              <SingleSelection options={options1}></SingleSelection>
+              <MutlipleSelection options={options1}></MutlipleSelection>
+            </div>
+            
+          }></Route>
 
+          <Route exact path='/createUnitForm' element={
+            <div>
+              <CreateUnitForm></CreateUnitForm>
+            </div>
+            
+          }></Route>
 
 
 
