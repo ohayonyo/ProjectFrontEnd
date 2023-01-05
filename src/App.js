@@ -27,6 +27,7 @@ import SingleSelection from './components/selectionElements/SingleSelection';
 import MutlipleSelection from './components/selectionElements/MutlipleSelection';
 // import MultiStep from './components/templateForm/MultiStep';
 import CreateUnitForm from './components/templateForm/CreateUnitForm';
+import QuestionView from './components/QuestionsView';
 function App() {
 
   const styles = `
@@ -276,6 +277,14 @@ function ValidateTeacher(){
             <div>
                 <TeacherMenu></TeacherMenu>
                 <StudentRequestsToClass></StudentRequestsToClass>
+            </div>
+            
+          }></Route>
+
+          <Route exact path='/QuestionView' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <QuestionView></QuestionView>
             </div>
             
           }></Route>
