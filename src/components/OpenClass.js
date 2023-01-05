@@ -13,7 +13,7 @@ const OpenClass = () => {
       const target='http://localhost:5000/openClass?teacher=' + userName + '&className='+className;
       await fetch(target);
       
-    
+  }
   
 
 
@@ -42,6 +42,6 @@ const OpenClass = () => {
     </div>
   );
 }
-}
+
  
 export default OpenClass;

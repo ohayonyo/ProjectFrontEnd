@@ -1,6 +1,14 @@
 import React from 'react'
 import '../css/register.css'
+import SingleSelection from './selectionElements/SingleSelection'
 const Register = () => {
+
+  const options = [
+    { value: 'Teacher', label: 'Teacher' },
+    { value: 'Student', label: 'Student'},
+    { value: 'Admin', label: 'Admin' }
+  ]
+
   return (
     <div>
 
@@ -12,19 +20,26 @@ const Register = () => {
         <h2 className='active h2' style={{fontWeight:400,color:'white'}}>sign up</h2>
 
         <form className='RegisterPage_Form' action="/">
-          <input type="text" className='RegisterPage_text' name="firstname" required/>
+          {/* <input type="text" className='RegisterPage_text' name="firstname" required/>
           <span className='LoginRegister_Span text_span'>first name</span>
 
           <input type="text" className='RegisterPage_text' name="lastname" required/>
           <span className='LoginRegister_Span text_span'>last name</span>
 
           <input type="text" className='RegisterPage_text' name="id" required/>
-          <span className='LoginRegister_Span text_span'>id</span>
+          <span className='LoginRegister_Span text_span'>id</span> */}
 
+
+          <input type="text" className='RegisterPage_text' name="email" required/>
+          <span className='LoginRegister_Span text_span'>email</span>
           <input type="text" className='RegisterPage_text' name="username" required/>
           <span className='LoginRegister_Span text_span'>username</span>
           <input type="password" className='RegisterPage_text' name="password" required></input>
           <span className='LoginRegister_Span text_span'>password</span> 
+
+          <SingleSelection options={options}></SingleSelection>
+
+
           
           <button className='RegisterPage_SignupButton'>
             Sign Up
