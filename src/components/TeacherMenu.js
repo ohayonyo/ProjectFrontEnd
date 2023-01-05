@@ -1,13 +1,15 @@
 // import React from 'react'
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import TeacherClasses from './TeacherClasses';
 import TeacherToolbar from './TeacherToolbar';
 const TeacherMenu = ({btn}) => {
 
   return (
     <div>
+      <TeacherClasses/>
+      <TeacherToolbar btn='btn1'>
 
-      <TeacherToolbar btn='btn1'></TeacherToolbar>
+      </TeacherToolbar>
 
       
        {/* PAGE CONTENT */}

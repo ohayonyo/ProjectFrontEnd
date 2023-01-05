@@ -43,6 +43,7 @@ const Login = () => {
           newDest='/login';
         }
 
+
         const navigateTo = window.location.href;
         const myArray2 = navigateTo.split("/");
         // console.log('myArray2:'+myArray2);
