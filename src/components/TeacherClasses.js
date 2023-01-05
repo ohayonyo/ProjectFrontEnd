@@ -55,7 +55,6 @@ export default function TeacherClasses() {
       id: 1,
     primary: 'Brunch this week?',
     secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-    person: '/static/images/avatar/5.jpg',
 
   },
   {
@@ -63,7 +62,6 @@ export default function TeacherClasses() {
   primary: 'Birthday Gift',
     secondary: `Do you have a suggestion for a good present for John on his work
       anniversary. I am really confused & would love your thoughts on it.`,
-      person: '/static/images/avatar/1.jpg',
 
     }]);
 
