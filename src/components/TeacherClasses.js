@@ -40,7 +40,9 @@ const StyledFab = styled(Fab)({
 const fetchData = async () =>{
 
   //todo make this use the teacher name
-  const url = "http://localhost:5000/getClasses?teacher=dan1"
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
+  const url = "http://localhost:5000/getClassesTeacher?teacher="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
@@ -76,8 +78,9 @@ export default function TeacherClasses() {
     },[]);
 
   async function openClass(){
-
-    const url = "http://localhost:5000/openClass?teacher=dan1&className=" + className
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    const url = "http://localhost:5000/openClass?teacher="+splits[3]+"&className=" + className
     const promise =  await fetch(url)
     if(promise.status ===200){
       var max_id=0
@@ -105,7 +108,9 @@ export default function TeacherClasses() {
     const ClassToDelete = messages.filter((value)=> value.id === id)
 
     const classNameDelete = ClassToDelete[0].primary
-    const url = "http://localhost:5000/removeClass?teacher=dan1&className=" + classNameDelete
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    const url = "http://localhost:5000/removeClass?teacher="+splits[3]+"&className=" + classNameDelete
     const promise =  await fetch(url)
     if(promise.status ===200)
       setMessages(messages.filter((value)=>value.id!=id));
@@ -115,7 +120,11 @@ export default function TeacherClasses() {
   }
 
 
-
+  function gotoEdit(id,cls){
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+messages[id-1].primary+"/editClass");
+  }
 
   return (
     <div style={{resize: 'both',
@@ -132,7 +141,7 @@ export default function TeacherClasses() {
           <List sx={{ mb: 2 }}>
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
-                <ListItem button>
+                <ListItem ListItemButton onClick={(cls)=>gotoEdit(id,cls)}>
 
                 <IconButton edge="end" aria-label="delete" onClick={()=>deleteElement(id)}>
                       <DeleteIcon />

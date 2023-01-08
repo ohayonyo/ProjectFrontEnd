@@ -210,7 +210,7 @@ function ValidateTeacher(){
             
             // <TeacherMenu></TeacherMenu>
           }></Route>
-          <Route exact path='/teacherMenu/openclass' element={
+          <Route path='/openclass' element={
           <div>
               <style>
                 {styles}
@@ -224,7 +224,7 @@ function ValidateTeacher(){
           
           }></Route>
 
-          <Route exact path='/openClass' element={
+          <Route exact path='/:username/teacherMenu/openClass' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <OpenClass></OpenClass>
@@ -232,7 +232,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/removeClass' element={
+          <Route exact path='/:username/teacherMenu/removeClass' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <RemoveClass></RemoveClass>
@@ -240,7 +240,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/editClass' element={
+          <Route exact path='/:username/:className/editClass' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <EditClass></EditClass>
@@ -257,7 +257,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/registerClass' element={
+          <Route exact path='/:username/teacherMenu/registerClass' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <RegisterClass></RegisterClass>
@@ -265,7 +265,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/myClasses' element={
+          <Route exact path='/:username/teacherMenu/myClasses' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <TeacherClasses></TeacherClasses>
@@ -273,7 +273,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/studentsRequestToClass' element={
+          <Route exact path='/:username/teacherMenu/studentsRequestToClass' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <StudentRequestsToClass></StudentRequestsToClass>

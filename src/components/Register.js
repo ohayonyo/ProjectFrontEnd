@@ -1,13 +1,39 @@
-import React from 'react'
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
+import React, { useState } from 'react';
 import '../css/register.css'
 import SingleSelection from './selectionElements/SingleSelection'
 const Register = () => {
+  let newDest='/login';
+  const [username,setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const options = [
-    { value: 'Teacher', label: 'Teacher' },
-    { value: 'Student', label: 'Student'},
-    { value: 'Admin', label: 'Admin' }
+    { value: '1', label: 'Teacher' },
+    { value: '2', label: 'Student'},
+    { value: '3', label: 'Admin' }
   ]
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+
+  const handleSelectionChange = (event) => {
+    setSelectedOption(event.target.value);
+  }
+
+  const fetchData = async ()=> {
+    console.log('username:'+username);
+    console.log('password:'+password);
+
+    if(username!=''&&password!=''){
+      const urlToFetch='http://localhost:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption;
+
+      const response = await fetch(urlToFetch);
+      if(response.status==200){
+        const navigateTo = window.location.href;
+        const myArray2 = navigateTo.split("/");
+        window.location.assign('http://'+myArray2[2]+newDest);
+      }
+
+    }
+  }
 
   return (
     <div>
@@ -32,16 +58,23 @@ const Register = () => {
 
           <input type="text" className='RegisterPage_text' name="email" required/>
           <span className='LoginRegister_Span text_span'>email</span>
-          <input type="text" className='RegisterPage_text' name="username" required/>
+          <input type="text" className='RegisterPage_text' name="username" value={username}
+            onChange={(e)=>setUsername(e.target.value)} required/>
           <span className='LoginRegister_Span text_span'>username</span>
-          <input type="password" className='RegisterPage_text' name="password" required></input>
+          <input type="password" className='RegisterPage_text' name="password" value={password}
+            onChange={(e)=>setPassword(e.target.value)} required></input>
           <span className='LoginRegister_Span text_span'>password</span> 
 
-          <SingleSelection options={options}></SingleSelection>
-
+          <select value={selectedOption.value} onChange={handleSelectionChange}>
+            {options.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
 
           
-          <button className='RegisterPage_SignupButton'>
+          <button className='RegisterPage_SignupButton' onClick={fetchData}>
             Sign Up
           </button>
         

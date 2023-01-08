@@ -38,7 +38,9 @@ const StyledFab = styled(Fab)({
 const fetchData = async () =>{
 
   //todo make this use the teacher name
-  const url = "http://localhost:5000/getUnapprovedStudents?teacher=dan1"
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
+  const url = "http://localhost:5000/getUnapprovedStudents?teacher="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")

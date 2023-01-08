@@ -2,9 +2,22 @@ import { useState } from "react";
 import '../css/openclass.css'
 
 const EditClass = () => {
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
   // const [teacherName, setTeacherName] = useState('');
-  const [className, setClassName] = useState('');
+  const [className, setClassName] = useState(splits[4]);
   const [newClassName, setNewClassName] = useState('');
+
+async function doEdit(){
+  const url = "http://localhost:5000/editClass?teacher="+splits[3]+"&className=" + className+"&newClassName=" + newClassName
+  const promise = await fetch(url)
+    if(promise.status ===200){
+      setClassName(newClassName);
+      window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+newClassName+"/editClass");
+    }
+    else
+      console.log("didn't work try again")
+}
 
   return (
     <div className="create">
@@ -18,11 +31,10 @@ const EditClass = () => {
           </div>
           
           <div >
-
             <input
               required
               value={className}
-              onChange={(e) => setClassName(e.target.value)}
+              onChange={() => (console.log('nothing'))}
               style={{marginRight:0,position:'relative',top:-88,right:-70,height:30,width:200}}
             ></input>
 
@@ -39,7 +51,7 @@ const EditClass = () => {
         </div>
         
         
-        <button>עדכון</button>
+        <button onClick={()=>doEdit()}>עדכון</button>
       </form>
     </div>
   );

@@ -6,7 +6,6 @@ const TeacherMenu = ({btn}) => {
 
   return (
     <div>
-      <TeacherClasses/>
       <TeacherToolbar btn='btn1'>
 
       </TeacherToolbar>

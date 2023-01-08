@@ -32,7 +32,8 @@ const TeacherToolbar = ({btn}) => {
   }
 
 
-
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
 
   const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize:'3vh'};
   return (
@@ -46,11 +47,10 @@ const TeacherToolbar = ({btn}) => {
             <h3 class="w3-padding-64"><b style={{textAlign:'center',fontSize:'3.5vh'}}>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳<br></br></b></h3>
           </div>
           <div class="w3-bar-block" style={{fontSize:'20px',marginTop:'-10%'}}>
-            <a href="/openClass" onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>פתיחת כיתה</p></a> 
-            <a href="/myClasses" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>הכיתות שלי</p></a> 
-            <a href="/studentsRequestToClass" onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"><p style={style_menu_labels}>בקשות רישום לכיתות</p></a> 
-            <a href="/studentsRequestToClass" onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn4"><p style={style_menu_labels}>הוספת יחידת לימוד</p></a> 
-          </div>
+            <a href={'/'+splits[3]+"/teacherMenu/openClass"} onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>פתיחת כיתה</p></a> 
+            <a href={'/'+splits[3]+"/teacherMenu/myClasses"} onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>הכיתות שלי</p></a> 
+            <a href={'/'+splits[3]+"/teacherMenu/studentsRequestToClass"} onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"><p style={style_menu_labels}>בקשות רישום לכיתות</p></a> 
+           </div>
         </div>
        
       </nav>
