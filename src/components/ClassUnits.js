@@ -42,17 +42,16 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassesTeacher?teacher="+splits[3]
+  const url = "http://localhost:5000/getClassUnits?className="+splits[4]
   const result = await fetch(url)      
   const jsonResult = await result.json();
-  console.log("json result is ")
+  console.log("json2 result is ")
   console.log(jsonResult)
   return jsonResult;
 }
 
-export default function TeacherClasses() {
+export default function ClassUnits() {
 
-    const [className,setClassName] = useState(null)
     const [messages, setMessages] = useState([{
       id: 1,
     primary: 'Brunch this week?',
@@ -71,65 +70,18 @@ export default function TeacherClasses() {
 
       async function fetchDataCall(){
           const a = await fetchData()
-          console.log("in use effect")
+          console.log("in use effect2")
           setMessages(a)
       }
     fetchDataCall()
     },[]);
 
-  async function openClass(){
+
+  function startUnit(id,cls){ }
+  function openUnit(){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    const url = "http://localhost:5000/openClass?teacher="+splits[3]+"&className=" + className
-    const promise =  await fetch(url)
-    if(promise.status ===200){
-      var max_id=0
-      messages.forEach(i => {if (i.id >max_id) max_id=i.id; })
-      var newClass = {
-        "id": max_id+1,
-        "primary" : className,
-        "secondary" : "lalala"
-      }
-      const newMessages = [...messages,newClass]
-      setMessages(newMessages);
-    }
-    else
-      console.log("didn't work try again")
-
-
-  }
-
-  function getClassName(val){
-    setClassName( val.target.value)
-  }
-
-  async function deleteElement(id){
-
-    const ClassToDelete = messages.filter((value)=> value.id === id)
-
-    const classNameDelete = ClassToDelete[0].primary
-    const thisURL = window.location.href;
-    const splits = thisURL.split('/')
-    const url = "http://localhost:5000/removeClass?teacher="+splits[3]+"&className=" + classNameDelete
-    const promise =  await fetch(url)
-    if(promise.status ===200)
-      setMessages(messages.filter((value)=>value.id!=id));
-    else
-      console.log("didn't work try again")
-
-  }
-
-
-  function gotoEdit(id,cls){
-    const thisURL = window.location.href;
-    const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+messages[id-1].primary+"/editClass");
-  }
-
-  function gotoUnits(id,cls){
-    const thisURL = window.location.href;
-    const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+messages[id-1].primary+"/classUnits");
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/1");
   }
 
   return (
@@ -148,14 +100,7 @@ export default function TeacherClasses() {
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
                 <ListItem Button>
-
-                <IconButton edge="end" aria-label="delete" onClick={()=>deleteElement(id)}>
-                      <DeleteIcon />
-                </IconButton>
-                <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
-                      <AddIcon />
-                </IconButton>
-                <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoUnits(id,cls)}>
+                <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
                       <MenuIcon />
                 </IconButton>
                 <ListItemText 
@@ -171,10 +116,9 @@ export default function TeacherClasses() {
       </Paper>  
     </React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={()=>openClass()} style={{float: 'left'}}>
-          Add Class
+        <button onClick={()=>openUnit()} style={{float: 'left'}}>
+          Add new unit
         </button>
-        <input type="text" style={{color:'black'}} onChange = {getClassName.bind(this)}/>
       </div>
 
     </div>

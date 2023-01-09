@@ -1,4 +1,6 @@
+import { waitFor } from '@testing-library/react';
 import React, { useState } from 'react';
+import { Await } from 'react-router-dom';
 import '../css/login.css'
 
 const Login = () => {
@@ -27,77 +29,30 @@ const Login = () => {
     console.log('password:'+password);
 
     if(username!=''&&password!=''){
+      console.log("if")
       const urlToFetch='http://localhost:5000/login?username=' + username + '&password='+password;
-
+      console.log(urlToFetch)
       const response = await fetch(urlToFetch);
+      console.log("AAAAAAAA")
       if(response.status==200){
+        console.log("cccc")
         const body = await response.text();
         const myArray = body.split(" ");
         if(myArray[0]==1){
-          // setNewDest('/'+myArray[1]+'/teacherMenu');
+          console.log("BBBBBBB")
           newDest='/'+myArray[1]+'/teacherMenu';
         }else if(myArray[0]==2){
-          // setNewDest('/'+myArray[1]+'/studentMenu');
           newDest='/'+myArray[1]+'/studentMenu';
         }else{
           newDest='/login';
         }
 
-
+        
         const navigateTo = window.location.href;
         const myArray2 = navigateTo.split("/");
-        // console.log('myArray2:'+myArray2);
-        // console.log('http://'+myArray2[2]+newDest);
-        // console.log('newDest:'+newDest);
         window.location.assign('http://'+myArray2[2]+newDest);
       }
-      
 
-    
-
-      // let result = fetch(url);
-      // const res = (await result);
-      // const reader = res.then(
-      //   (val)=>{
-      //     console.log('val:'+val)
-      //   }
-      // )
-      // const reader = res.body.getReader();
-      // reader.read().then(
-      //   (done,val)=>
-      //   !done ? console.log(val) : 'done'
-      // )
-
-      
-      // fetch(url).then((result)=>{
-      //   if(result.status==200){
-      //     const json = await result.json();
-      //     const res = json.then((value)=>{
-      //       console.log('start');
-      //       console.log(value);
-      //     })
-      //     console.log(res);
-      //     const myArray = res.split(" ");
-      //     console.log('hello');
-          
-          
-      
-      //     newDest = '/login'; 
-      //     // setNewDest('/login')
-      //   }
-      // })
-      
-      
-      // try{        
-        
-
-      //   console.log('after');
-      // }catch(exception){
-      //   await sleep(500);
-      //   fetchData();
-      // }
-      
-      
     }
   }
   return (

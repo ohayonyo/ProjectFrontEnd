@@ -13,6 +13,8 @@ import TeacherMenu from './components/TeacherMenu';
 import OpenClass from './components/OpenClass';
 import RemoveClass from './components/RemoveClass';
 import EditClass from './components/EditClass';
+import ClassUnits from './components/ClassUnits';
+import PickData from './components/PickData';
 import RemoveUnit from './components/RemoveUnit';
 import RegisterClass from './components/RegisterClass';
 import TeacherClasses from './components/TeacherClasses';
@@ -247,7 +249,23 @@ function ValidateTeacher(){
             </div>
             
           }></Route>
-
+          <Route exact path='/:username/:className/classUnits' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <ClassUnits></ClassUnits>
+            </div>
+            
+            
+          }></Route>
+          
+          <Route exact path='/:username/:className/openUnit/1' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <PickData></PickData>
+            </div>
+            
+            
+          }></Route>
 
           <Route exact path='/removeUnit' element={
             <div>
