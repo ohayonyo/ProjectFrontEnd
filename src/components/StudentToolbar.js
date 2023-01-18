@@ -31,7 +31,8 @@ const StudentToolbar = ({btn}) => {
   
   }
 
-
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
 
 
   const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize:'3vh'};
@@ -47,7 +48,7 @@ const StudentToolbar = ({btn}) => {
           </div>
           <div class="w3-bar-block" style={{fontSize:'20px',marginTop:'-10%'}}>
             <a href="/openClass" onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>להשלים</p></a> 
-            <a href="/myClasses" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>להשלים</p></a> 
+            <a href={'/'+splits[3]+"/studentMenu/myClasses"} onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>הכיתות שלי</p></a> 
             <a href="/studentsRequestToClass" onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"><p style={style_menu_labels}>להשלים</p></a> 
             <a href="/studentsRequestToClass" onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn4"><p style={style_menu_labels}>להשלים</p></a> 
           </div>
