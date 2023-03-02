@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import './QuestionView.css'
 
 
 const fetchData = async () =>{
@@ -57,7 +58,7 @@ export default function QuestionView() {
       setSelectedOption(event.target.value);
     };
     const [className,setClassName] = useState(null)
-    const questionPreamble = " (a,b)(c,d) אלה שאלות נקודות חיתוך עם הצירים, נא להכניס את התשובה בפורמט"
+    const questionPreamble = ":שאלת חיתוך עם הצירים"
     const [answers,setAnswers] = useState({
         0: "basic answer"
   })
@@ -106,10 +107,14 @@ export default function QuestionView() {
       }
 
 
-    async function submitQuestions(){
-      const thisURL = window.location.href;
-      const splits = thisURL.split('/')
-        const url = "http://localhost:5000/submitQuestions?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]
+   
+
+      async function submitSingle(qans){
+        console.log("in submit single")
+        const thisURL = window.location.href;
+        const splits = thisURL.split('/')
+        const url = "http://localhost:5000/submitQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]+
+        "&ans="+qans +"&qnum=" +questions[0].id  
         
         //questions.forEach (q => answers[q.id] = "the answer is " + q.id) 
 
@@ -121,6 +126,9 @@ export default function QuestionView() {
         if(promise.status ===200){
           console.log(promise)
           console.log("success")
+          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+2+ "/QuestionView"
+          console.log("the next url is " +nextURL)
+          window.location.assign(nextURL);
         }
         else
           console.log("didn't work try again")
@@ -133,63 +141,21 @@ export default function QuestionView() {
 
 
 
-
     return (
-        <div style={{resize: 'both',
-        overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+        <div className='big-question'>
           
-          <React.Fragment>
-          <CssBaseline />
-          <Paper square sx={{ pb: '50px' }}>
-            <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-             
-             <label> {questionPreamble}</label>
-            </Typography>
-            <div className='multiple-choice'>
-    
-              <List sx={{ mb: 2 }}>
-                {questions.map(({ id,primary, options }) => (
-                  <React.Fragment key={id}>
-                    <ListItem button>
-                    <label style={{marginRight:20}} >{id}    </label>
-                      <ul>
-                      <li>
-                        <button onClick={()=>submitQuestions()} style={{float: 'left'}}>
-                          {questions[0].answer1}
-                        </button> 
-                      </li>          
-                      <li>
-                        <button onClick={()=>submitQuestions()} style={{float: 'left'}}>
-                          {questions[0].answer2}
-                         </button>  
-                      </li>             
-                      <li>
-                        <button onClick={()=>submitQuestions()} style={{float: 'left'}}>
-                          {questions[0].answer3}
-                        </button>
-                      </li>             
+             <h1> {questionPreamble}</h1>
+               <div className='multiple-choice'>
+                    <h2>2. function</h2>
 
-                      <li><button onClick={()=>submitQuestions()} style={{float: 'left'}}>
-                        {questions[0].answer4}
-                      </button> 
-                      </li>             
-                  </ul>        
+                <ul>
+                  <li onClick={() => submitSingle(1)} >{questions[0].answer1}</li>
+                  <li onClick={() => submitSingle(2)} >{questions[0].answer2}</li>
+                  <li onClick={() => submitSingle(3)} >{questions[0].answer3}</li>
+                  <li onClick={() => submitSingle(4)} >{questions[0].answer4}</li>
 
-                    <ListItemText 
-                    primary={<Typography variant="h6" style={{ color: '#000000',textAlign:'right',marginTop:-1,marginRight:20 }}>{primary}</Typography>} />
-                    </ListItem>
-                  </React.Fragment>
-                ))}
-              </List>
+                </ul>
             </div>
-              
-          
-          </Paper>  
-        </React.Fragment>
-
-        <button onClick={()=>submitQuestions()} style={{float: 'left'}}>
-          Submit Questions
-        </button>
         </div>
         
       );
