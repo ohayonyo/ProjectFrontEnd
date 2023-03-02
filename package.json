@@ -17,7 +17,7 @@
     "react-multistep": "^5.3.4",
     "react-native": "^0.70.6",
     "react-native-config": "^1.4.11",
-    "react-router-dom": "^6.4.4",
+    "react-router-dom": "^6.8.2",
     "react-scripts": "^5.0.1",
     "react-select": "^5.7.0",
     "tapable": "^2.2.1",

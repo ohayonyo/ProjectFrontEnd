@@ -27,6 +27,7 @@ import OpenClass from './OpenClass';
 
 
 
+
 const StyledFab = styled(Fab)({
   position: 'absolute',
   zIndex: 1,
@@ -81,7 +82,7 @@ export default function ClassUnits() {
   function openUnit(){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/1");
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/data");
   }
 
   return (
