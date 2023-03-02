@@ -72,15 +72,29 @@ export default function StudentClassUnits() {
           const a = await fetchData()
           console.log("in use effect2")
           setMessages(a)
+          console.log("the message are" + messages[0].primary + " " +  messages[0].secondary )
       }
     fetchDataCall()
     },[]);
 
-  const thisURL = window.location.href;
-  const splits = thisURL.split('/')
-  async function startUnit(id,unt){ 
-    const url = "http://localhost:5000/startUnit?className="+splits[4]+"username="+splits[3]+"username="+splits[messages[id-1].primary]
+
+
+  async function startUnit(id,primary){ 
+
+    console.log("startUnit")
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+
+
+    console.log("in start unit " + id +" " +primary)
+    const url = "http://localhost:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
+    console.log("the url is" + url)
     const result = await fetch(url)      
+
+    const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[4]+ "/"+1+ "/QuestionView"
+    console.log("the next url is " +nextURL)
+    window.location.assign(nextURL);
+    
   }
 
   return (
@@ -91,7 +105,7 @@ export default function StudentClassUnits() {
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          הכיתות שלי
+           התרגילים שלי
         </Typography>
         <div>
 
@@ -99,7 +113,7 @@ export default function StudentClassUnits() {
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
                 <ListItem Button>
-                <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
+                <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,primary)}>
                       <MenuIcon />
                 </IconButton>
                 <ListItemText 

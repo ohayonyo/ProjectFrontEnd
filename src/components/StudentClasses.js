@@ -43,6 +43,7 @@ const fetchData = async () =>{
   const url = "http://localhost:5000/getClassesStudent?student="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
+  console.log("in studentClasses")
   console.log("json result is ")
   console.log(jsonResult)
   return jsonResult;
@@ -75,9 +76,14 @@ export default function StudentClasses() {
 
 
   function gotoUnits(id,cls){
+    
+    console.log("gotoUnits")
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+messages[id-1].primary+"/studentClassUnits");
+    console.log("before assign")
+    const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+messages[id-1].primary+"/studentClassUnits"
+    console.log(nextURL)
+    window.location.assign(nextURL);
   }
 
   return (

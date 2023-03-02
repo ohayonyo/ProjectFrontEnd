@@ -31,6 +31,7 @@ import MutlipleSelection from './components/selectionElements/MutlipleSelection'
 import CreateUnitForm from './components/templateForm/CreateUnitForm';
 import QuestionView from './components/QuestionsView';
 import StudentClasses from './components/StudentClasses';
+import StudentClassUnits from './components/StudentClassUnits';
 function App() {
 
   const styles = `
@@ -299,6 +300,14 @@ function ValidateTeacher(){
             
           }></Route>
 
+          <Route exact path='/:username/:class/studentClassUnits' element={
+            <div>
+                <StudentMenu></StudentMenu>
+                <StudentClassUnits></StudentClassUnits>
+            </div>
+            
+          }></Route>
+
           <Route exact path='/:username/teacherMenu/studentsRequestToClass' element={
             <div>
                 <TeacherMenu></TeacherMenu>
@@ -307,9 +316,9 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/QuestionView' element={
+          <Route exact path='/:username/:unitName/:className/:qnum/QuestionView' element={
             <div>
-                <TeacherMenu></TeacherMenu>
+                <StudentMenu></StudentMenu>
                 <QuestionView></QuestionView>
             </div>
             
