@@ -18,10 +18,10 @@ const PickData = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/question/"+selectedOption);
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/question/"+selectedOption);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <label>
         Choose an option:
         <select value={selectedOption} onChange={handleChange}>

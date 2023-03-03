@@ -82,7 +82,7 @@ export default function ClassUnits() {
   function openUnit(){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/data");
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/new/data");
   }
 
   return (

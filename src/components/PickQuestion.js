@@ -27,10 +27,10 @@ const PickQuestion = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/parameters/"+splits[7]+"/"+selectedOptions);
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+splits[8]+"/"+selectedOptions);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <label>
         Choose an option:
         <select multiple value={selectedOptions} onChange={handleChange}>
@@ -39,7 +39,7 @@ const PickQuestion = () => {
           ))}
         </select>
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit">SubmitQuestion</button>
     </form>
   );
 }
