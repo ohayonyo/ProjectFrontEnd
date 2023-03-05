@@ -23,9 +23,10 @@ const Register = () => {
     console.log('password:'+password);
 
     if(username!=''&&password!=''){
-      const urlToFetch='http://localhost:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption;
-
+      const urlToFetch='http://localhost:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption.value;
+      console.log(urlToFetch)
       const response = await fetch(urlToFetch);
+      console.log(response)
       if(response.status==200){
         const navigateTo = window.location.href;
         const myArray2 = navigateTo.split("/");
