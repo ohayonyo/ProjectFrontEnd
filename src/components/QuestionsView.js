@@ -109,7 +109,7 @@ export default function QuestionView() {
 
    
 
-      async function submitSingle(qans){
+      async function submitSingle(qans,id){
         console.log("in submit single")
         const thisURL = window.location.href;
         const splits = thisURL.split('/')
@@ -126,7 +126,19 @@ export default function QuestionView() {
         if(promise.status ===200){
           console.log(promise)
           console.log("success")
-          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+2+ "/QuestionView"
+          const nextId = questions[0].id +1
+          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
+          console.log("the next url is " +nextURL)
+          window.location.assign(nextURL);
+        }
+        if(promise.status ===204){
+          http://localhost:3000/dan/math2/math2/1/QuestionView
+          //http://localhost:3000/dan/math2/studentClassUnits
+
+          console.log(promise)
+          console.log("success")
+          const nextId = questions[0].id +1
+          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+ "/studentClassUnits"
           console.log("the next url is " +nextURL)
           window.location.assign(nextURL);
         }
@@ -146,13 +158,13 @@ export default function QuestionView() {
           
              <h1> {questionPreamble}</h1>
                <div className='multiple-choice'>
-                    <h2>2. function</h2>
+                    <h2>  {questions[0].primary} ,{questions[0].id}</h2>
 
                 <ul>
-                  <li onClick={() => submitSingle(1)} >{questions[0].answer1}</li>
-                  <li onClick={() => submitSingle(2)} >{questions[0].answer2}</li>
-                  <li onClick={() => submitSingle(3)} >{questions[0].answer3}</li>
-                  <li onClick={() => submitSingle(4)} >{questions[0].answer4}</li>
+                  <li onClick={() => submitSingle(1,questions[0].id)} >{questions[0].answer1}</li>
+                  <li onClick={() => submitSingle(2,questions[0].id)} >{questions[0].answer2}</li>
+                  <li onClick={() => submitSingle(3,questions[0].id)} >{questions[0].answer3}</li>
+                  <li onClick={() => submitSingle(4,questions[0].id)} >{questions[0].answer4}</li>
 
                 </ul>
             </div>
