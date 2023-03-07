@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { useHistory } from 'react-router-dom';
-import '../css/openclass.css'
+import '../css/pickData.css'
 
 const PickQuestion = () => {
   const thisURL = window.location.href;
@@ -30,17 +30,19 @@ const PickQuestion = () => {
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+splits[8]+"/"+selectedOptions);
   };
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <label>
+    <div class="form-wrapper">
+        <form class="form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <label class="form-label">
         Choose an option:
-        <select multiple value={selectedOptions} onChange={handleChange}>
+        <select class="form-select" multiple value={selectedOptions} onChange={handleChange}>
           {options.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
         </select>
       </label>
-      <button type="submit">SubmitQuestion</button>
-    </form>
+      <button class="form-submit" type="submit">SubmitQuestion</button>
+      </form>
+    </div>
   );
 }
  
