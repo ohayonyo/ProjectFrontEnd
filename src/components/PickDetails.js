@@ -20,21 +20,21 @@ const PickDetails = () => {
     const splits = thisURL.split('/')
     
     if (!first){
-      console.log(nameS)
       nameS = nname
-      console.log(nameS)
     }
+
+    console.log(" in fetchData")
     const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
     +"&className="+splits[4]+"&template="+splits[8]+"&Qnum="+qnum+"&maxTime="+timeLimit
     +"&subDate="+dueDate.getUTCDate()+"&first="+first+"&prev="+splits[6]
     const response = await fetch(url);
-    console.log(response)
+    console.log(response.status)
     return response.status==200
         
   }
   const handleFinishUnit = () => {
     const res = fetchData()
-    console.log(res)
+    console.log(res + " in finishUnit")
     if(res){
       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/classUnits`;
     }
@@ -42,7 +42,7 @@ const PickDetails = () => {
 
   const handleAddExercise = () => {
     const res = fetchData()
-    console.log(res)
+    console.log(res + " in addExercise")
     if(res){
       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/openUnit/${nameS}/data`;
     }
