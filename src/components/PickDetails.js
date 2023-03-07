@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/openclass.css';
+import '../css/PickDetails.css';
 
 const PickDetails = () => {
   const thisURL = window.location.href;
@@ -55,13 +55,28 @@ const PickDetails = () => {
     marginTop: '50px',
   };
 
+
+  // font-size: 1.2rem;
+  // padding: 0.5rem;
+  // border: none;
+  // border-radius: 5px;
+  // box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  // outline: none;
+  // width: 200px;
+  // height:40px;
+  /* max-width: 100px; */
+  // margin-bottom: 1rem;
+
   const inputStyle = {
     marginBottom: '10px',
-    padding: '5px',
-    fontSize: '16px',
+    padding: '0.5 rem',
+    fontSize: '1.2rem',
     borderRadius: '5px',
     border: '1px solid gray',
-    width: '100%',
+    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.1)',
+    outline: 'none',
+    width: '250px',
+    height:'35px',
     color: 'black'
   };
 
@@ -77,25 +92,35 @@ const PickDetails = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      <label>
+    <div className='container' style={{marginTop:40}}>
+
+      <label className='label'>
         Name:
-        <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle} />
+        <br></br>
+        <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
       </label>
-      <label>
+
+      <label className='label'>
         Number of questions:
+        <br></br>
         <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} />
       </label>
-      <label>
+
+      <label className='label'>
         Time Limit:
+        <br></br>
         <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} />
       </label>
-      <label>
+
+      <label className='label'>
         Due Date:
+        <br></br>
         <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
       </label>
-      <button onClick={handleFinishUnit} style={buttonStyle}>Finish Unit</button>
+      
       <button onClick={handleAddExercise} style={buttonStyle}>Add Another Exercise</button>
+      <button onClick={handleFinishUnit} style={buttonStyle}>Finish Unit</button>
+      
     </div>
   );
 };
