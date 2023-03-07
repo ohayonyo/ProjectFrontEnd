@@ -62,13 +62,13 @@ const PickParams = () => {
   for (let i = 0; i < numInputs; i++) {
     inputElements.push(
       <div key={i}>
-        <label>
+        <label className='label'>
           parameter {i+1}:
           <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={minValues[i]? minValues[i]: '5'} onChange={(event) => handleChangeMin(event, i)} />
           <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={maxValues[i]?maxValues[i]: '5'} onChange={(event) => handleChangeMax(event, i)} />
         </label>
-        <label>
-          <input style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
+        <label className='label'>
+          <input className='inputCheckBox' style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
           randomize?
         </label>
       </div>
@@ -79,7 +79,7 @@ const PickParams = () => {
     <div style={{marginTop:200}}>
       <form onSubmit={handleSubmit} className="form-container">
         {inputElements}
-        <button type="submit" className="submit-button">Submit Params</button>
+        <button className='submitButton' type="submit" className="submit-button">Submit Params</button>
       </form>
     </div>
     

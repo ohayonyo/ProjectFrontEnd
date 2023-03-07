@@ -9,7 +9,7 @@
   border-radius: 5px;
 }
 
-input[type=text], select {
+.inputText,.select{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -19,25 +19,46 @@ input[type=text], select {
   font-size: 16px;
 }
 
-input[type=text]:focus, select:focus {
+.inputText:focus,.select:focus{
   outline: none;
   border-color: #6b9ce9;
   box-shadow: 0 0 10px #6b9ce9;
 }
 
-label {
+/* input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+} */
+
+/* input[type=text]:focus, select:focus {
+  outline: none;
+  border-color: #6b9ce9;
+  box-shadow: 0 0 10px #6b9ce9;
+} */
+
+.label {
   margin: 8px 0;
   font-size: 16px;
   font-weight: bold;
   color: #555;
 }
 
-input[type=checkbox] {
+.inputCheckBox{
   margin-right: 10px;
   transform: scale(1.5);
 }
 
-button[type=submit] {
+/* input[type=checkbox] {
+  margin-right: 10px;
+  transform: scale(1.5);
+} */
+
+.submitButton{
   background-color: #6b9ce9;
   color: #fff;
   padding: 14px 20px;
@@ -48,7 +69,22 @@ button[type=submit] {
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
+/* button[type=submit] {
+  background-color: #6b9ce9;
+  color: #fff;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+} */
 
-button[type=submit]:hover {
+.submitButton:hover{
   background-color: #4c7bdb;
 }
+
+/* button[type=submit]:hover {
+  background-color: #4c7bdb;
+} */
