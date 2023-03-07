@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/teacherMenu.css'
 
 const TeacherToolbar = ({btn}) => {
 
@@ -38,7 +39,6 @@ const TeacherToolbar = ({btn}) => {
   const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize:'3vh'};
   return (
     <div>
-      {/* <h1>{btn}</h1> */}
        <nav class="w3-sidebar w3-mycolor w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%'}} id="mySidebar">
         <br></br>
         <a href="javascript:void(0)" onClick={()=>w3_close('1')} class="w3-button w3-hide-large w3-display-topleft style2" style={{fontSize:'4.5vh'}}>סגור תפריט</a>
@@ -50,10 +50,9 @@ const TeacherToolbar = ({btn}) => {
             <a href={'/'+splits[3]+"/teacherMenu/openClass"} onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>פתיחת כיתה</p></a> 
             <a href={'/'+splits[3]+"/teacherMenu/myClasses"} onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>הכיתות שלי</p></a> 
             <a href={'/'+splits[3]+"/teacherMenu/studentsRequestToClass"} onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"><p style={style_menu_labels}>בקשות רישום לכיתות</p></a> 
-           </div>
+          </div>
         </div>
-       
-      </nav>
+        </nav>
 
         {/* Top menu on small screens */}
       <header class="w3-container w3-top w3-hide-large w3-mycolor w3-xlarge w3-padding">
