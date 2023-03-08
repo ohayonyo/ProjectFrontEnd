@@ -15,6 +15,10 @@ import RemoveClass from './components/RemoveClass';
 import EditClass from './components/EditClass';
 import ClassUnits from './components/ClassUnits';
 import PickData from './components/PickData';
+import PickQuestion from './components/PickQuestion';
+import PickParams from './components/PickParams';
+import PickDetails from './components/PickDetails';
+
 import RemoveUnit from './components/RemoveUnit';
 import RegisterClass from './components/RegisterClass';
 import TeacherClasses from './components/TeacherClasses';
@@ -260,10 +264,36 @@ function ValidateTeacher(){
             
           }></Route>
           
-          <Route exact path='/:username/:className/openUnit/1' element={
+          <Route exact path='/:username/:className/openUnit/:prev/data' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <PickData></PickData>
+            </div>
+            
+            
+          }></Route>
+
+          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <PickQuestion></PickQuestion>
+            </div>
+            
+            
+          }></Route>
+          <Route exact path='/:username/:className/openUnit/:prev/parameters/:dataS/:questionS' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <PickParams></PickParams>
+            </div>
+            
+            
+          }></Route>
+
+          <Route exact path='/:username/:className/openUnit/:prev/details/:template' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <PickDetails></PickDetails>
             </div>
             
             

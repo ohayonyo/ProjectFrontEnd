@@ -9,7 +9,7 @@ const OpenClass = () => {
 
       const url = window.location.href;
       const myArray = url.split("/");
-      const userName= myArray[1];
+      const userName= myArray[3];
       const target='http://localhost:5000/openClass?teacher=' + userName + '&className='+className;
       await fetch(target);
       
