@@ -79,7 +79,7 @@ const PickParams = () => {
     <div style={{marginTop:200}}>
       <form onSubmit={handleSubmit} className="form-container">
         {inputElements}
-        <button className='submitButton' type="submit" className="submit-button">Submit Params</button>
+        <button className='submitButton' type="submit" >Submit Params</button>
       </form>
     </div>
     

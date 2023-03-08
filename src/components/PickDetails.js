@@ -13,6 +13,23 @@ const PickDetails = () => {
   const nname = splits[6]+"n"
   let nameS = name
 
+  const parseTemp = (tempString) =>{
+    const temp = tempString.split('_');
+    const pars = temp[2].substr(1, temp[2].length-2).split('],[')
+    let res = []
+    console.log(pars)
+    for (let i = 0; i < pars.length; i++){
+      const p = pars[i].split(',')
+      if (p[2]=='true'){
+        res.push([p[0],p[1]])
+      }
+      else{
+        const r = Math.round(Math.random()*20-10)
+        res.push([r,r])
+      }
+    }
+    return temp[0]+'_'+temp[1]+'_'+res
+  }
 
   const fetchData = async () =>{
 
@@ -25,7 +42,7 @@ const PickDetails = () => {
 
     console.log(" in fetchData")
     const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
-    +"&className="+splits[4]+"&template="+splits[8]+"&Qnum="+qnum+"&maxTime="+timeLimit
+    +"&className="+splits[4]+"&template="+parseTemp(splits[8])+"&Qnum="+qnum+"&maxTime="+timeLimit
     +"&subDate="+dueDate.getUTCDate()+"&first="+first+"&prev="+splits[6]
     const response = await fetch(url);
     console.log(response.status)
