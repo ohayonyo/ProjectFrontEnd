@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 //import { useHistory } from 'react-router-dom';
 import '../css/pickData.css'
-
+//
 const PickData = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')

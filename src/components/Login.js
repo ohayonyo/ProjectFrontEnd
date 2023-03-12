@@ -60,10 +60,10 @@ const Login = () => {
       <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'></link>
 
       <div className='LoginPage_Screen'>
-        <h2 className='active h2' style={{fontWeight:400,color:'white'}}> sign in </h2>
-
-        <h2 className='nonactive h2'> <a href="/register" style={{textDecoration:'none'}}>sign up</a></h2>
-
+        <div style={{marginRight:110}}>
+          <h2 className='active h2' style={{fontWeight:400,color:'white'}}> sign in </h2>
+          <h2 className='nonactive h2'> <a href="/register" style={{textDecoration:'none'}}>sign up</a></h2>
+        </div>
         <form className='LoginPage_Form' action={newDest}>
 
           <input 
@@ -75,7 +75,7 @@ const Login = () => {
             required
           ></input>
 
-          <span className='LoginRegister_Span text_span'>username</span>
+          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>username</span>
     
   
           <input 
@@ -87,10 +87,10 @@ const Login = () => {
             required>
            </input>
 
-          <span className='LoginRegister_Span text_span'>password</span>
+          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>password</span>
           <br></br>
 
-          <div className='keep_me_signed'>
+          <div className='keep_me_signed' style={{marginRight:160}}>
             <input type="checkbox" id="checkbox-1-1" className='LoginPage_RememberMeCheckbox' />
             <label for="checkbox-1-1" className='LoginPage_Label' style={{color:'white'}}>Keep me Signed in</label>
           </div>

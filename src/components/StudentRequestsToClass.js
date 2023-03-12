@@ -53,15 +53,23 @@ export default function StudentRequestsToClass() {
   
   {
     id: 7,
-    primary: 'Summer BBQ',
-    secondary: `Who wants to have a cookout this weekend? I just got some furniture
-      for my backyard and would love to fire up the grill.`,
+    primary: 'Omer Shitrit',
+    secondary: `Wants to register to class2`,
   },
   {
     id: 8,
-    primary: 'Summer BBQ2',
-    secondary: `Who wants to have a cookout this weekend? I just got some furniture
-      for my backyard and would love to fire up the grill.`,
+    primary: 'Yoad Ohayon',
+    secondary: `Wants to register to class1`,
+  },
+  {
+    id: 9,
+    primary: 'Aleks Lisutta ',
+    secondary: `Wants to register to class2`,
+  },
+  {
+    id: 10,
+    primary: 'Dan Rotman',
+    secondary: `Wants to register to class1`,
   },]);
 
   useEffect(()=>{
