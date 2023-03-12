@@ -31,7 +31,7 @@
   .button {
     font-size: 1.2rem;
     padding: 0.5rem 1rem;
-    background-color: #0077FF;
+    background-color: #c8a970;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -41,5 +41,5 @@
   }
   
   .button:hover {
-    background-color: #0059b3;
+    background-color: #bfc1ca;
   }

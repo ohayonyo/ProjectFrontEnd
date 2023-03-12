@@ -59,7 +59,7 @@
 } */
 
 .submitButton{
-  background-color: #6b9ce9;
+  background-color: #c8a970;
   color: #fff;
   padding: 14px 20px;
   margin: 8px 0;
@@ -82,7 +82,7 @@
 } */
 
 .submitButton:hover{
-  background-color: #4c7bdb;
+  background-color: #bfc1ca;
 }
 
 /* button[type=submit]:hover {

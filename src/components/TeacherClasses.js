@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import '../css/PickDetails.css';
 
 
 
@@ -51,19 +52,17 @@ const fetchData = async () =>{
 }
 
 export default function TeacherClasses() {
-
     const [className,setClassName] = useState(null)
     const [messages, setMessages] = useState([{
       id: 1,
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    primary: 'Class1',
+    secondary: "Teacher: Moshe Cohen, Number of students: 32",
 
   },
   {
     id: 2,
-  primary: 'Birthday Gift',
-    secondary: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
+  primary: 'Class2',
+    secondary: "Teacher: David Levi, Number of students: 30",
 
     }]);
 
@@ -171,10 +170,10 @@ export default function TeacherClasses() {
       </Paper>  
     </React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={()=>openClass()} style={{float: 'left'}}>
+        <input type="text" style={{color:'black',height:42,marginTop:15}} onChange = {getClassName.bind(this)}/>
+        <button className='button' onClick={()=>openClass()} style={{float: 'left'}}>
           Add Class
         </button>
-        <input type="text" style={{color:'black'}} onChange = {getClassName.bind(this)}/>
       </div>
 
     </div>
