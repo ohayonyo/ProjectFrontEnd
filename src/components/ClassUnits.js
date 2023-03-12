@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import '../css/PickDetails.css';
 
 
 
@@ -38,12 +39,14 @@ const StyledFab = styled(Fab)({
   
 });
 
+const thisURL = window.location.href;
+const splits = thisURL.split('/')
+const className = splits[4]
+
 const fetchData = async () =>{
 
   //todo make this use the teacher name
-  const thisURL = window.location.href;
-  const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassUnits?className="+splits[4]
+  const url = "http://localhost:5000/getClassUnits?className=" + className
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -55,15 +58,14 @@ export default function ClassUnits() {
 
     const [messages, setMessages] = useState([{
       id: 1,
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    primary: 'Unit1',
+    secondary: "Linear problems",
 
   },
   {
     id: 2,
-  primary: 'Birthday Gift',
-    secondary: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
+  primary: 'Unit2',
+    secondary: `Polynomial problems`,
 
     }]);
 
@@ -93,7 +95,7 @@ export default function ClassUnits() {
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          הכיתות שלי
+        {className} 
         </Typography>
         <div>
 
@@ -117,7 +119,7 @@ export default function ClassUnits() {
       </Paper>  
     </React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={()=>openUnit()} style={{float: 'left'}}>
+        <button className='button' onClick={()=>openUnit()} style={{float: 'left'}}>
           Add new unit
         </button>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/PickDetails.css';
+import '../css/PickParams.css'
 
 const PickDetails = () => {
   const thisURL = window.location.href;
@@ -118,8 +119,8 @@ const PickDetails = () => {
         <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
       </label>
       
-      <button onClick={handleAddExercise} style={buttonStyle}>Add Another Exercise</button>
-      <button onClick={handleFinishUnit} style={buttonStyle}>Finish Unit</button>
+      <button onClick={handleAddExercise} className="submitButton">Add Another Exercise</button>
+      <button onClick={handleFinishUnit} className="submitButton">Finish Unit</button>
       
     </div>
   );
