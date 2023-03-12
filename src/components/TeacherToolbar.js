@@ -32,6 +32,15 @@ const TeacherToolbar = ({btn}) => {
   
   }
 
+  async function logout(name){
+    w3_close(name)
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/');
+    const urlToFetch='http://localhost:5000/logout?username=' + splits[3]
+    const response = await fetch(urlToFetch);
+    console.log(response.status)
+    return response.status==200
+  }
 
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
@@ -47,9 +56,10 @@ const TeacherToolbar = ({btn}) => {
             <h3 class="w3-padding-64"><b style={{textAlign:'center',fontSize:'3.5vh'}}>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳<br></br></b></h3>
           </div>
           <div class="w3-bar-block" style={{fontSize:'20px',marginTop:'-10%'}}>
-            <a href={'/'+splits[3]+"/teacherMenu/openClass"} onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>פתיחת כיתה</p></a> 
-            <a href={'/'+splits[3]+"/teacherMenu/myClasses"} onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>הכיתות שלי</p></a> 
-            <a href={'/'+splits[3]+"/teacherMenu/studentsRequestToClass"} onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"><p style={style_menu_labels}>בקשות רישום לכיתות</p></a> 
+            <a href={'/'} onClick={()=>logout('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>התנתקות</p></a> 
+            <a href={'/'+splits[3]+"/teacherMenu/openClass"} onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2" ><p style={style_menu_labels}>פתיחת כיתה</p></a> 
+            <a href={'/'+splits[3]+"/teacherMenu/myClasses"} onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"> <p style={style_menu_labels}>הכיתות שלי</p></a> 
+            <a href={'/'+splits[3]+"/teacherMenu/studentsRequestToClass"} onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn4"><p style={style_menu_labels}>בקשות רישום לכיתות</p></a> 
           </div>
         </div>
         </nav>
