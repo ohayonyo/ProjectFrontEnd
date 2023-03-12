@@ -36,6 +36,8 @@ import CreateUnitForm from './components/templateForm/CreateUnitForm';
 import QuestionView from './components/QuestionsView';
 import StudentClasses from './components/StudentClasses';
 import StudentClassUnits from './components/StudentClassUnits';
+import GradeAfterUnit from './components/GradeAfterUnit';
+
 function App() {
 
   const styles = `
@@ -350,6 +352,14 @@ function ValidateTeacher(){
             <div>
                 <StudentMenu></StudentMenu>
                 <QuestionView></QuestionView>
+            </div>
+            
+          }></Route>
+
+          <Route exact path='/:username/:unitName/:className/getGrade' element={
+            <div>
+                <StudentMenu></StudentMenu>
+                <GradeAfterUnit></GradeAfterUnit>
             </div>
             
           }></Route>

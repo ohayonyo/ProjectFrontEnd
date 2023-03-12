@@ -132,13 +132,14 @@ export default function QuestionView() {
           window.location.assign(nextURL);
         }
         if(promise.status ===204){
-          http://localhost:3000/dan/math2/math2/1/QuestionView
+          //http://localhost:3000/dan/math2/math2/1/QuestionView
           //http://localhost:3000/dan/math2/studentClassUnits
 
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+ "/studentClassUnits"
+          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/getGrade"
+          //const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+ "/studentClassUnits"
           console.log("the next url is " +nextURL)
           window.location.assign(nextURL);
         }
