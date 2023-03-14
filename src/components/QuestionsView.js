@@ -25,6 +25,8 @@ import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import './QuestionView.css'
 
+export var nextURL =""
+
 
 const fetchData = async () =>{
 
@@ -62,6 +64,7 @@ export default function QuestionView() {
     const [answers,setAnswers] = useState({
         0: "basic answer"
   })
+  const [colors,setColors] = useState(["gray","gray","gray","gray"])
     const [questions,setQuestions] = useState([{
     id: 1,
     primary:"dan",
@@ -96,28 +99,30 @@ export default function QuestionView() {
       fetchDataCall()
       },[]);
 
-    function getAnswer(val,id){
+    function isThereGreen(){
 
-        const newAnswers = {...answers}
+        const colorsGreen = colors.filter(x=> x=="green")
+        var isThereGreen = colorsGreen.length==0?false:true
 
-        newAnswers[id] = val.target.value
-        console.log(newAnswers)
-
-        setAnswers(newAnswers)
+        return isThereGreen
       }
 
 
-   
+      function nextPage(){
+        console.log("the next url is " +nextURL)
+        window.location.assign(nextURL);
+      }
 
       async function submitSingle(qans,id){
+        if(isThereGreen()){
+          return
+        }
         console.log("in submit single")
         const thisURL = window.location.href;
         const splits = thisURL.split('/')
         const url = "http://localhost:5000/submitQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]+
         "&ans="+qans +"&qnum=" +questions[0].id  
         
-        //questions.forEach (q => answers[q.id] = "the answer is " + q.id) 
-
         const promise =  await fetch(url,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -127,21 +132,40 @@ export default function QuestionView() {
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
-          console.log("the next url is " +nextURL)
-          window.location.assign(nextURL);
-        }
-        if(promise.status ===204){
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
+          const newColors = [...colors];
+          newColors[qans]="green"
+          setColors(newColors)
+
+        }if(promise.status ===201 || promise.status ===202||promise.status ===203||promise.status ===204){
           //http://localhost:3000/dan/math2/math2/1/QuestionView
           //http://localhost:3000/dan/math2/studentClassUnits
+
+          const newColors = [...colors];
+          newColors[qans]="red"
+          newColors[promise.status-200] = "green"
+          setColors(newColors)
 
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/getGrade"
-          //const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+ "/studentClassUnits"
-          console.log("the next url is " +nextURL)
-          window.location.assign(nextURL);
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
+
+        }
+        else if(promise.status ===205){
+          //http://localhost:3000/dan/math2/math2/1/QuestionView
+          //http://localhost:3000/dan/math2/studentClassUnits
+          console.log(promise.body)
+
+          const newColors = [...colors];
+          newColors[qans]="green"
+          setColors(newColors)
+
+          console.log(promise)
+          console.log("success")
+          const nextId = questions[0].id +1
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits"
+          console.log("the next URL is " + nextURL)
         }
         else
           console.log("didn't work try again")
@@ -162,13 +186,32 @@ export default function QuestionView() {
                     <h2>  {questions[0].primary} ,{questions[0].id}</h2>
 
                 <ul>
-                  <li onClick={() => submitSingle(1,questions[0].id)} >{questions[0].answer1}</li>
-                  <li onClick={() => submitSingle(2,questions[0].id)} >{questions[0].answer2}</li>
-                  <li onClick={() => submitSingle(3,questions[0].id)} >{questions[0].answer3}</li>
-                  <li onClick={() => submitSingle(4,questions[0].id)} >{questions[0].answer4}</li>
+                  <li onClick={() => submitSingle(1,questions[0].id)} >
+                    <div contentEditable style={{backgroundColor:colors[1]}}>
+                        <h3>{questions[0].answer1} </h3>
+                    </div>
+                  </li>
+                  <li onClick={() => submitSingle(2,questions[0].id)} >
+                    <div contentEditable style={{backgroundColor:colors[2]}}>
+                        <h3>{questions[0].answer2} </h3>
+                    </div>
+                  </li>
+                  <li onClick={() => submitSingle(3,questions[0].id)} >
+                    <div contentEditable style={{backgroundColor:colors[3]}}>
+                        <h3>{questions[0].answer3} </h3>
+                    </div>
+                  </li>
+                  <li onClick={() => submitSingle(4,questions[0].id)} >
+                    <div contentEditable style={{backgroundColor:colors[4]}}>
+                        <h3>{questions[0].answer4} </h3>
+                    </div>
+                  </li>
 
                 </ul>
             </div>
+            <button className='button' onClick={()=>nextPage()} style={{float: 'left'}}>
+              השאלה הבאה
+            </button>
         </div>
         
       );
