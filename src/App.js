@@ -269,7 +269,9 @@ function ValidateTeacher(){
           <Route exact path='/:username/:className/openUnit/:prev/data' element={
             <div>
                 <TeacherMenu></TeacherMenu>
-                <PickData></PickData>
+                <div className='background2'>
+                  <PickData></PickData>
+                </div>
             </div>
             
             
@@ -356,7 +358,23 @@ function ValidateTeacher(){
             
           }></Route>
 
+          <Route exact path='/QuestionView' element={
+            <div>
+                <StudentMenu></StudentMenu>
+                <QuestionView></QuestionView>
+            </div>
+            
+          }></Route>
+
           <Route exact path='/:username/:unitName/:className/getGrade' element={
+            <div>
+                <StudentMenu></StudentMenu>
+                <GradeAfterUnit></GradeAfterUnit>
+            </div>
+            
+          }></Route>
+
+          <Route exact path='/getGrade' element={
             <div>
                 <StudentMenu></StudentMenu>
                 <GradeAfterUnit></GradeAfterUnit>
