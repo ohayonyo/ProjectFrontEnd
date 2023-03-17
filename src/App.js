@@ -37,6 +37,9 @@ import QuestionView from './components/QuestionsView';
 import StudentClasses from './components/StudentClasses';
 import StudentClassUnits from './components/StudentClassUnits';
 import GradeAfterUnit from './components/GradeAfterUnit';
+import HorizontalLinearStepper from './components/stepper/HorizontalLinearStepper';
+import Stepper from 'react-stepper-horizontal';
+
 
 function App() {
 
@@ -268,13 +271,19 @@ function ValidateTeacher(){
           
           <Route exact path='/:username/:className/openUnit/:prev/data' element={
             <div>
-                <TeacherMenu></TeacherMenu>
-                <div className='background2'>
-                  <PickData></PickData>
+              <TeacherMenu></TeacherMenu>
+              
+              <div className='background2'>
+                <div style={{width:'50%',position:'relative',left:'23%'}}>
+                  <Stepper circleTop={'20%'} 
+                  size={40}
+                  steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={ 1 } />
                 </div>
+                <PickData></PickData>
+              </div>
+ 
             </div>
-            
-            
+              
           }></Route>
 
           <Route exact path='/:username/:className/openUnit/:prev/question/:dataS' element={
@@ -436,6 +445,18 @@ function ValidateTeacher(){
             </div>
             
           }></Route>
+
+          <Route exact path='/stepper' element={
+            <div>
+              <Stepper steps={ [{title: 'Step One'}, {title: 'Step Two'}, {title: 'Step Three'}, {title: 'Step Four'}] } activeStep={ 0 } />
+              {/* <HorizontalLinearStepper></HorizontalLinearStepper> */}
+            </div>
+            
+          }></Route>
+
+
+
+
 
 
 
