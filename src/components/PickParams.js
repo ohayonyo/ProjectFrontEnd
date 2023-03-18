@@ -58,7 +58,7 @@ const PickParams = () => {
   };
 
   const inputElements = [];
-
+// 
   for (let i = 0; i < numInputs; i++) {
     inputElements.push(
       <div key={i}>
