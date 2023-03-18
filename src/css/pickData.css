@@ -39,6 +39,7 @@
   border: none; /* removes the default border */
   border-radius: 8px; /* adds a rounded border */
   padding: 12px; /* adds some padding to the select */
+  padding-right: 20px;
   font-size: 16px; /* sets the font size */
   background-color: #f2f2f2; /* sets the background color */
   color: #333; /* sets the text color */
