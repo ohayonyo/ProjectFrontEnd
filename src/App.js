@@ -278,42 +278,106 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={ 1 } />
+                    steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={0} />
                   </div>
                  
                   <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
                     <PickData></PickData>
                   </div>
                   
-                
               </div>
- 
+
             </div>
               
           }></Route>
 
           <Route exact path='/:username/:className/openUnit/:prev/question/:dataS' element={
-            <div>
-                <TeacherMenu></TeacherMenu>
-                <PickQuestion></PickQuestion>
+              
+            <div className='background2' style={{zIndex:-1}}>
+              <TeacherMenu></TeacherMenu>
+              
+              <div style={{zIndex:2}}>
+
+                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+                    <Stepper circleTop={'20%'} 
+                    size={40}
+                    steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={1} />
+                  </div>
+                 
+                  <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
+                    <PickQuestion></PickQuestion>
+                  </div>
+                  
+              </div>
+
             </div>
-            
-            
+  
           }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/parameters/:dataS/:questionS' element={
-            <div>
-                <TeacherMenu></TeacherMenu>
-                <PickParams></PickParams>
+            
+            <div className='background2' style={{zIndex:-1}}>
+              <TeacherMenu></TeacherMenu>
+              
+              <div style={{zIndex:2}}>
+
+                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+                    <Stepper circleTop={'20%'} 
+                    size={40}
+                    steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={2} />
+                  </div>
+                 
+                  <div style={{width:'50%',transform: 'scale(0.9)',marginLeft:'20%',marginTop:'-15%'}}>
+                    <PickParams></PickParams>
+                  </div>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  
+              </div>
+
             </div>
+            
+
+            // <div>
+            //     <TeacherMenu></TeacherMenu>
+            //     <PickParams></PickParams>
+            // </div>
             
             
           }></Route>
 
           <Route exact path='/:username/:className/openUnit/:prev/details/:template' element={
-            <div>
-                <TeacherMenu></TeacherMenu>
+
+
+            <div className='background2' style={{zIndex:-1}}>
+            <TeacherMenu></TeacherMenu>
+
+            <div style={{zIndex:2}}>
+
+                <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+                  <Stepper circleTop={'15%'} 
+                  size={40}
+                  steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={3} />
+                </div>
+              
+                <div style={{transform: 'scale(0.7)',marginTop:'-10%',marginLeft:'-10%'}}>
                 <PickDetails></PickDetails>
+                </div>
+                
             </div>
+
+            </div>
+
+
+
+            // <div>
+            //     <TeacherMenu></TeacherMenu>
+               
+            // </div>
             
             
           }></Route>
