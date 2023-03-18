@@ -7,7 +7,6 @@ const PickData = () => {
   const splits = thisURL.split('/')
   const options = ['linear', 'quadratic', 'trigonometric', 'exponential']
   const [selectedOption, setSelectedOption] = useState('');
-  //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
 

@@ -63,13 +63,13 @@ export default function QuestionView() {
         0: "basic answer"
   })
     const [questions,setQuestions] = useState([{
-    id: 1,
-    primary:"dan",
+    id: "1",
+    primary:"y=2x+4",
     secondary:"this is a cut axis question",
-    answer1:"dan",
-    answer2:"two",
-    answer3:"three",
-    answer4:"four"
+    answer1:"(0,4) (2,0)",
+    answer2:"(0,2) (4,0)",
+    answer3:"(0,4) (-2,0)",
+    answer4:"(0,2) (-4,0)"
     }
   ,
   {
