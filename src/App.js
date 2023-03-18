@@ -37,7 +37,6 @@ import QuestionView from './components/QuestionsView';
 import StudentClasses from './components/StudentClasses';
 import StudentClassUnits from './components/StudentClassUnits';
 import GradeAfterUnit from './components/GradeAfterUnit';
-import HorizontalLinearStepper from './components/stepper/HorizontalLinearStepper';
 import Stepper from 'react-stepper-horizontal';
 
 
