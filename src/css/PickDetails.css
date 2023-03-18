@@ -43,3 +43,31 @@
   .button:hover {
     background-color: #bfc1ca;
   }
+
+  .class-list .MuiListItem-root {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .class-list .MuiListItem-root:hover {
+    background-color: #eee;
+  }
+
+  .ListItem {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Style the list item text */
+  .ListItemText {
+    color: #000000;
+    text-align: right;
+    margin-top: -1px;
+    margin-right: 20px;
+  }

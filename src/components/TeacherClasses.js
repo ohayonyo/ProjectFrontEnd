@@ -132,51 +132,45 @@ export default function TeacherClasses() {
   }
 
   return (
-    <div style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
-      
-      <React.Fragment>
-      <CssBaseline />
-      <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          הכיתות שלי
-        </Typography>
-        <div>
-
-          <List sx={{ mb: 2 }}>
-            {messages.map(({ id,primary, secondary }) => (
-              <React.Fragment key={id}>
-                <ListItem Button>
-
+    <div class="class-list" style={{resize: 'both', overflow: 'auto', width:'105%', paddingRight:'20%'}}>
+  <React.Fragment>
+    <CssBaseline />
+    <Paper square sx={{ pb: '50px' }}>
+      <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
+        הכיתות שלי
+      </Typography>
+      <div>
+        <List sx={{ mb: 2 }}>
+          {messages.map(({ id,primary, secondary }) => (
+            <React.Fragment key={id}>
+              <ListItem Button>
                 <IconButton edge="end" aria-label="delete" onClick={()=>deleteElement(id)}>
-                      <DeleteIcon />
+                  <DeleteIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
-                      <AddIcon />
+                  <AddIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoUnits(id,cls)}>
-                      <MenuIcon />
+                  <MenuIcon />
                 </IconButton>
                 <ListItemText 
-                primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
-
-                </ListItem>
-              </React.Fragment>
-            ))}
-          </List>
-        </div>
-      
-      </Paper>  
-    </React.Fragment>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <input type="text" style={{color:'black',height:42,marginTop:15}} onChange = {getClassName.bind(this)}/>
-        <button className='button' onClick={()=>openClass()} style={{float: 'left'}}>
-          Add Class
-        </button>
+                  primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
+                  secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}
+                />
+              </ListItem>
+            </React.Fragment>
+          ))}
+        </List>
       </div>
-
-    </div>
+    </Paper>  
+  </React.Fragment>
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <input type="text" style={{color:'black',height:42,marginTop:15}} onChange = {getClassName.bind(this)}/>
+    <button className='button' onClick={()=>openClass()} style={{float: 'left'}}>
+      Add Class
+    </button>
+  </div>
+</div>
     
   );
 }
