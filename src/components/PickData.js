@@ -24,7 +24,7 @@ const PickData = () => {
     <form onSubmit={handleSubmit} class="form">
     <label class="form-label">
       Choose an option:
-      <select value={selectedOption} onChange={handleChange} class="form-select">
+      <select value={selectedOption} onChange={handleChange} className="form-select form-select-arrow">
         <option value="">Select an option</option>
         {options.map((option) => (
           <option key={option} value={option}>{option}</option>
