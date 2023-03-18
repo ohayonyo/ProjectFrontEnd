@@ -214,8 +214,13 @@
 .background2{
   background-image: url("back1.jpeg");
   background-repeat: no-repeat;
+  background-position-y: top;
+  background-position-x:left;
   background-size: cover;
-  
+  min-width: 500px;
+  max-height: 700px;
+  /* transform: scale(1.2); */
+  /* background-position: left; */
   /* background-color: lightblue; */
 }
 

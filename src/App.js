@@ -270,16 +270,22 @@ function ValidateTeacher(){
           }></Route>
           
           <Route exact path='/:username/:className/openUnit/:prev/data' element={
-            <div>
+            <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
-              <div className='background2'>
-                <div style={{width:'50%',position:'relative',left:'23%'}}>
-                  <Stepper circleTop={'20%'} 
-                  size={40}
-                  steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={ 1 } />
-                </div>
-                <PickData></PickData>
+              <div style={{zIndex:2}}>
+
+                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+                    <Stepper circleTop={'20%'} 
+                    size={40}
+                    steps={ [{title: 'שלב ראשון'}, {title: 'שלב שני'}, {title: 'שלב שלישי'}, {title: 'שלב רביעי'}] } activeStep={ 1 } />
+                  </div>
+                 
+                  <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
+                    <PickData></PickData>
+                  </div>
+                  
+                
               </div>
  
             </div>
