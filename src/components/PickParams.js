@@ -60,10 +60,11 @@ const PickParams = () => {
   const inputElements = [];
 
   for (let i = 0; i < numInputs; i++) {
+    let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
     inputElements.push(
       <div key={i}>
         <label className='label'>
-          parameter {i+1}:
+          {paramName} :
           <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={minValues[i]? minValues[i]: '5'} onChange={(event) => handleChangeMin(event, i)} />
           <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={maxValues[i]?maxValues[i]: '5'} onChange={(event) => handleChangeMax(event, i)} />
         </label>
