@@ -39,17 +39,20 @@
   border: none; /* removes the default border */
   border-radius: 8px; /* adds a rounded border */
   padding: 12px; /* adds some padding to the select */
-  padding-right: 20px;
+  /* padding-right: 20px; */
   font-size: 16px; /* sets the font size */
   background-color: #f2f2f2; /* sets the background color */
   color: #333; /* sets the text color */
   -webkit-appearance: none; /* removes the default appearance */
   -moz-appearance: none; /* removes the default appearance */
   appearance: none; /* removes the default appearance */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath d='M13.354.354a.5.5 0 0 0-.708 0L7 6.293.354.354a.5.5 0 0 0-.708.708L7 7.707l6.354-6.353a.5.5 0 0 0 0-.708z'/%3E%3C/svg%3E"); /* adds an arrow icon to the select */
-  background-repeat: no-repeat; /* prevents the icon from repeating */
-  background-position: right center; /* positions the icon to the right of the text */
-  
+}
+
+.form-select-arrow{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath d='M13.354.354a.5.5 0 0 0-.708 0L7 6.293.354.354a.5.5 0 0 0-.708.708L7 7.707l6.354-6.353a.5.5 0 0 0 0-.708z'/%3E%3C/svg%3E"); 
+  background-repeat: no-repeat; 
+  background-position: left center; 
+  background-position-x: 15px;
 }
 
 .form-submit {
