@@ -126,7 +126,7 @@ export default function ClassUnits() {
     </React.Fragment>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <button className='button' onClick={()=>openUnit()} style={{float: 'left'}}>
-        Add new unit
+        הוסף שיעור חדש
       </button>
     </div>
   </div>
