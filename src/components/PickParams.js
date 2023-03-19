@@ -8,7 +8,7 @@ const PickParams = () => {
   const numInputs = dict[splits[8]]
   const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
-  const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(false));
+  const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
   
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
@@ -68,10 +68,10 @@ const PickParams = () => {
           <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={minValues[i]? minValues[i]: '5'} onChange={(event) => handleChangeMin(event, i)} />
           <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={maxValues[i]?maxValues[i]: '5'} onChange={(event) => handleChangeMax(event, i)} />
         </label>
-        <label className='label'>
+        {/* <label className='label'>
           <input className='inputCheckBox' style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
           randomize?
-        </label>
+        </label> */}
       </div>
     );
   }
@@ -80,7 +80,7 @@ const PickParams = () => {
     <div style={{marginTop:200}}>
       <form onSubmit={handleSubmit} className="form-container">
         {inputElements}
-        <button className='submitButton' type="submit" >Submit Params</button>
+        <button className='submitButton' type="submit" >הבא</button>
       </form>
     </div>
     

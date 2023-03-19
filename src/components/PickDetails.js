@@ -113,31 +113,31 @@ const PickDetails = () => {
     <div className='container' style={{marginTop:40}}>
 
       <label className='label'>
-        Name:
+      :שם יחידת הלימוד
         <br></br>
         <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
       </label>
 
       <label className='label'>
-        Number of questions:
+      :כמות שאלות נכונות ברצף שצריך לענות עליהן
         <br></br>
         <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} />
       </label>
 
       <label className='label'>
-        Time Limit:
+      :הגבלת הזמן
         <br></br>
         <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} />
       </label>
 
       <label className='label'>
-        Due Date:
+      :תאריך הגשה
         <br></br>
         <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
       </label>
       
-      <button onClick={handleAddExercise} className="submitButton">Add Another Exercise</button>
-      <button onClick={handleFinishUnit} className="submitButton">Finish Unit</button>
+      <button onClick={handleAddExercise} className="submitButton">להוסיף יחידת לימוד נוספת</button>
+      <button onClick={handleFinishUnit} className="submitButton">לסיים את השיעור</button>
       
     </div>
   );

@@ -5,7 +5,8 @@ import '../css/pickData.css'
 const PickQuestion = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const options = ['intersection', 'extremes', 'incDec']
+  const options ={'intersection':'נקודות חיתוך עם הצירים','extremes':'נקודות קיצון','incDec':'תחומי עלייה וירידה'}
+
   const [selectedOptions, setSelectedOptions] = useState([]);
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
@@ -33,14 +34,14 @@ const PickQuestion = () => {
     <div class="form-wrapper">
         <form class="form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <label class="form-label">
-        Choose an option:
+      :בחר את נושאי יחידת הלימוד
         <select class="form-select" multiple value={selectedOptions} onChange={handleChange}>
-          {options.map((option) => (
-            <option key={option} value={option}>{option}</option>
+          {Object.keys(options).map((option) => (
+            <option key={option} value={option}>{options[option]}</option>
           ))}
         </select>
       </label>
-      <button class="form-submit" type="submit">SubmitQuestion</button>
+      <button class="form-submit" type="submit">הבא</button>
       </form>
     </div>
   );
