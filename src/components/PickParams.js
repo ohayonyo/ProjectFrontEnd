@@ -59,9 +59,9 @@ const PickParams = () => {
   };
 
   const handleChangeMin = (event, index) => {
-    const newValue = event.target.value;
+    const newValue = parseInt(event.target.value);
     setMinValues(prevMinValues => {
-      if (newValue <= maxValues[index] && checkboxValues[index]){
+      if (newValue <= parseInt(maxValues[index])){
         const newMinValues = [...prevMinValues];
         newMinValues[index] = newValue;
         return newMinValues;
@@ -71,9 +71,9 @@ const PickParams = () => {
   };
   
   const handleChangeMax = (event, index) => {
-    const newValue = event.target.value;
+    const newValue = parseInt(event.target.value);
     setMaxValues(prevMaxValues => {
-      if (newValue >= minValues[index] && checkboxValues[index]){
+      if (newValue >= parseInt(minValues[index])){
         const newMaxValues = [...prevMaxValues];
         newMaxValues[index] = newValue;
         return newMaxValues;
@@ -99,8 +99,8 @@ const PickParams = () => {
       <div key={i}>
         <label className='label'>
           {paramName} :
-          <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={minValues[i]? minValues[i]: '5'} onChange={(event) => handleChangeMin(event, i)} />
-          <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={maxValues[i]?maxValues[i]: '5'} onChange={(event) => handleChangeMax(event, i)} />
+          <input type="number" name="min" value={minValues[i]} onChange={(event) => handleChangeMin(event, i)} />
+          <input type="number" name="min" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
         </label>
         {/* <label className='label'>
           <input className='inputCheckBox' style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
