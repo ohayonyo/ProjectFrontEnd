@@ -66,6 +66,14 @@ const PickDetails = () => {
     }
   };
 
+  const handleNext = () => {
+    const res = fetchData()
+    console.log(res + " in next")
+    if(res){
+      window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/data/"+name+"/"+qnum+"/"+timeLimit+"/"+dueDate;
+    }
+  };
+
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -136,8 +144,7 @@ const PickDetails = () => {
         <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
       </label>
       
-      <button onClick={handleAddExercise} className="submitButton">להוסיף יחידת לימוד נוספת</button>
-      <button onClick={handleFinishUnit} className="submitButton">לסיים את השיעור</button>
+      <button onClick={handleNext} className="submitButton">לבחירת נתונים</button>
       
     </div>
   );

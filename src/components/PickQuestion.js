@@ -28,7 +28,8 @@ const PickQuestion = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+splits[8]+"/"+selectedOptions);
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptions
+    +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]);
   };
   return (
     <div class="form-wrapper">

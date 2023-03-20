@@ -38,7 +38,7 @@ import StudentClasses from './components/StudentClasses';
 import StudentClassUnits from './components/StudentClassUnits';
 import GradeAfterUnit from './components/GradeAfterUnit';
 // import HorizontalLinearStepper from './components/stepper/HorizontalLinearStepper';
-import Stepper from 'react-stepper-horizontal';
+import Stepper from './components/stepper/HorizontalLinearStepper';
 
 
 function App() {
@@ -269,7 +269,7 @@ function ValidateTeacher(){
             
           }></Route>
           
-          <Route exact path='/:username/:className/openUnit/:prev/data' element={
+          <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate' element={
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
@@ -291,7 +291,7 @@ function ValidateTeacher(){
               
           }></Route>
 
-          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS' element={
+          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate' element={
               
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
@@ -313,7 +313,7 @@ function ValidateTeacher(){
             </div>
   
           }></Route>
-          <Route exact path='/:username/:className/openUnit/:prev/parameters/:dataS/:questionS' element={
+          <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate' element={
             
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
@@ -350,7 +350,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/:username/:className/openUnit/:prev/details/:template' element={
+          <Route exact path='/:username/:className/openUnit/:prev/details' element={
 
 
             <div className='background2' style={{zIndex:-1}}>
