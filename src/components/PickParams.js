@@ -9,6 +9,8 @@ const PickParams = () => {
   const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
   const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
+  const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'trigonometric':'פונקציה טריגונומטרית', 'exponential':'פונקציה אקספוננציאלית'}
+  const label = options[splits[9]];
   
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
@@ -113,6 +115,9 @@ const PickParams = () => {
   return (
     <div style={{marginTop:200}}>
       <form className="form-container">
+        <h1>
+          {label}
+        </h1>
         {inputElements}
         <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
         <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
