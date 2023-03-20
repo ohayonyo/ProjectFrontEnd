@@ -119,8 +119,13 @@ const PickParams = () => {
           {label}
         </h1>
         {inputElements}
-        <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
-        <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
+        <div>
+          <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
+        </div>
+        <div style={{marginTop:-7}}>
+          <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
+        </div>
+        
       </form>
     </div>
     
