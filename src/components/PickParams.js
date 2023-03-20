@@ -5,7 +5,7 @@ const dict ={"quadratic":3,"linear":2,"trigonometric":4}
 const PickParams = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const numInputs = dict[splits[8]]
+  const numInputs = dict[splits[9]]
   const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
   const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
@@ -13,6 +13,50 @@ const PickParams = () => {
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
+  const first = (splits[6]=="new") 
+  const nname = splits[6]+"n"
+  let nameS = splits[6]
+
+  const parseTemp = () =>{
+    let res = []
+    for (let i = 0; i < minValues.length; i++){
+      res.push([minValues[i],maxValues[i]])
+    }
+    return splits[8]+'_'+splits[9]+'_'+res
+  }
+  const fetchData = async () =>{
+
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    
+    if (!first){
+      nameS = nname
+    }
+
+    console.log(" in fetchData")
+    const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
+    +"&className="+splits[4]+"&template="+parseTemp()+"&Qnum="+splits[11]+"&maxTime="+splits[12]
+    +"&subDate="+splits[13].getUTCDate()+"&first="+first+"&prev="+splits[6]
+    const response = await fetch(url);
+    console.log(response.status)
+    return response.status==200
+        
+  }
+  const handleFinishUnit = () => {
+    const res = fetchData()
+    console.log(res + " in finishUnit")
+    if(res){
+      window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/classUnits`;
+    }
+  };
+
+  const handleAddExercise = () => {
+    const res = fetchData()
+    console.log(res + " in addExercise")
+    if(res){
+      window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/openUnit/${nameS}/details`;
+    }
+  };
 
   const handleChangeMin = (event, index) => {
     const newValue = event.target.value;
@@ -47,16 +91,6 @@ const PickParams = () => {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const zip = [numInputs]
-    for (let i = 0; i < numInputs; i++) {
-      zip[i] = "["+minValues[i]+","+maxValues[i]+","+checkboxValues[i]+"]"
-    }
-    const template = splits[8]+"_"+splits[9]+"_"+zip
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/details/"+template);
-  };
-
   const inputElements = [];
 
   for (let i = 0; i < numInputs; i++) {
@@ -78,9 +112,10 @@ const PickParams = () => {
 
   return (
     <div style={{marginTop:200}}>
-      <form onSubmit={handleSubmit} className="form-container">
+      <form className="form-container">
         {inputElements}
-        <button className='submitButton' type="submit" >הבא</button>
+        <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
+        <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
       </form>
     </div>
     
