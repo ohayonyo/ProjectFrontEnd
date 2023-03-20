@@ -119,6 +119,7 @@ const PickParams = () => {
           {label}
         </h1>
         {inputElements}
+        <br></br>
         <div>
           <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
         </div>

@@ -321,22 +321,24 @@ function ValidateTeacher(){
               
               <div style={{zIndex:2}}>
 
-                  <div style={{width:'50%',position:'relative',left:'25%',transform: 'scale(0.8)'}}>
+                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
                     steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={3} />
                     </div>
                  
-                  <div style={{width:'50%',transform: 'scale(1)',marginLeft:'25%',marginTop:'-15%'}}>
+                  <div style={{width:'50%',position:'relative',transform: 'scale(0.8)',marginLeft:'20%',marginTop:'-20%'}}>
                     <PickParams></PickParams>
                   </div>
                   <br></br>
                   <br></br>
+                  {/* <br></br>
                   <br></br>
                   <br></br>
                   <br></br>
                   <br></br>
                   <br></br>
+                  <br></br> */}
                   
               </div>
 

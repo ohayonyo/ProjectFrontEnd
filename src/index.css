@@ -217,6 +217,7 @@
   background-position-y: top;
   background-position-x:left;
   background-size: cover;
+  background-attachment: fixed;
   min-width: 500px;
   max-height: 700px;
   /* transform: scale(1.2); */
@@ -231,6 +232,17 @@
   
   /* background-color: lightblue; */
 }
+
+/*---------------------- make scrollbar invisible --------------------*/
+::-webkit-scrollbar {
+    display: none;
+    
+}
+
+
+
+
+
 
 /* body {
   margin: 0;
