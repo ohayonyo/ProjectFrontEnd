@@ -23,7 +23,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
-import '../css/PickDetails.css';
 
 
 
@@ -39,14 +38,12 @@ const StyledFab = styled(Fab)({
   
 });
 
-const thisURL = window.location.href;
-const splits = thisURL.split('/')
-const className = splits[4]
-
 const fetchData = async () =>{
 
   //todo make this use the teacher name
-  const url = "http://localhost:5000/getClassUnits?className=" + className
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
+  const url = "http://localhost:5000/getClassUnits?className="+splits[4]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -58,14 +55,15 @@ export default function ClassUnits() {
 
     const [messages, setMessages] = useState([{
       id: 1,
-    primary: 'Unit1',
-    secondary: "Linear problems",
+    primary: 'Brunch this week?',
+    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
 
   },
   {
     id: 2,
-  primary: 'Unit2',
-    secondary: `Polynomial problems`,
+  primary: 'Birthday Gift',
+    secondary: `Do you have a suggestion for a good present for John on his work
+      anniversary. I am really confused & would love your thoughts on it.`,
 
     }]);
 
@@ -84,51 +82,47 @@ export default function ClassUnits() {
   function openUnit(){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/new/data");
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/new/details");
   }
 
   return (
-  <div class="class-list" style={{resize: 'both', overflow: 'auto', width:'105%', paddingRight:'20%'}}>
-    <React.Fragment>
+    <div style={{resize: 'both',
+    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+      
+      <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          {className} 
+          הכיתות שלי
         </Typography>
         <div>
+
           <List sx={{ mb: 2 }}>
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
-                <ListItem 
-                  Button 
-                  sx={{ 
-                    border: '1px solid black', 
-                    borderRadius: '10px', 
-                    mb: '1rem', 
-                    '&:hover': { backgroundColor: 'lightgray', cursor: 'pointer' }
-                  }}
-                  onClick={(unit)=>startUnit(id,unit)}
-                >
-                  <IconButton edge="end" aria-label="units">
-                    <MenuIcon />
-                  </IconButton>
-                  <ListItemText 
-                    primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                    secondary={secondary} 
-                    style={{textAlign:'right',marginTop:-1,marginRight:20}}
-                  />
+                <ListItem Button>
+                <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
+                      <MenuIcon />
+                </IconButton>
+                <ListItemText 
+                primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
+                secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
+
                 </ListItem>
               </React.Fragment>
             ))}
           </List>
         </div>
+      
       </Paper>  
     </React.Fragment>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <button className='button' onClick={()=>openUnit()} style={{float: 'left'}}>
-        הוסף שיעור חדש
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <button onClick={()=>openUnit()} style={{float: 'left'}}>
+          Add new unit
+        </button>
+      </div>
+
     </div>
-  </div>
+    
   );
 }
