@@ -64,7 +64,7 @@ export default function QuestionView() {
     const [answers,setAnswers] = useState({
         0: "basic answer"
   })
-  const [colors,setColors] = useState(["gray","gray","gray","gray"])
+  const [colors,setColors] = useState(["","","",""])
     const [questions,setQuestions] = useState([{
     id: "1",
     primary:"y=2x+4",
@@ -183,7 +183,8 @@ export default function QuestionView() {
           
              <h1> {questionPreamble}</h1>
                <div className='multiple-choice'>
-                    <h2>  {questions[0].primary} ,{questions[0].id}</h2>
+                    <h2 >    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
+
 
                 <ul>
                   <li onClick={() => submitSingle(1,questions[0].id)} >
