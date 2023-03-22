@@ -37,13 +37,16 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
   
 });
+const thisURL = window.location.href;
+const splits = thisURL.split('/');
+const className = splits[4];
+
 
 const fetchData = async () =>{
 
   //todo make this use the teacher name
-  const thisURL = window.location.href;
-  const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassUnits?className="+splits[4]
+
+  const url = "http://localhost:5000/getClassUnits?className="+className;
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -86,14 +89,14 @@ export default function ClassUnits() {
   }
 
   return (
-    <div style={{resize: 'both',
+    <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
       <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          הכיתות שלי
+          {className}
         </Typography>
         <div>
 
@@ -117,8 +120,8 @@ export default function ClassUnits() {
       </Paper>  
     </React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={()=>openUnit()} style={{float: 'left'}}>
-          Add new unit
+        <button className='button' onClick={()=>openUnit()} style={{float: 'left'}}>
+          הוספת שיעור חדש
         </button>
       </div>
 
