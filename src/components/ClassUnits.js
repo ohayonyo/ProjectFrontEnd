@@ -85,8 +85,24 @@ export default function ClassUnits() {
 
   const numberOfUnits = messages.length;
 
-  const [unitNames,setUnitNames] = useState(Array(numberOfUnits).fill(''));
-  const [UnitDescriptions,setUnitDescriptions] = useState(Array(numberOfUnits).fill(''));
+  let unitNamesAtUpload = messages.map((value)=>value.primary)
+  let UnitDescriptionsAtUpload=messages.map((value)=>value.secondary);
+
+  console.log('unitNamesAtUpload:'+unitNamesAtUpload)
+  const [unitNames,setUnitNames] = useState([]);
+  useEffect(()=>{
+    setUnitNames(unitNamesAtUpload)
+  },unitNamesAtUpload)
+
+
+  console.log('unitNames:'+unitNames)
+  const [UnitDescriptions,setUnitDescriptions] = useState([]);
+  useEffect(()=>{
+    setUnitDescriptions(UnitDescriptionsAtUpload)
+  },UnitDescriptionsAtUpload)
+
+  console.log('UnitDescriptionsAtUpload:'+UnitDescriptionsAtUpload)
+  console.log('UnitDescriptions:'+UnitDescriptions)
 
   const handleChangeUnitName = (event, index) => {
     const newValue = event.target.value;
@@ -118,6 +134,7 @@ export default function ClassUnits() {
   }
 
   return (
+    
     <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
@@ -142,8 +159,8 @@ export default function ClassUnits() {
                     <Typography variant="h6" style={{ color: '#000000' }}>
                      <div style={{color:'black'}}>
                       <EditText showEditButton style={{color:'black'}} 
-                        onChange={(e) => handleChangeUnitName(e,id)}
-                        value={unitNames[id]}
+                        onChange={(e) => handleChangeUnitName(e,id-1)}
+                        value={unitNames[id-1]}
                         style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6'}}
                       />
                      </div>
@@ -152,8 +169,8 @@ export default function ClassUnits() {
                     secondary={
                     <div style={{color:'black'}}>
                     <EditText showEditButton style={{color:'black'}} 
-                      onChange={(e) => handleChangeUnitDescription(e,id)}
-                      value={UnitDescriptions[id]}
+                      onChange={(e) => handleChangeUnitDescription(e,id-1)}
+                      value={UnitDescriptions[id-1]}
                       style={{width:'90%',marginLeft:'10%',color:'black'}}
                     />
                    </div>
