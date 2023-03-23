@@ -185,7 +185,6 @@ export default function ClassUnits() {
                     style={{textAlign:'right',marginTop:-1,marginRight:20}}
                     />
 
-
                 </ListItem>
               </React.Fragment>
             ))}
