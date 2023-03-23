@@ -42,7 +42,14 @@ import GradeAfterUnit from './components/GradeAfterUnit';
 import Stepper from 'react-stepper-horizontal';
 
 
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+import { useState } from 'react';
+
+
 function App() {
+
+  const [textInput,setTextInput] = useState("");
 
   const styles = `
   #btn1 {
@@ -421,6 +428,20 @@ function ValidateTeacher(){
                 <StudentMenu></StudentMenu>
                 <StudentClassUnits></StudentClassUnits>
             </div>
+            
+          }></Route>
+
+          <Route exact path='/editable' element={
+            <div style={{color:'black'}}>
+            <EditText showEditButton style={{color:'black'}} 
+            onChange={(e) => setTextInput(e.target.value)}
+            value={textInput}
+            />
+
+            <h1>{textInput}</h1>
+
+            {/* <EditTextarea /> */}
+          </div>
             
           }></Route>
 

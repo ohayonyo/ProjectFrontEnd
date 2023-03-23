@@ -23,8 +23,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import EditIcon from '@mui/icons-material/Edit';
 
 
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
 
 
 
@@ -56,7 +59,7 @@ const fetchData = async () =>{
 
 export default function ClassUnits() {
 
-    const [messages, setMessages] = useState([{
+  const [messages, setMessages] = useState([{
       id: 1,
     primary: 'Brunch this week?',
     secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
@@ -80,6 +83,54 @@ export default function ClassUnits() {
     fetchDataCall()
     },[]);
 
+  const numberOfUnits = messages.length;
+
+  let unitNamesAtUpload = messages.map((value)=>value.primary)
+  let UnitDescriptionsAtUpload=messages.map((value)=>value.secondary);
+
+  console.log('unitNamesAtUpload:'+unitNamesAtUpload)
+  const [unitNames,setUnitNames] = useState([]);
+  useEffect(()=>{
+    setUnitNames(unitNamesAtUpload)
+  },unitNamesAtUpload)
+
+
+  console.log('unitNames:'+unitNames)
+  const [UnitDescriptions,setUnitDescriptions] = useState([]);
+  useEffect(()=>{
+    setUnitDescriptions(UnitDescriptionsAtUpload)
+  },UnitDescriptionsAtUpload)
+
+  let editButtonContentsAtUpload=messages.map((value)=>value.secondary!=='');
+  const [editButtonContents,setEditButtonContents] = useState([])
+  useEffect(()=>{
+    setEditButtonContents(editButtonContentsAtUpload)
+  },editButtonContentsAtUpload)
+
+  console.log('UnitDescriptionsAtUpload:'+UnitDescriptionsAtUpload)
+  console.log('UnitDescriptions:'+UnitDescriptions)
+
+  const handleChangeUnitName = (event, index) => {
+    const newValue = event.target.value;
+    setUnitNames(prevUnitNames => {
+        const newUnitNames = [...prevUnitNames];
+        newUnitNames[index] = newValue;
+        return newUnitNames;
+      
+      return prevUnitNames;
+    });
+  };
+
+  const handleChangeUnitDescription = (event, index) => {
+    const newValue = event.target.value;
+    setUnitDescriptions(prevUnitDescriptions => {
+        const newUnitDescriptions = [...prevUnitDescriptions];
+        newUnitDescriptions[index] = newValue;
+        return newUnitDescriptions;
+      
+      return prevUnitDescriptions;
+    });
+  };
 
   function startUnit(id,cls){ }
   function openUnit(){
@@ -89,6 +140,7 @@ export default function ClassUnits() {
   }
 
   return (
+    
     <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
@@ -107,9 +159,31 @@ export default function ClassUnits() {
                 <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
                       <MenuIcon />
                 </IconButton>
-                <ListItemText 
-                primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
+
+                  <ListItemText 
+                    primary={
+                    <Typography variant="h6" style={{ color: '#000000' }}>
+                     <div style={{color:'black'}}>
+                      <EditText showEditButton style={{color:'black'}} 
+                        onChange={(e) => handleChangeUnitName(e,id-1)}
+                        value={unitNames[id-1]}
+                        style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6'}}
+                      />
+                     </div>
+                    </Typography>
+                    } 
+                    secondary={
+                    <div style={{color:'black'}}>
+                    <EditText showEditButton style={{color:'black'}} 
+                      onChange={(e) => handleChangeUnitDescription(e,id-1)}
+                      value={UnitDescriptions[id-1]}
+                      style={{width:'90%',marginLeft:'10%',color:'black'}}
+                    />
+                   </div>
+                   }
+
+                    style={{textAlign:'right',marginTop:-1,marginRight:20}}
+                    />
 
                 </ListItem>
               </React.Fragment>
