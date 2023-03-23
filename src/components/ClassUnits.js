@@ -101,6 +101,12 @@ export default function ClassUnits() {
     setUnitDescriptions(UnitDescriptionsAtUpload)
   },UnitDescriptionsAtUpload)
 
+  let editButtonContentsAtUpload=messages.map((value)=>value.secondary!=='');
+  const [editButtonContents,setEditButtonContents] = useState([])
+  useEffect(()=>{
+    setEditButtonContents(editButtonContentsAtUpload)
+  },editButtonContentsAtUpload)
+
   console.log('UnitDescriptionsAtUpload:'+UnitDescriptionsAtUpload)
   console.log('UnitDescriptions:'+UnitDescriptions)
 
