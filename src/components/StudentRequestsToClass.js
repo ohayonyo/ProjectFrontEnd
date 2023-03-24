@@ -40,135 +40,108 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getUnapprovedStudents?teacher="+splits[3]
+  const url = "http://localhost:5000/getAllClasses"
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
   console.log(jsonResult)
   return jsonResult;
-}
+} 
 
 export default function StudentRequestsToClass() {
-  const [messages, setMessages] = useState([
-  
-  {
-    id: 7,
-    primary: 'Omer Shitrit',
-    secondary: `Wants to register to class2`,
-  },
-  {
-    id: 8,
-    primary: 'Yoad Ohayon',
-    secondary: `Wants to register to class1`,
-  },
-  {
-    id: 9,
-    primary: 'Aleks Lisutta ',
-    secondary: `Wants to register to class2`,
-  },
-  {
-    id: 10,
-    primary: 'Dan Rotman',
-    secondary: `Wants to register to class1`,
-  },]);
+
+  const [select, setSelected] = useState()
+    const [classes, setClasses] = useState([{
+    id: 1,
+    className: 'Brunch this week?',
+    teacher: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+
+},
+{
+  id: 2,
+  className: 'Birthday Gift',
+  teacher: `Do you have a suggestion for a good present for John on his work
+    anniversary. I am really confused & would love your thoughts on it.`,
+
+  }]);
 
   useEffect(()=>{
 
     async function fetchDataCall(){
         const a = await fetchData()
-        console.log("in use effect")
-        setMessages(a)
+        console.log("in use effect2")
+        setClasses(a)
     }
   fetchDataCall()
   },[]);
 
-  const [isClicked,setIsClicked]=useState([Array(messages.length+1).fill(false)])
 
+
+// const url = "http://localhost:5000/submitQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]+
+// "&ans="+qans +"&qnum=" +questions[0].id  
+        
+// const promise =  await fetch(url,{
+//     method: 'POST',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify(answers)        
+// })
+// if(promise.status ===200){
+//   console.log(promise)
+//   console.log("success")
+//   const nextId = questions[0].id +1
+//   nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
+//   const newColors = [...colors];
+//   newColors[qans]="green"
+//   setColors(newColors)
 
   //primary - studentName
   //secondary - className
-  async function acceptStudent(id){
-    console.log("in accept")
+  async function signUpToClass(){
+    console.log("in signUp") 
 
-    const requestToClass = messages.filter((value)=> value.id === id)
-    const url = "http://localhost:5000/approveStudentToClass?student="+ requestToClass[0].primary+" &className="+ requestToClass[0].secondary+"&approve=True"
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    console.log(splits)
+    console.log(select)
+    console.log({select})
+
+    const url = "http://localhost:5000/registerClass?student="+ splits[3]+" &className="+ select
     console.log(url)
     const promise =  await fetch(url)
 
-    if(promise.status ===200)
-      setMessages(messages.filter((value)=>value.id!=id));      
+     if(promise.status ===200){   
+        console.log("success")
+        const a = await fetchData()
+        console.log("in use effect2")
+
+        setClasses(a)
+     }
+      
     else
       console.log("didn't work try again")
 
     }
 
 
-  async function rejectStudent(id){
-    console.log("in reject")
-    const requestToClass = messages.filter((value)=> value.id === id)
-
-    const url = "http://localhost:5000/approveStudentToClass?student="+ requestToClass[0].primary+" &className="+ requestToClass[0].secondary+"&approve=False"
-    const promise =  await fetch(url)
-
-    if(promise.status ===200)
-      setMessages(messages.filter((value)=>value.id!=id));      
-    else
-      console.log("didn't work try again")
-  }
 
 
-  function markButton(id){
-      let arr=isClicked.slice();
-      arr[id]=!arr[id];
-      setIsClicked(arr);
-  }
+
 
 
   return (
-    <div style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
-      <React.Fragment>
-      <CssBaseline />
-      <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          בקשות רישום לכיתות
-        </Typography>
-        <div>
-
-          <List sx={{ mb: 2 }}>
-            {messages.map(({ id, primary, secondary }) => (
-              <React.Fragment key={id}>
-                <ListItem button onClick={()=>markButton(id)}
-                style={{
-                  backgroundColor: isClicked[id] ? '#E5E4E2' : ''
-                }} 
-                
-                >
-
-                <IconButton edge="end" onClick={()=>acceptStudent(id)}>
-                      <CheckIcon style={{color:'green'}} />
-                </IconButton>
-
-                <IconButton edge="end" onClick={()=>rejectStudent(id)}>
-                      <CloseIcon style={{color:'red'}} />
-                </IconButton>
-               
-                <ListItemText 
-                primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
 
 
+    <div >
+      <h1> הרשמה לכיתה חדשה</h1>
+          <h2> {select}</h2>
+          <select onChange={e=> setSelected(e.target.value)}>
+            {classes.map(singleClass => 
+            <option key={singleClass.id} value={singleClass.className} > 
+              class: {singleClass.className},  &nbsp; &nbsp; &nbsp;teacher: {singleClass.teacher} 
+            </option>)};
+          </select>
+          <button onClick={()=>signUpToClass()}> sign up </button>
 
-                 
-                </ListItem>
-              </React.Fragment>
-            ))}
-          </List>
-        </div>
-      
-      </Paper>  
-    </React.Fragment>
     </div>
-    
   );
 }

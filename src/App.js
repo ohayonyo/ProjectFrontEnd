@@ -424,9 +424,9 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/:username/teacherMenu/studentsRequestToClass' element={
+          <Route exact path='/:username/studentMenu/studentsRequestToClass' element={
             <div>
-                <TeacherMenu></TeacherMenu>
+                <StudentMenu></StudentMenu>
                 <StudentRequestsToClass></StudentRequestsToClass>
             </div>
             
@@ -465,9 +465,9 @@ function ValidateTeacher(){
           }></Route>
 
           
-          <Route exact path='/studentRegisterToClass' element={
+          <Route exact path='/:username/teacherMenu/studentsRegisterToClass' element={
             <div>
-                <StudentMenu></StudentMenu>
+                <TeacherMenu></TeacherMenu>
                 <StudentRegisterToClass></StudentRegisterToClass>
             </div>
             
