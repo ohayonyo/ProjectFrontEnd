@@ -38,10 +38,18 @@ import StudentClasses from './components/StudentClasses';
 import StudentClassUnits from './components/StudentClassUnits';
 import GradeAfterUnit from './components/GradeAfterUnit';
 // import HorizontalLinearStepper from './components/stepper/HorizontalLinearStepper';
-import Stepper from './components/stepper/HorizontalLinearStepper';
+// import Stepper from './components/stepper/HorizontalLinearStepper';
+import Stepper from 'react-stepper-horizontal';
+
+
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+import { useState } from 'react';
 
 
 function App() {
+
+  const [textInput,setTextInput] = useState("");
 
   const styles = `
   #btn1 {
@@ -278,7 +286,7 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}, {title: 'פרטים נוספים'}] } activeStep={0} />
+                    steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={1} />
                     </div>
                  
                   <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
@@ -301,7 +309,7 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}, {title: 'פרטים נוספים'}] } activeStep={1} />
+                    steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={2} />
                     </div>
                  
                   <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
@@ -323,19 +331,21 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}, {title: 'פרטים נוספים'}] } activeStep={2} />
+                    steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={3} />
                     </div>
                  
-                  <div style={{width:'50%',transform: 'scale(0.9)',marginLeft:'20%',marginTop:'-15%'}}>
+                  <div style={{width:'50%',position:'relative',transform: 'scale(0.8)',marginLeft:'20%',marginTop:'-20%'}}>
                     <PickParams></PickParams>
                   </div>
                   <br></br>
                   <br></br>
+                  {/* <br></br>
                   <br></br>
                   <br></br>
                   <br></br>
                   <br></br>
                   <br></br>
+                  <br></br> */}
                   
               </div>
 
@@ -361,8 +371,8 @@ function ValidateTeacher(){
                 <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                   <Stepper circleTop={'15%'} 
                   size={40}
-                  steps={ [{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}, {title: 'פרטים נוספים'}] } activeStep={3} />
-                </div>
+                  steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={0} />
+                  </div>
               
                 <div style={{transform: 'scale(0.7)',marginTop:'-10%',marginLeft:'-10%'}}>
                 <PickDetails></PickDetails>
@@ -418,6 +428,20 @@ function ValidateTeacher(){
                 <StudentMenu></StudentMenu>
                 <StudentClassUnits></StudentClassUnits>
             </div>
+            
+          }></Route>
+
+          <Route exact path='/editable' element={
+            <div style={{color:'black'}}>
+            <EditText showEditButton style={{color:'black'}} 
+            onChange={(e) => setTextInput(e.target.value)}
+            value={textInput}
+            />
+
+            <h1>{textInput}</h1>
+
+            {/* <EditTextarea /> */}
+          </div>
             
           }></Route>
 

@@ -4,39 +4,53 @@ import '../css/PickParams.css'
 const dict ={"quadratic":3,"linear":2,"trigonometric":4}
 const PickParams = () => {
   const thisURL = window.location.href;
-  const splits = thisURL.split('/')
+  const temp = thisURL.split('?')
+  const splits = temp[0].split('/')
+  
   const numInputs = dict[splits[9]]
   const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
   const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
+  const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'trigonometric':'פונקציה טריגונומטרית', 'exponential':'פונקציה אקספוננציאלית'}
+  const label = options[splits[9]];
   
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
   const first = (splits[6]=="new") 
   const nname = splits[6]+"n"
-  let nameS = splits[6]
+  let nameS = splits[10]
 
   const parseTemp = () =>{
     let res = []
     for (let i = 0; i < minValues.length; i++){
       res.push([minValues[i],maxValues[i]])
     }
+    console.log(splits[8]+'_'+splits[9]+'_'+res)
     return splits[8]+'_'+splits[9]+'_'+res
   }
   const fetchData = async () =>{
 
     const thisURL = window.location.href;
-    const splits = thisURL.split('/')
+    const temp = thisURL.split('?')
+
+    const splits = temp[0].split('/')
     
     if (!first){
       nameS = nname
     }
 
     console.log(" in fetchData")
+    for (let i = 0; i < splits.length; i++) {
+        console.log(''+(i)+splits[i]);
+    }
+
+    // console.log('date: '+splits[13].getUTCDate())
+
     const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
     +"&className="+splits[4]+"&template="+parseTemp()+"&Qnum="+splits[11]+"&maxTime="+splits[12]
-    +"&subDate="+splits[13].getUTCDate()+"&first="+first+"&prev="+splits[6]
+    +"&subDate="+splits[13]+"&first="+first+"&prev="+splits[6]
+    console.log(url);
     const response = await fetch(url);
     console.log(response.status)
     return response.status==200
@@ -59,9 +73,9 @@ const PickParams = () => {
   };
 
   const handleChangeMin = (event, index) => {
-    const newValue = event.target.value;
+    const newValue = parseInt(event.target.value);
     setMinValues(prevMinValues => {
-      if (newValue <= maxValues[index] && checkboxValues[index]){
+      if (newValue <= parseInt(maxValues[index])){
         const newMinValues = [...prevMinValues];
         newMinValues[index] = newValue;
         return newMinValues;
@@ -71,9 +85,9 @@ const PickParams = () => {
   };
   
   const handleChangeMax = (event, index) => {
-    const newValue = event.target.value;
+    const newValue = parseInt(event.target.value);
     setMaxValues(prevMaxValues => {
-      if (newValue >= minValues[index] && checkboxValues[index]){
+      if (newValue >= parseInt(minValues[index])){
         const newMaxValues = [...prevMaxValues];
         newMaxValues[index] = newValue;
         return newMaxValues;
@@ -99,8 +113,8 @@ const PickParams = () => {
       <div key={i}>
         <label className='label'>
           {paramName} :
-          <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={minValues[i]? minValues[i]: '5'} onChange={(event) => handleChangeMin(event, i)} />
-          <input disabled={!checkboxValues[i]} type="number" min="-10" max="10" name="min" value={maxValues[i]?maxValues[i]: '5'} onChange={(event) => handleChangeMax(event, i)} />
+          <input type="number" name="min" value={minValues[i]} onChange={(event) => handleChangeMin(event, i)} />
+          <input type="number" name="max" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
         </label>
         {/* <label className='label'>
           <input className='inputCheckBox' style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
@@ -113,9 +127,18 @@ const PickParams = () => {
   return (
     <div style={{marginTop:200}}>
       <form className="form-container">
+        <h1>
+          {label}
+        </h1>
         {inputElements}
-        <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
-        <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
+        <br></br>
+        <div>
+          <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
+        </div>
+        <div style={{marginTop:-7}}>
+          <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
+        </div>
+        
       </form>
     </div>
     

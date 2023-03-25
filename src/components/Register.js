@@ -12,9 +12,10 @@ const Register = () => {
     { value: '2', label: 'Student'},
     { value: '3', label: 'Admin' }
   ]
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(1);
 
   const handleSelectionChange = (event) => {
+    console.log(event.target.value);
     setSelectedOption(event.target.value);
   }
 
