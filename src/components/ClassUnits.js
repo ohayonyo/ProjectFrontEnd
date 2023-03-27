@@ -45,11 +45,7 @@ const splits = thisURL.split('/');
 const className = splits[4];
 
 
-const fetchData = async () =>{
-
-  //todo make this use the teacher name
-
-  const url = "http://localhost:5000/getClassUnits?className="+className;
+const fetchData = async (url) =>{
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -76,7 +72,8 @@ export default function ClassUnits() {
     useEffect(()=>{
 
       async function fetchDataCall(){
-          const a = await fetchData()
+          const url = "http://localhost:5000/getClassUnits?className="+className;
+          const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
       }
@@ -117,7 +114,7 @@ export default function ClassUnits() {
         newUnitNames[index] = newValue;
         return newUnitNames;
       
-      return prevUnitNames;
+    return prevUnitNames;
     });
   };
 
@@ -132,11 +129,26 @@ export default function ClassUnits() {
     });
   };
 
+  const handleSave = (event, index) =>{
+    console.log("save")
+    const url = "http://localhost:5000/quickEditUnit?unitName="+unitNamesAtUpload[index]+
+    "&className="+className+"&newDesc="+UnitDescriptions[index]+"&newUnitName="+unitNames[index]
+    console.log(url)
+    const res = fetchData(url)
+    return res
+  }
+
   function startUnit(id,cls){ }
   function openUnit(){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/new/details");
+  }
+
+  function gotoEdit(id,cls){
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+messages[id-1].primary+"/editUnit");
   }
 
   return (
@@ -159,13 +171,17 @@ export default function ClassUnits() {
                 <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
                       <MenuIcon />
                 </IconButton>
+                <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
+                  <AddIcon />
+                </IconButton>
 
                   <ListItemText 
                     primary={
                     <Typography variant="h6" style={{ color: '#000000' }}>
                      <div style={{color:'black'}}>
-                      <EditText showEditButton style={{color:'black'}} 
+                      <EditText showEditButton
                         onChange={(e) => handleChangeUnitName(e,id-1)}
+                        onSave={(e)=>handleSave(e,id-1)}
                         value={unitNames[id-1]}
                         style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6'}}
                       />
@@ -174,8 +190,9 @@ export default function ClassUnits() {
                     } 
                     secondary={
                     <div style={{color:'black'}}>
-                    <EditText showEditButton style={{color:'black'}} 
+                    <EditText showEditButton 
                       onChange={(e) => handleChangeUnitDescription(e,id-1)}
+                      onSave={(e)=>handleSave(e,id-1)}
                       value={UnitDescriptions[id-1]}
                       style={{width:'90%',marginLeft:'10%',color:'black'}}
                     />

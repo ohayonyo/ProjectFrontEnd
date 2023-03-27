@@ -49,24 +49,24 @@ const PickParams = () => {
 
     const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
     +"&className="+splits[4]+"&template="+parseTemp()+"&Qnum="+splits[11]+"&maxTime="+splits[12]
-    +"&subDate="+splits[13]+"&first="+first+"&prev="+splits[6]
+    +"&subDate="+splits[13]+"&first="+first+"&prev="+splits[6]+"&desc="+splits[14]
     console.log(url);
     const response = await fetch(url);
-    console.log(response.status)
+    console.log(response)
     return response.status==200
         
   }
-  const handleFinishUnit = () => {
-    const res = fetchData()
+  const handleFinishUnit = async () => {
+    const res = await fetchData()
     console.log(res + " in finishUnit")
     if(res){
       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/classUnits`;
     }
   };
 
-  const handleAddExercise = () => {
-    const res = fetchData()
-    console.log(res + " in addExercise")
+  const handleAddExercise = async () => {
+    const res = await fetchData()
+    console.log(res + " in addExercise"+ nameS)
     if(res){
       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/openUnit/${nameS}/details`;
     }
@@ -126,7 +126,7 @@ const PickParams = () => {
 
   return (
     <div style={{marginTop:200}}>
-      <form className="form-container">
+      <div className="form-container">
         <h1>
           {label}
         </h1>
@@ -139,7 +139,7 @@ const PickParams = () => {
           <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
         </div>
         
-      </form>
+      </div>
     </div>
     
   );

@@ -1,28 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/PickDetails.css';
 import '../css/PickParams.css'
 
-const PickDetails = () => {
+const EditUnit = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/');
-  const first = (splits[6]=="new") 
-  const nname = splits[6]+"n"
-  const [name, setName] = useState(first?"":(nname));
-  const [qnum, setQnum] = useState('');
-  const [desc, setDesc] = useState('');
+  
+  
+  const fetchData = async (url) =>{
+    const result = await fetch(url)      
+    const jsonResult = await result.json();
+    console.log("json result is ")
+    console.log(jsonResult)
+    return jsonResult;
+  }
+  useEffect(()=>{
+
+    async function fetchDataCall(url){
+        const a = await fetchData(url)
+        setQnum(a.Qnum)
+        setDesc(a.desc)
+        setTimeLimit(a.maxTime)
+        //setDueDate(a.dueDate)
+    }
+  const url = "http://localhost:5000/getUnitDetails?unitName="+splits[5]+"&className="+splits[4]
+  fetchDataCall(url)
+  },[]);
+
+
+  const url = "http://localhost:5000/getUnitDetails?unitName="+splits[5]+"&className="+splits[4]
+  console.log(url)
+  const [name, setName] = useState(splits[5]);
+  const [qnum, setQnum] = useState("");
+  const [desc, setDesc] = useState("");
   const [timeLimit, setTimeLimit] = useState(0);
   const [dueDate, setDueDate] = useState(new Date());
 
 
-  let nameS = first?name:(nname)
 
-
-
-
-
-  const handleNext = () => {
-      window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/data/"+name+"/"+qnum+"/"+timeLimit+"/"+dueDate+"/"+desc;
-    
+  const handleNext = async () => {
+    const url = "http://localhost:5000/editUnit?unitName="+splits[5]+
+    "&className="+splits[4]+"&newDesc="+desc+"&newUnitName="+name
+    +"&newQnum="+qnum+"&newMaxTime="+timeLimit+"&newSubDate="+dueDate
+    console.log(url)
+    const res = await fetchData(url)
+    console.log(res)
+    if (res.message == "successful"){
+      window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/classUnits";
+    }
   };
 
   const containerStyle = {
@@ -74,7 +99,7 @@ const PickDetails = () => {
 <label className='label'>
       :שם יחידת הלימוד
         <br></br>
-        <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
       </label>
 
       <label className='label'>
@@ -101,10 +126,10 @@ const PickDetails = () => {
         <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
       </label>
       
-      <button onClick={handleNext} className="submitButton">לבחירת נתונים</button>
+      <button onClick={handleNext} className="submitButton">סיום</button>
       
     </div>
   );
 };
 
-export default PickDetails;
+export default EditUnit;

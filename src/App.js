@@ -18,6 +18,7 @@ import PickData from './components/PickData';
 import PickQuestion from './components/PickQuestion';
 import PickParams from './components/PickParams';
 import PickDetails from './components/PickDetails';
+import EditUnit from './components/EditUnit';
 
 import RemoveUnit from './components/RemoveUnit';
 import RegisterClass from './components/RegisterClass';
@@ -276,8 +277,16 @@ function ValidateTeacher(){
             
             
           }></Route>
+          <Route exact path='/:username/:className/:unitName/editUnit' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <EditUnit></EditUnit>
+            </div>
+            
+            
+          }></Route>
           
-          <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate' element={
+          <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
@@ -299,7 +308,7 @@ function ValidateTeacher(){
               
           }></Route>
 
-          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate' element={
+          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
               
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
@@ -321,7 +330,7 @@ function ValidateTeacher(){
             </div>
   
           }></Route>
-          <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate' element={
+          <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
