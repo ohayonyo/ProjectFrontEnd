@@ -455,8 +455,7 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/:username/teacherMenu/studentsRequestToClass' element={
-
+            <Route exact path='/:username/studentMenu/studentsRequestToClass' element={
             <div>
                 <StudentMenu></StudentMenu>
                 <StudentRequestsToClass></StudentRequestsToClass>
