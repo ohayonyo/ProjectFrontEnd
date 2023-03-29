@@ -147,8 +147,6 @@ export default function StudentRequestsToClass() {
                 primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
                 secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
 
-
-
                  
                 </ListItem>
               </React.Fragment>

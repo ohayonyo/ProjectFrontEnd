@@ -40,7 +40,21 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getAllClasses"
+  const url = "http://localhost:5000/getAllClassesNotIn?username="+splits[3];
+  const result = await fetch(url)      
+  const jsonResult = await result.json();
+  console.log("json result is ")
+  console.log(jsonResult)
+  return jsonResult;
+} 
+
+
+const fetchData2 = async () =>{
+
+  //todo make this use the teacher name
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
+  const url = "http://localhost:5000/getAllClassesWaiting?username="+splits[3];
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
@@ -65,37 +79,33 @@ export default function StudentRequestsToClass() {
 
   }]);
 
+  const [classesWaiting, setClassesWaiting] = useState([{
+    id: 1,
+    className: 'Brunch this week?',
+    teacher: "I'll be in the neighbourhood this week. Let's grab a bite to eat"
+},
+{
+  id: 2,
+  className: 'Birthday Gift',
+  teacher: "I'll be in the neighbourhood this week. Let's grab a bite to eat"
+
+  }]);
+
   useEffect(()=>{
 
     async function fetchDataCall(){
         const a = await fetchData()
         console.log("in use effect2")
         setClasses(a)
-    }
+        const b = await fetchData2()
+        console.log("in use effect3")
+        setClassesWaiting(b)
+
+          }
   fetchDataCall()
   },[]);
 
 
-
-// const url = "http://localhost:5000/submitQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]+
-// "&ans="+qans +"&qnum=" +questions[0].id  
-        
-// const promise =  await fetch(url,{
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify(answers)        
-// })
-// if(promise.status ===200){
-//   console.log(promise)
-//   console.log("success")
-//   const nextId = questions[0].id +1
-//   nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
-//   const newColors = [...colors];
-//   newColors[qans]="green"
-//   setColors(newColors)
-
-  //primary - studentName
-  //secondary - className
   async function signUpToClass(){
     console.log("in signUp") 
 
@@ -113,8 +123,11 @@ export default function StudentRequestsToClass() {
         console.log("success")
         const a = await fetchData()
         console.log("in use effect2")
-
         setClasses(a)
+
+        const b = await fetchData2()
+        console.log("in use effect2")
+        setClassesWaiting(b)
      }
       
     else
@@ -122,7 +135,32 @@ export default function StudentRequestsToClass() {
 
     }
 
+    async function rejectStudent(id){
+      console.log("in signUp") 
+  
+      const thisURL = window.location.href;
+      const splits = thisURL.split('/')
+      console.log(splits)
+      const toDelete = classesWaiting.filter(x=> x.id =id)
+      const url = "http://localhost:5000/removeRegistrationClass?student="+ splits[3]+" &className="+ toDelete[0].className
+      console.log(url)
+      const promise =  await fetch(url)
+  
+       if(promise.status ===200){   
+          console.log("success")
+          const b = await fetchData()
+          console.log("in use effect2")
+          setClasses(b)
 
+          const a = await fetchData2()
+          console.log("in use effect2")
+          setClassesWaiting(a)
+       }
+        
+      else
+        console.log("didn't work try again")
+  
+      }
 
 
 
@@ -133,7 +171,6 @@ export default function StudentRequestsToClass() {
 
     <div >
       <h1> הרשמה לכיתה חדשה</h1>
-          <h2> {select}</h2>
           <select onChange={e=> setSelected(e.target.value)}>
             {classes.map(singleClass => 
             <option key={singleClass.id} value={singleClass.className} > 
@@ -141,7 +178,25 @@ export default function StudentRequestsToClass() {
             </option>)};
           </select>
           <button onClick={()=>signUpToClass()}> sign up </button>
-
+        
+      <h3 style={{textAlign:'right',marginTop:-1,marginRight:350}}> בקשות שממתינות לתשובה</h3>
+      <div>
+          <List sx={{ mb: 2 }} >
+            {classesWaiting.map(({ id, className,teacher }) => (
+              <React.Fragment key={id}>
+               <ListItem>
+                  <IconButton edge="end" onClick={()=>rejectStudent(id)}>
+                        <CloseIcon style={{color:'red'}} />
+                  </IconButton>
+               
+                  <ListItemText 
+                primary={<Typography variant="h6" style={{ color: '#000000' }}>{className}</Typography>} 
+                secondary= {teacher} style={{textAlign:'right',marginTop:-1,marginRight:350}}/>
+                </ListItem>
+              </React.Fragment>
+            ))}
+          </List>
+        </div>
     </div>
   );
 }
