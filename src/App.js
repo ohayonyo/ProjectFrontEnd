@@ -18,6 +18,7 @@ import PickData from './components/PickData';
 import PickQuestion from './components/PickQuestion';
 import PickParams from './components/PickParams';
 import PickDetails from './components/PickDetails';
+import EditUnit from './components/EditUnit';
 
 import RemoveUnit from './components/RemoveUnit';
 import RegisterClass from './components/RegisterClass';
@@ -42,7 +43,14 @@ import GradeAfterUnit from './components/GradeAfterUnit';
 import Stepper from 'react-stepper-horizontal';
 
 
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+import { useState } from 'react';
+
+
 function App() {
+
+  const [textInput,setTextInput] = useState("");
 
   const styles = `
   #btn1 {
@@ -269,8 +277,16 @@ function ValidateTeacher(){
             
             
           }></Route>
+          <Route exact path='/:username/:className/:unitName/editUnit' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <EditUnit></EditUnit>
+            </div>
+            
+            
+          }></Route>
           
-          <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate' element={
+          <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
@@ -292,7 +308,7 @@ function ValidateTeacher(){
               
           }></Route>
 
-          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate' element={
+          <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
               
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
@@ -314,7 +330,7 @@ function ValidateTeacher(){
             </div>
   
           }></Route>
-          <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate' element={
+          <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
@@ -424,7 +440,23 @@ function ValidateTeacher(){
             
           }></Route>
 
-          <Route exact path='/:username/studentMenu/studentsRequestToClass' element={
+
+          <Route exact path='/editable' element={
+            <div style={{color:'black'}}>
+            <EditText showEditButton style={{color:'black'}} 
+            onChange={(e) => setTextInput(e.target.value)}
+            value={textInput}
+            />
+
+            <h1>{textInput}</h1>
+
+            {/* <EditTextarea /> */}
+          </div>
+            
+          }></Route>
+
+          <Route exact path='/:username/teacherMenu/studentsRequestToClass' element={
+
             <div>
                 <StudentMenu></StudentMenu>
                 <StudentRequestsToClass></StudentRequestsToClass>

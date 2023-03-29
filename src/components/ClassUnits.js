@@ -23,8 +23,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import EditIcon from '@mui/icons-material/Edit';
 
 
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
 
 
 
@@ -37,13 +40,12 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
   
 });
+const thisURL = window.location.href;
+const splits = thisURL.split('/');
+const className = splits[4];
 
-const fetchData = async () =>{
 
-  //todo make this use the teacher name
-  const thisURL = window.location.href;
-  const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassUnits?className="+splits[4]
+const fetchData = async (url) =>{
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -53,7 +55,7 @@ const fetchData = async () =>{
 
 export default function ClassUnits() {
 
-    const [messages, setMessages] = useState([{
+  const [messages, setMessages] = useState([{
       id: 1,
     primary: 'Brunch this week?',
     secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
@@ -70,13 +72,71 @@ export default function ClassUnits() {
     useEffect(()=>{
 
       async function fetchDataCall(){
-          const a = await fetchData()
+          const url = "http://localhost:5000/getClassUnits?className="+className;
+          const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
       }
     fetchDataCall()
     },[]);
 
+  const numberOfUnits = messages.length;
+
+  let unitNamesAtUpload = messages.map((value)=>value.primary)
+  let UnitDescriptionsAtUpload=messages.map((value)=>value.secondary);
+
+  console.log('unitNamesAtUpload:'+unitNamesAtUpload)
+  const [unitNames,setUnitNames] = useState([]);
+  useEffect(()=>{
+    setUnitNames(unitNamesAtUpload)
+  },unitNamesAtUpload)
+
+
+  console.log('unitNames:'+unitNames)
+  const [UnitDescriptions,setUnitDescriptions] = useState([]);
+  useEffect(()=>{
+    setUnitDescriptions(UnitDescriptionsAtUpload)
+  },UnitDescriptionsAtUpload)
+
+  let editButtonContentsAtUpload=messages.map((value)=>value.secondary!=='');
+  const [editButtonContents,setEditButtonContents] = useState([])
+  useEffect(()=>{
+    setEditButtonContents(editButtonContentsAtUpload)
+  },editButtonContentsAtUpload)
+
+  console.log('UnitDescriptionsAtUpload:'+UnitDescriptionsAtUpload)
+  console.log('UnitDescriptions:'+UnitDescriptions)
+
+  const handleChangeUnitName = (event, index) => {
+    const newValue = event.target.value;
+    setUnitNames(prevUnitNames => {
+        const newUnitNames = [...prevUnitNames];
+        newUnitNames[index] = newValue;
+        return newUnitNames;
+      
+    return prevUnitNames;
+    });
+  };
+
+  const handleChangeUnitDescription = (event, index) => {
+    const newValue = event.target.value;
+    setUnitDescriptions(prevUnitDescriptions => {
+        const newUnitDescriptions = [...prevUnitDescriptions];
+        newUnitDescriptions[index] = newValue;
+        return newUnitDescriptions;
+      
+      return prevUnitDescriptions;
+    });
+  };
+
+  const handleSave = (event, index) =>{
+    console.log("save")
+    const url = "http://localhost:5000/quickEditUnit?unitName="+unitNamesAtUpload[index]+
+    "&className="+className+"&newDesc="+UnitDescriptions[index]+"&newUnitName="+unitNames[index]
+    console.log(url)
+    const res = fetchData(url)
+    return res
+  }
 
   function startUnit(id,cls){ }
   function openUnit(){
@@ -85,15 +145,22 @@ export default function ClassUnits() {
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/new/details");
   }
 
+  function gotoEdit(id,cls){
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+messages[id-1].primary+"/editUnit");
+  }
+
   return (
-    <div style={{resize: 'both',
+    
+    <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
       <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          הכיתות שלי
+          {className}
         </Typography>
         <div>
 
@@ -104,9 +171,36 @@ export default function ClassUnits() {
                 <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
                       <MenuIcon />
                 </IconButton>
-                <ListItemText 
-                primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
+                <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
+                  <AddIcon />
+                </IconButton>
+
+                  <ListItemText 
+                    primary={
+                    <Typography variant="h6" style={{ color: '#000000' }}>
+                     <div style={{color:'black'}}>
+                      <EditText showEditButton
+                        onChange={(e) => handleChangeUnitName(e,id-1)}
+                        onSave={(e)=>handleSave(e,id-1)}
+                        value={unitNames[id-1]}
+                        style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6'}}
+                      />
+                     </div>
+                    </Typography>
+                    } 
+                    secondary={
+                    <div style={{color:'black'}}>
+                    <EditText showEditButton 
+                      onChange={(e) => handleChangeUnitDescription(e,id-1)}
+                      onSave={(e)=>handleSave(e,id-1)}
+                      value={UnitDescriptions[id-1]}
+                      style={{width:'90%',marginLeft:'10%',color:'black'}}
+                    />
+                   </div>
+                   }
+
+                    style={{textAlign:'right',marginTop:-1,marginRight:20}}
+                    />
 
                 </ListItem>
               </React.Fragment>
@@ -117,8 +211,8 @@ export default function ClassUnits() {
       </Paper>  
     </React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={()=>openUnit()} style={{float: 'left'}}>
-          Add new unit
+        <button className='button' onClick={()=>openUnit()} style={{float: 'left'}}>
+          הוספת שיעור חדש
         </button>
       </div>
 

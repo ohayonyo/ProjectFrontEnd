@@ -4,7 +4,9 @@ import '../css/PickParams.css'
 const dict ={"quadratic":3,"linear":2,"trigonometric":4}
 const PickParams = () => {
   const thisURL = window.location.href;
-  const splits = thisURL.split('/')
+  const temp = thisURL.split('?')
+  const splits = temp[0].split('/')
+  
   const numInputs = dict[splits[9]]
   const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
@@ -17,44 +19,54 @@ const PickParams = () => {
   const [className, setClassName] = useState(splits[4]);
   const first = (splits[6]=="new") 
   const nname = splits[6]+"n"
-  let nameS = splits[6]
+  let nameS = splits[10]
 
   const parseTemp = () =>{
     let res = []
     for (let i = 0; i < minValues.length; i++){
       res.push([minValues[i],maxValues[i]])
     }
+    console.log(splits[8]+'_'+splits[9]+'_'+res)
     return splits[8]+'_'+splits[9]+'_'+res
   }
   const fetchData = async () =>{
 
     const thisURL = window.location.href;
-    const splits = thisURL.split('/')
+    const temp = thisURL.split('?')
+
+    const splits = temp[0].split('/')
     
     if (!first){
       nameS = nname
     }
 
     console.log(" in fetchData")
+    for (let i = 0; i < splits.length; i++) {
+        console.log(''+(i)+splits[i]);
+    }
+
+    // console.log('date: '+splits[13].getUTCDate())
+
     const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
     +"&className="+splits[4]+"&template="+parseTemp()+"&Qnum="+splits[11]+"&maxTime="+splits[12]
-    +"&subDate="+splits[13].getUTCDate()+"&first="+first+"&prev="+splits[6]
+    +"&subDate="+splits[13]+"&first="+first+"&prev="+splits[6]+"&desc="+splits[14]
+    console.log(url);
     const response = await fetch(url);
-    console.log(response.status)
+    console.log(response)
     return response.status==200
         
   }
-  const handleFinishUnit = () => {
-    const res = fetchData()
+  const handleFinishUnit = async () => {
+    const res = await fetchData()
     console.log(res + " in finishUnit")
     if(res){
       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/classUnits`;
     }
   };
 
-  const handleAddExercise = () => {
-    const res = fetchData()
-    console.log(res + " in addExercise")
+  const handleAddExercise = async () => {
+    const res = await fetchData()
+    console.log(res + " in addExercise"+ nameS)
     if(res){
       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/openUnit/${nameS}/details`;
     }
@@ -102,7 +114,7 @@ const PickParams = () => {
         <label className='label'>
           {paramName} :
           <input type="number" name="min" value={minValues[i]} onChange={(event) => handleChangeMin(event, i)} />
-          <input type="number" name="min" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
+          <input type="number" name="max" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
         </label>
         {/* <label className='label'>
           <input className='inputCheckBox' style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
@@ -114,7 +126,7 @@ const PickParams = () => {
 
   return (
     <div style={{marginTop:200}}>
-      <form className="form-container">
+      <div className="form-container">
         <h1>
           {label}
         </h1>
@@ -127,7 +139,7 @@ const PickParams = () => {
           <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
         </div>
         
-      </form>
+      </div>
     </div>
     
   );
