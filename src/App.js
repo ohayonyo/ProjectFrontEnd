@@ -440,6 +440,7 @@ function ValidateTeacher(){
             
           }></Route>
 
+
           <Route exact path='/editable' element={
             <div style={{color:'black'}}>
             <EditText showEditButton style={{color:'black'}} 
@@ -455,8 +456,9 @@ function ValidateTeacher(){
           }></Route>
 
           <Route exact path='/:username/teacherMenu/studentsRequestToClass' element={
+
             <div>
-                <TeacherMenu></TeacherMenu>
+                <StudentMenu></StudentMenu>
                 <StudentRequestsToClass></StudentRequestsToClass>
             </div>
             
@@ -495,9 +497,9 @@ function ValidateTeacher(){
           }></Route>
 
           
-          <Route exact path='/studentRegisterToClass' element={
+          <Route exact path='/:username/teacherMenu/studentsRegisterToClass' element={
             <div>
-                <StudentMenu></StudentMenu>
+                <TeacherMenu></TeacherMenu>
                 <StudentRegisterToClass></StudentRegisterToClass>
             </div>
             
