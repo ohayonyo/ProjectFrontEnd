@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import '../css/PickDetails.css';
 
 
 
@@ -87,7 +88,7 @@ export default function StudentClasses() {
   }
 
   return (
-    <div style={{resize: 'both',
+    <div class="class-list" style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
       <React.Fragment>

@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect} from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import '../css/PickDetails.css';
 
 
 
@@ -169,7 +170,7 @@ export default function StudentRequestsToClass() {
   return (
 
 
-    <div >
+    <div class="class-list" >
       <h1> הרשמה לכיתה חדשה</h1>
           <select onChange={e=> setSelected(e.target.value)}>
             {classes.map(singleClass => 
