@@ -24,6 +24,8 @@ const Login = () => {
 }
 
 
+
+
   const fetchData = async ()=> {
     console.log('username:'+username);
     console.log('password:'+password);
@@ -50,6 +52,7 @@ const Login = () => {
         
         const navigateTo = window.location.href;
         const myArray2 = navigateTo.split("/");
+        console.log('http://'+myArray2[2]+newDest);
         window.location.assign('http://'+myArray2[2]+newDest);
       }
 
