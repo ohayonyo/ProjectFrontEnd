@@ -173,18 +173,12 @@ export default function QuestionView() {
 
 
 
-
-
-
-
-
     return (
         <div className='big-question'>
           
-             <h1> {questionPreamble}</h1>
+             <h1> {questions[0].preamble}</h1>
                <div className='multiple-choice'>
                     <h2 >    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
- 
 
                 <ul>
                   <li onClick={() => submitSingle(1,questions[0].id)} >
