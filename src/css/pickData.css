@@ -48,6 +48,7 @@
   appearance: none; /* removes the default appearance */
 }
 
+
 .form-select-arrow{
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath d='M13.354.354a.5.5 0 0 0-.708 0L7 6.293.354.354a.5.5 0 0 0-.708.708L7 7.707l6.354-6.353a.5.5 0 0 0 0-.708z'/%3E%3C/svg%3E"); 
   background-repeat: no-repeat; 
@@ -56,16 +57,15 @@
 }
 
 .form-submit {
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  background-color: #c8a970;
+  padding: 0.8rem 1.2rem;
+  background-color: #0077b6;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
 .form-submit:hover {
-  background-color: #bfc1ca;
+  background-color: #023e8a;
 }

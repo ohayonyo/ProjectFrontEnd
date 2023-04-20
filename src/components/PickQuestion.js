@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { useHistory } from 'react-router-dom';
-import '../css/pickData.css'
+import '../css/pickQuestion.css'
 import Select from 'react-select';
 
 const PickQuestion = () => {
@@ -35,17 +35,13 @@ const PickQuestion = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('paremeters sent')
-    console.log(selectedOptions.map(val=>val.value))
-    // window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptions
-    // +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]+"/"+splits[13]);
+    const selectedOptionsToUrl = selectedOptions.map(val=>val.value)
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptionsToUrl
+    +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]+"/"+splits[13]);
   };
   return (
     <div className="form-wrapper">
-      <form
-        className="form"
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <form className="form" onSubmit={handleSubmit}>
         <label className="form-label">:בחר את נושאי יחידת הלימוד</label>
         <Select
           className="form-select"
@@ -54,8 +50,10 @@ const PickQuestion = () => {
             label: options[option],
           }))}
           isMulti={true}
+          isRtl={true}
           value={selectedOptions}
           onChange={handleChange}
+          placeholder={"בחר מהרשימה"}
         />
         <button className="form-submit" type="submit">
           הבא

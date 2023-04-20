@@ -218,8 +218,8 @@
   background-position-x:left;
   background-size: cover;
   background-attachment: fixed;
-  min-width: 500px;
-  max-height: 700px;
+  /* min-width: 500px;
+  max-height: 700px; */
   /* transform: scale(1.2); */
   /* background-position: left; */
   /* background-color: lightblue; */

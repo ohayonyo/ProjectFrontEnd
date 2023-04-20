@@ -133,10 +133,10 @@ const PickParams = () => {
         {inputElements}
         <br></br>
         <div>
-          <button onClick={handleAddExercise} className="submitButton">להוספת תרגילים</button>
+          <button onClick={handleAddExercise} className="form-submit">להוספת תרגילים</button>
         </div>
-        <div style={{marginTop:-7}}>
-          <button onClick={handleFinishUnit} className="submitButton">לסיום</button>
+        <div style={{marginTop:'1.5%'}}>
+          <button onClick={handleFinishUnit} className="form-submit">לסיום</button>
         </div>
         
       </div>

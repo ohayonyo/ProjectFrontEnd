@@ -71,3 +71,17 @@
     margin-top: -1px;
     margin-right: 20px;
   }
+
+  .form-submit {
+    padding: 0.8rem 1.2rem;
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .form-submit:hover {
+    background-color: #023e8a;
+  }

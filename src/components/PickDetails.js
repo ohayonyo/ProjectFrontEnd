@@ -101,7 +101,7 @@ const PickDetails = () => {
         <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
       </label>
       
-      <button onClick={handleNext} className="submitButton">לבחירת נתונים</button>
+      <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
       
     </div>
   );
