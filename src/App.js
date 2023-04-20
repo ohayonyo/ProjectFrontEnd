@@ -42,10 +42,13 @@ import GradeAfterUnit from './components/GradeAfterUnit';
 // import Stepper from './components/stepper/HorizontalLinearStepper';
 import Stepper from 'react-stepper-horizontal';
 
+import Select from 'react-select';
+
 
 import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 import { useState } from 'react';
+import MySelect from './components/MySelect';
 
 
 function App() {
@@ -103,9 +106,9 @@ const regex = "/^(a|b).*/"
 const idRegex = '([0-9a-zA-Z]*)';
 
 const options1 = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'chocolate', label: 'Chocolate1' },
+  { value: 'strawberry', label: 'Strawberry1' },
+  { value: 'vanilla', label: 'Vanilla1' }
 ]
 
 
@@ -383,7 +386,7 @@ function ValidateTeacher(){
                   steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={0} />
                   </div>
               
-                <div style={{transform: 'scale(0.7)',marginTop:'-10%',marginLeft:'-10%'}}>
+                <div style={{transform: 'scale(0.6)',marginTop:'-10%',marginLeft:'-10%'}}>
                 <PickDetails></PickDetails>
                 </div>
                 
@@ -406,6 +409,15 @@ function ValidateTeacher(){
                 <TeacherMenu></TeacherMenu>
                 <RemoveUnit></RemoveUnit>
             </div>
+            
+          }></Route>
+
+
+          <Route exact path='/selection' element={
+            <div>
+              <MySelect></MySelect>
+            </div>
+           
             
           }></Route>
 

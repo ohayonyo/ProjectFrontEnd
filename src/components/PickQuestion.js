@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 //import { useHistory } from 'react-router-dom';
 import '../css/pickData.css'
+import Select from 'react-select';
 
 const PickQuestion = () => {
   const thisURL = window.location.href;
@@ -13,36 +14,52 @@ const PickQuestion = () => {
   const [className, setClassName] = useState(splits[4]);
 
 
-  const handleChange = (event) => {
-    const selectedOption = event.target.value;
-    setSelectedOptions(prevSelectedOptions => {
-      if (prevSelectedOptions.includes(selectedOption)) {
-        // If the selected option is already in the array, remove it
-        return prevSelectedOptions.filter(option => option !== selectedOption);
-      } else {
-        // Otherwise, add it to the array
-        return [...prevSelectedOptions, selectedOption];
-      }
-    });
+  // const handleChange = (event) => {
+  //   const selectedOption = event.target.value;
+  //   setSelectedOptions(prevSelectedOptions => {
+  //     if (prevSelectedOptions.includes(selectedOption)) {
+  //       // If the selected option is already in the array, remove it
+  //       return prevSelectedOptions.filter(option => option !== selectedOption);
+  //     } else {
+  //       // Otherwise, add it to the array
+  //       return [...prevSelectedOptions, selectedOption];
+  //     }
+  //   });
+  // };
+
+  const handleChange = (selectedOptions) => {
+    console.log(selectedOptions)
+    setSelectedOptions(selectedOptions);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptions
-    +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]+"/"+splits[13]);
+    console.log('paremeters sent')
+    console.log(selectedOptions.map(val=>val.value))
+    // window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptions
+    // +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]+"/"+splits[13]);
   };
   return (
-    <div class="form-wrapper">
-        <form class="form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <label class="form-label">
-      :בחר את נושאי יחידת הלימוד
-        <select class="form-select" multiple value={selectedOptions} onChange={handleChange}>
-          {Object.keys(options).map((option) => (
-            <option key={option} value={option}>{options[option]}</option>
-          ))}
-        </select>
-      </label>
-      <button class="form-submit" type="submit">הבא</button>
+    <div className="form-wrapper">
+      <form
+        className="form"
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <label className="form-label">:בחר את נושאי יחידת הלימוד</label>
+        <Select
+          className="form-select"
+          options={Object.keys(options).map((option) => ({
+            value: option,
+            label: options[option],
+          }))}
+          isMulti={true}
+          value={selectedOptions}
+          onChange={handleChange}
+        />
+        <button className="form-submit" type="submit">
+          הבא
+        </button>
       </form>
     </div>
   );
