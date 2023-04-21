@@ -211,7 +211,7 @@ export default function ClassUnits() {
       </Paper>  
     </React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button className='button' onClick={()=>openUnit()} style={{float: 'left'}}>
+        <button className="form-submit" onClick={()=>openUnit()} style={{float: 'left'}}>
           הוספת שיעור חדש
         </button>
       </div>

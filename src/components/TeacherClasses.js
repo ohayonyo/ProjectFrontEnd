@@ -143,7 +143,7 @@ export default function TeacherClasses() {
         <List sx={{ mb: 2 }}>
           {messages.map(({ id,primary, secondary }) => (
             <React.Fragment key={id}>
-              <ListItem Button onDoubleClick={(cls)=>gotoUnits(id,cls)}>
+              <ListItem Button onClick={(cls)=>gotoUnits(id,cls)}>
                 <IconButton edge="end" aria-label="delete" onClick={()=>deleteElement(id)}>
                   <DeleteIcon />
                 </IconButton>
@@ -166,9 +166,12 @@ export default function TeacherClasses() {
   </React.Fragment>
   <div style={{ display: 'flex', justifyContent: 'center' }}>
     <input type="text" style={{color:'black',height:42,marginTop:15}} onChange = {getClassName.bind(this)}/>
-    <button className='button' onClick={()=>openClass()} style={{float: 'left'}}>
-      הוספת כיתה חדשה
-    </button>
+    <div style={{marginTop:15}}>
+      <button className="form-submit" onClick={()=>openClass()} style={{float: 'left',height:42}}>
+        הוספת כיתה חדשה
+      </button>
+    </div>
+    
   </div>
 </div>
     

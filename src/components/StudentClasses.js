@@ -102,7 +102,7 @@ export default function StudentClasses() {
           <List sx={{ mb: 2 }}>
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
-                <ListItem Button>
+                <ListItem Button onClick={(cls)=>gotoUnits(id,cls)}>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoUnits(id,cls)}>
                       <MenuIcon />
                 </IconButton>
