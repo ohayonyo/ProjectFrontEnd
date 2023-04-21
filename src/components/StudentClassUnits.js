@@ -125,7 +125,6 @@ export default function StudentClassUnits() {
             ))}
           </List>
         </div>
-      
       </Paper>  
     </React.Fragment>
     </div>
