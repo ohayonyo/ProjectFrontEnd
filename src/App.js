@@ -216,9 +216,23 @@ function ValidateTeacher(){
           }></Route>
           <Route exact path='/login' element={<Login></Login>}></Route>
 
-          <Route path="/:username/studentMenu" element={<ValidateStudent></ValidateStudent>}></Route>
+          <Route path="/:username/studentMenu" element={
+            <div>
+                <ValidateStudent></ValidateStudent>
+                <StudentMenu></StudentMenu>
+                <StudentClasses></StudentClasses>
+            </div>
+          }>
 
-          <Route path="/:username/teacherMenu" element={<ValidateTeacher></ValidateTeacher>}></Route>
+        </Route>
+
+          <Route path="/:username/teacherMenu" element={
+            <div>
+                <ValidateTeacher></ValidateTeacher>
+                <TeacherMenu></TeacherMenu>
+                <TeacherClasses></TeacherClasses>
+            </div>
+          }></Route>
 
           <Route exact path='/register' element={<Register></Register>}></Route>
           <Route exact path='/studentMenu' element={

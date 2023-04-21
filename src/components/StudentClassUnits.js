@@ -99,7 +99,7 @@ export default function StudentClassUnits() {
 
   return (
     <div style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+    overflow: 'auto',width:'105%',paddingRight:'20%'}} className="class-list">
       
       <React.Fragment>
       <CssBaseline />
@@ -112,7 +112,7 @@ export default function StudentClassUnits() {
           <List sx={{ mb: 2 }}>
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
-                <ListItem Button>
+                <ListItem Button onDoubleClick={(unit)=>startUnit(id,primary)}>
                 <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,primary)}>
                       <MenuIcon />
                 </IconButton>
