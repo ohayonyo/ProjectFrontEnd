@@ -143,21 +143,37 @@ export default function TeacherClasses() {
         <List sx={{ mb: 2 }}>
           {messages.map(({ id,primary, secondary }) => (
             <React.Fragment key={id}>
-              <ListItem Button onDoubleClick={(cls)=>gotoUnits(id,cls)}>
-                <IconButton edge="end" aria-label="delete" onClick={()=>deleteElement(id)}>
-                  <DeleteIcon />
-                </IconButton>
-                <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
-                  <AddIcon />
-                </IconButton>
-                <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoUnits(id,cls)}>
-                  <MenuIcon />
-                </IconButton>
-                <ListItemText 
-                  primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                  secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}
-                />
-              </ListItem>
+              <ListItem 
+                  Button 
+                  onClick={(event) => {
+                    if (
+                      event.target.tagName !== "BUTTON" &&
+                      event.target.tagName !== "svg" &&
+                      event.target.tagName !== "path"
+                    ) {
+                      gotoUnits(id, event);
+                    }
+                  }}
+                >
+                  <IconButton edge="end" aria-label="delete" onClick={() => deleteElement(id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                  <IconButton edge="end" aria-label="edit" onClick={() => gotoEdit(id)}>
+                    <AddIcon />
+                  </IconButton>
+                  <IconButton edge="end" aria-label="units" onClick={() => gotoUnits(id)}>
+                    <MenuIcon />
+                  </IconButton>
+                  <ListItemText
+                    primary={
+                      <Typography variant="h6" style={{ color: "#000000" }}>
+                        {primary}
+                      </Typography>
+                    }
+                    secondary={secondary}
+                    style={{ textAlign: "right", marginTop: -1, marginRight: 20 }}
+                  />
+                </ListItem>
             </React.Fragment>
           ))}
         </List>
