@@ -158,12 +158,12 @@ export default function TeacherClasses() {
                   <IconButton edge="end" aria-label="delete" onClick={() => deleteElement(id)}>
                     <DeleteIcon />
                   </IconButton>
-                  <IconButton edge="end" aria-label="edit" onClick={() => gotoEdit(id)}>
+                  {/* <IconButton edge="end" aria-label="edit" onClick={() => gotoEdit(id)}>
                     <AddIcon />
-                  </IconButton>
-                  <IconButton edge="end" aria-label="units" onClick={() => gotoUnits(id)}>
+                  </IconButton> */}
+                  {/* <IconButton edge="end" aria-label="units" onClick={() => gotoUnits(id)}>
                     <MenuIcon />
-                  </IconButton>
+                  </IconButton> */}
                   <ListItemText
                     primary={
                       <Typography variant="h6" style={{ color: "#000000" }}>

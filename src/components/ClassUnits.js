@@ -168,12 +168,12 @@ export default function ClassUnits() {
             {messages.map(({ id,primary, secondary }) => (
               <React.Fragment key={id}>
                 <ListItem Button>
-                <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,unit)}>
+                <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoEdit(id,cls)}>
                       <MenuIcon />
                 </IconButton>
-                <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
+                {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
                   <AddIcon />
-                </IconButton>
+                </IconButton> */}
 
                   <ListItemText 
                     primary={
