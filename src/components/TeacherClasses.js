@@ -143,7 +143,7 @@ export default function TeacherClasses() {
         <List sx={{ mb: 2 }}>
           {messages.map(({ id,primary, secondary }) => (
             <React.Fragment key={id}>
-              <ListItem Button onClick={(cls)=>gotoUnits(id,cls)}>
+              <ListItem Button onDoubleClick={(cls)=>gotoUnits(id,cls)}>
                 <IconButton edge="end" aria-label="delete" onClick={()=>deleteElement(id)}>
                   <DeleteIcon />
                 </IconButton>
