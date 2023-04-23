@@ -55,7 +55,8 @@ const fetchData = async (url) =>{
 
 export default function ClassUnits() {
 
-  const [messages, setMessages] = useState([{
+  const [messages, setMessages] = useState([]);
+  /**{
       id: 1,
     primary: 'Brunch this week?',
     secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
@@ -67,12 +68,12 @@ export default function ClassUnits() {
     secondary: `Do you have a suggestion for a good present for John on his work
       anniversary. I am really confused & would love your thoughts on it.`,
 
-    }]);
+    } */
 
     useEffect(()=>{
 
       async function fetchDataCall(){
-          const url = "http://localhost:5000/getClassUnits?className="+className;
+          const url = "http://localhost:5000/getClassUnits?teacher="+splits[3]+"&className="+className;
           const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
@@ -131,7 +132,7 @@ export default function ClassUnits() {
 
   const handleSave = (event, index) =>{
     console.log("save")
-    const url = "http://localhost:5000/quickEditUnit?unitName="+unitNamesAtUpload[index]+
+    const url = "http://localhost:5000/quickEditUnit?teacher="+splits[3]+"&unitName="+unitNamesAtUpload[index]+
     "&className="+className+"&newDesc="+UnitDescriptions[index]+"&newUnitName="+unitNames[index]
     console.log(url)
     const res = fetchData(url)

@@ -28,7 +28,7 @@ const EditUnit = () => {
   },[]);
 
 
-  const url = "http://localhost:5000/getUnitDetails?unitName="+splits[5]+"&className="+splits[4]
+  const url = "http://localhost:5000/getUnitDetails?teacher="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
   console.log(url)
   const [name, setName] = useState(splits[5]);
   const [qnum, setQnum] = useState("");
