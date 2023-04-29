@@ -21,7 +21,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { Checkbox } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
-import { NearMeOutlined } from '@mui/icons-material';
+import { NearMeOutlined, Rtt } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import '../css/PickDetails.css';
 
@@ -181,13 +181,12 @@ export default function TeacherClasses() {
     </Paper>  
   </React.Fragment>
   <div style={{ display: 'flex', justifyContent: 'center' }}>
-    <input type="text" style={{color:'black',height:42,marginTop:15}} onChange = {getClassName.bind(this)}/>
-    <div style={{marginTop:15}}>
+  <div style={{marginTop:15}}>
       <button className="form-submit" onClick={()=>openClass()} style={{float: 'left',height:42}}>
         הוספת כיתה חדשה
       </button>
     </div>
-    
+    <input type="text" className='input_data' style={{color:'black',height:42,marginTop:15,direction:'rtl'}} onChange = {getClassName.bind(this)}/>
   </div>
 </div>
     
