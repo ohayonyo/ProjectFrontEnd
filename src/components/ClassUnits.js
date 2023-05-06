@@ -168,68 +168,88 @@ export default function ClassUnits() {
     <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
-      <React.Fragment>
-      <CssBaseline />
-      <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-          {className}
-        </Typography>
-        <div>
+  <React.Fragment>
+    <CssBaseline />
+    <Paper square sx={{ pb: '50px' }}>
+      <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
+        {className}
+      </Typography>
+      <div>
 
-          <List sx={{ mb: 2 }}>
-            {messages.map(({ id,primary, secondary, due }) => (
-              <React.Fragment key={id}>
-                <ListItem Button>
+        <List sx={{ mb: 2 }}>
+          {messages.map(({ id,primary, secondary, due }) => (
+            <React.Fragment key={id}>
+              <ListItem Button>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoEdit(id,cls)}>
-                      <MenuIcon />
+                  <MenuIcon />
                 </IconButton>
                 {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
                   <AddIcon />
                 </IconButton> */}
 
-                  <ListItemText 
-                    primary={
+                <ListItemText 
+                  primary={
                     <Typography variant="h6" style={{ color: '#000000' }}>
-                     <div style={{color:'black'}}>
-                      <EditText showEditButton
-                        onChange={(e) => handleChangeUnitName(e,id-1)}
-                        onSave={(e)=>handleSave(e,id-1)}
-                        value={unitNames[id-1]}
-                        style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6'}}
-                      />
-                     </div>
+                      <div style={{color:'black', float: 'right', width: '100%'}}>
+                        <EditText 
+                          showEditButton
+                          onChange={(e) => handleChangeUnitName(e,id-1)}
+                          onSave={(e)=>handleSave(e,id-1)}
+                          value={unitNames[id-1]}
+                          style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6', textAlign: 'right'}}
+                        />
+                      </div>
                     </Typography>
-                    } 
-                    secondary={
-                    <div style={{color:'black'}}>
-                    <EditText showEditButton 
-                      onChange={(e) => handleChangeUnitDescription(e,id-1)}
-                      onSave={(e)=>handleSave(e,id-1)}
-                      value={UnitDescriptions[id-1]}
-                      style={{width:'90%',marginLeft:'10%',color:'black'}}
-                    />
-                    </div>
-                    }
-                    />
-                  <Typography variant="body1" style={{ color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
-                    {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)}
-                    {due}
-                  </Typography>
-                </ListItem>
-              </React.Fragment>
-            ))}
-          </List>
-        </div>
-      
-      </Paper>  
-    </React.Fragment>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button className="form-submit" onClick={()=>openUnit()} style={{float: 'left'}}>
-          הוספת שיעור חדש
-        </button>
-      </div>
+                  } 
+                  secondary={
+                    <div>
+                          <div style={{color:'black', float: 'right', width: '100%'}}>
+                            <EditText 
+                              showEditButton 
+                              onChange={(e) => handleChangeUnitDescription(e,id-1)}
+                              onSave={(e)=>handleSave(e,id-1)}
+                              value={UnitDescriptions[id-1]}
+                              style={{width:'90%',marginLeft:'10%',color:'black', textAlign: 'right'}}
+                            />
+                          </div>
 
-    </div>
+                          <div style={{ textAlign: 'right', fontSize: '0.8rem', marginTop: '5px', marginRight:'10px', color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
+                            {dueDates[id-1].toLocaleString('he-IL', {
+                              timeZone: 'UTC',
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit'
+                            }).replace(',', ' ').replace('.','/').replace('.','/')}
+                            :מועד אחרון לפתירה
+                          </div>
+                    </div>
+                  }
+                />
+                <div style={{textAlign: 'center', fontWeight: 'bold', marginTop: '10px'}}>
+                  <Typography variant="body1" style={{ color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black', textAlign: 'center' }}>
+                    {/* {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)} */}
+                    {/* <div style={{textAlign: 'center'}}>{due}</div> */}
+                    
+                  </Typography>
+                </div>
+              </ListItem>
+            </React.Fragment>
+          ))}
+        </List>
+      </div>
+    
+    </Paper>  
+  </React.Fragment>
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <button className="form-submit" onClick={()=>openUnit()} style={{float: 'left'}}>
+      הוספת שיעור חדש
+    </button>
+  </div>
+
+</div>
     
   );
 }
