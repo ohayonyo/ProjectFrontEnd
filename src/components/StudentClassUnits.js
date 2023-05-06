@@ -42,7 +42,20 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassUnits?className="+splits[4]
+  const url = "http://localhost:5000/getClassUnits?className="+splits[4]+"&teacher="+splits[3]
+  const result = await fetch(url)      
+  const jsonResult = await result.json();
+  console.log("json2 result is ")
+  console.log(jsonResult)
+  return jsonResult;
+}
+
+const fetchData2 = async (primary) =>{
+
+  //todo make this use the teacher name
+  const thisURL = window.location.href;
+  const splits = thisURL.split('/')
+  const url = "http://localhost:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -77,23 +90,28 @@ export default function StudentClassUnits() {
     fetchDataCall()
     },[]);
 
-
+    let dueDates=messages.map((value)=>new Date(value.due));
+    console.log(dueDates)
+    const now = new Date();
+    console.log(now)
 
   async function startUnit(id,primary){ 
+    if (dueDates[id-1].getTime() >= (now.getTime()+10750000)){
+      console.log("startUnit")
+      const thisURL = window.location.href;
+      const splits = thisURL.split('/')
 
-    console.log("startUnit")
-    const thisURL = window.location.href;
-    const splits = thisURL.split('/')
 
-
-    console.log("in start unit " + id +" " +primary)
-    const url = "http://localhost:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
-    console.log("the url is" + url)
-    const result = await fetch(url)      
-
-    const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[4]+ "/"+1+ "/QuestionView"
-    console.log("the next url is " +nextURL)
-    window.location.assign(nextURL);
+      console.log("in start unit " + id +" " +primary)
+      let result = await fetchData2(primary)     
+      console.log(result)
+      if (result == 0){
+        result = -1
+      }
+      const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[4]+ "/"+1+ "/QuestionView"+"/"+(result*60)
+      console.log("the next url is " +nextURL)
+      window.location.assign(nextURL);
+    }
     
   }
 
@@ -110,7 +128,7 @@ export default function StudentClassUnits() {
         <div>
 
           <List sx={{ mb: 2 }}>
-            {messages.map(({ id,primary, secondary }) => (
+            {messages.map(({ id,primary, secondary,due }) => (
               <React.Fragment key={id}>
                 <ListItem Button onClick={(unit)=>startUnit(id,primary)}>
                 <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,primary)}>
@@ -119,7 +137,10 @@ export default function StudentClassUnits() {
                 <ListItemText 
                 primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
                 secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
-
+                <Typography variant="body1" style={{ color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
+                    {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)}
+                    {due}
+                </Typography>
                 </ListItem>
               </React.Fragment>
             ))}

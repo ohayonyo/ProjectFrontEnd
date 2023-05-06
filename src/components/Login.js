@@ -36,11 +36,12 @@ const Login = () => {
       const urlToFetch='http://localhost:5000/login?username=' + username + '&password='+password;
       console.log(urlToFetch)
       const response = await fetch(urlToFetch);
-      console.log("AAAAAAAA")
+      console.log((response.status))
       if(response.status==200){
         console.log("cccc")
         const body = await response.text();
         const myArray = body.split(" ");
+        console.log(myArray)
         if(myArray[0]==1){
           console.log("BBBBBBB")
           newDest='/'+myArray[1]+'/teacherMenu';

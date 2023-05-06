@@ -6,7 +6,8 @@ const PickDetails = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/');
   const first = (splits[6]=="new") 
-  const nname = splits[6]+"n"
+  const ord = (splits[6]).split("_")[(splits[6]).split("-").length-1]
+  const nname = splits[6]+"_"+((ord.length > 2)?2:ord)
   const [name, setName] = useState(first?"":(nname));
   const [qnum, setQnum] = useState('');
   const [desc, setDesc] = useState('');
@@ -21,7 +22,7 @@ const PickDetails = () => {
 
 
   const handleNext = () => {
-      window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/data/"+name+"/"+qnum+"/"+timeLimit+"/"+dueDate+"/"+desc;
+      window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/data/"+name+"/"+qnum+"/"+timeLimit+"/"+dueDate+"/"+((desc=='')?"cont":desc);
     
   };
 
@@ -80,7 +81,7 @@ const PickDetails = () => {
       <label className='label'>
       :תיאור יחידת הלימוד
         <br></br>
-        <input type="text" value={desc} onChange={(e) => setDesc(e.target.value)} style={inputStyle}/>
+        <input disabled={!first} type="text" value={desc} onChange={(e) => setDesc(e.target.value)} style={inputStyle}/>
       </label>
 
       <label className='label'>
@@ -92,13 +93,13 @@ const PickDetails = () => {
       <label className='label'>
       :הגבלת הזמן
         <br></br>
-        <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} />
+        <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} min={0} />
       </label>
 
       <label className='label'>
       :תאריך הגשה
         <br></br>
-        <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
+        <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} min={new Date()}/>
       </label>
       
       <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>

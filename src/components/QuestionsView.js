@@ -86,7 +86,24 @@ export default function QuestionView() {
       {id:3, text: "(3,3)(5,0)"}]
 
     }]);
+    
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    const [remainingTime, setRemainingTime] = useState(splits[8]);
 
+    useEffect(() => {
+      if (remainingTime == 0) window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits");
+      if (remainingTime == -1) return;
+  
+      const timerId = setInterval(() => {
+        setRemainingTime((prevTime) => prevTime - 1);
+      }, 1000);
+  
+      return () => clearInterval(timerId);
+    }, [remainingTime]);
+  
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
 
     useEffect(()=>{
 
@@ -132,7 +149,7 @@ export default function QuestionView() {
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"+"/"+remainingTime
           const newColors = [...colors];
           newColors[qans]="green"
           setColors(newColors)
@@ -149,7 +166,7 @@ export default function QuestionView() {
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"+"/"+remainingTime
 
         }
         else if(promise.status ===205){
@@ -176,7 +193,10 @@ export default function QuestionView() {
     return (
         <div className='big-question'>
           
-             <h1> {questions[0].preamble}</h1>
+             <h1> 
+              {questions[0].preamble}
+             </h1>
+             {minutes.toString().padStart(2, "0")}:{seconds.toString().padStart(2, "0")}
                <div className='multiple-choice'>
                     <h2 >    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
 

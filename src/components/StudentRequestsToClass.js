@@ -144,7 +144,7 @@ export default function StudentRequestsToClass() {
 
     if(select===undefined || select==null)
       setSelected(classes[0].className)
-    const url = "http://localhost:5000/registerClass?student="+ splits[3]+" &className="+ select
+    const url = "http://localhost:5000/registerClass?student="+ splits[3]+"&className="+ select
     console.log(url)
     const promise =  await fetch(url)
 
@@ -171,7 +171,7 @@ export default function StudentRequestsToClass() {
       const splits = thisURL.split('/')
       console.log(splits)
       const toDelete = classesWaiting.filter(x=> x.id =id)
-      const url = "http://localhost:5000/removeRegistrationClass?student="+ splits[3]+" &className="+ toDelete[0].className
+      const url = "http://localhost:5000/removeRegistrationClass?student="+ splits[3]+"&className="+ toDelete[0].className
       console.log(url)
       const promise =  await fetch(url)
   

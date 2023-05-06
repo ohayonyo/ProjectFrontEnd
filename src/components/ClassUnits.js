@@ -80,29 +80,40 @@ export default function ClassUnits() {
       }
     fetchDataCall()
     },[]);
-
+  function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+  }
   const numberOfUnits = messages.length;
 
   let unitNamesAtUpload = messages.map((value)=>value.primary)
   let UnitDescriptionsAtUpload=messages.map((value)=>value.secondary);
+  let dueDates=messages.map((value)=>new Date(value.due));
+  console.log(dueDates)
+  const now = new Date();
+  console.log(now)
+
 
   console.log('unitNamesAtUpload:'+unitNamesAtUpload)
   const [unitNames,setUnitNames] = useState([]);
   useEffect(()=>{
-    setUnitNames(unitNamesAtUpload)
-  },unitNamesAtUpload)
 
+
+    setUnitNames(unitNamesAtUpload)
+    sleep(10)
+  },unitNamesAtUpload)
 
   console.log('unitNames:'+unitNames)
   const [UnitDescriptions,setUnitDescriptions] = useState([]);
   useEffect(()=>{
     setUnitDescriptions(UnitDescriptionsAtUpload)
+    sleep(10)
   },UnitDescriptionsAtUpload)
 
   let editButtonContentsAtUpload=messages.map((value)=>value.secondary!=='');
   const [editButtonContents,setEditButtonContents] = useState([])
   useEffect(()=>{
     setEditButtonContents(editButtonContentsAtUpload)
+    sleep(10)
   },editButtonContentsAtUpload)
 
   console.log('UnitDescriptionsAtUpload:'+UnitDescriptionsAtUpload)
@@ -166,7 +177,7 @@ export default function ClassUnits() {
         <div>
 
           <List sx={{ mb: 2 }}>
-            {messages.map(({ id,primary, secondary }) => (
+            {messages.map(({ id,primary, secondary, due }) => (
               <React.Fragment key={id}>
                 <ListItem Button>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoEdit(id,cls)}>
@@ -197,12 +208,13 @@ export default function ClassUnits() {
                       value={UnitDescriptions[id-1]}
                       style={{width:'90%',marginLeft:'10%',color:'black'}}
                     />
-                   </div>
-                   }
-
-                    style={{textAlign:'right',marginTop:-1,marginRight:20}}
+                    </div>
+                    }
                     />
-
+                  <Typography variant="body1" style={{ color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
+                    {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)}
+                    {due}
+                  </Typography>
                 </ListItem>
               </React.Fragment>
             ))}
