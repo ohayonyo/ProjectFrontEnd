@@ -91,7 +91,7 @@ const PickDetails = () => {
       </label>
 
       <label className='label'>
-      :הגבלת הזמן
+      :הגבלת הזמן בדקות
         <br></br>
         <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} min={0} />
       </label>

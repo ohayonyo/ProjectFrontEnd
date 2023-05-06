@@ -120,7 +120,7 @@ export default function StudentRequestsToClass() {
 
 
   return (
-    <div style={{resize: 'both',
+    <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       <React.Fragment>
       <CssBaseline />

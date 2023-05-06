@@ -312,7 +312,7 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={1} />
+                    steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={1} />
                     </div>
                  
                   <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
@@ -335,7 +335,7 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={2} />
+                    steps={ [{title:'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={2} />
                     </div>
                  
                   <div style={{transform: 'scale(1)',marginTop:'-15%',marginLeft:'-10%'}}>
@@ -357,7 +357,7 @@ function ValidateTeacher(){
                   <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
-                    steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={3} />
+                    steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={3} />
                     </div>
                  
                   <div style={{width:'50%',position:'relative',transform: 'scale(0.8)',marginLeft:'20%',marginTop:'-20%'}}>
@@ -397,7 +397,7 @@ function ValidateTeacher(){
                 <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
                   <Stepper circleTop={'15%'} 
                   size={40}
-                  steps={ [{title: 'פרטים נוספים'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={0} />
+                  steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={0} />
                   </div>
               
                 <div style={{transform: 'scale(0.6)',marginTop:'-10%',marginLeft:'-10%'}}>
