@@ -135,11 +135,31 @@ export default function StudentClassUnits() {
                       <MenuIcon />
                 </IconButton>
                 <ListItemText 
-                primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 
-                secondary={secondary} style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
+                primary={<Typography variant="h6" style={{ color: '#000000' }}>
+                      {primary}
+                  </Typography>} 
+                secondary={
+                  <div>
+                    {secondary}
+                    <div style={{textAlign: 'right', fontSize: '0.8rem', marginTop: '5px',color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
+                      {dueDates[id-1].toLocaleString('he-IL', {
+                          timeZone: 'UTC',
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit'
+                        }).replace(',', ' ').replace('.','/').replace('.','/')}
+                          :מועד אחרון לפתירה
+                      </div>
+                  </div>
+                  
+
+                
+                } style={{textAlign:'right',marginTop:-1,marginRight:20}}/>
                 <Typography variant="body1" style={{ color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
-                    {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)}
-                    {due}
+                    
                 </Typography>
                 </ListItem>
               </React.Fragment>
