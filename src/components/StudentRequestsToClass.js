@@ -99,12 +99,6 @@ export default function StudentRequestsToClass() {
         const a = await fetchData()
         console.log("in use effect2")
         setClasses(a)
-
-        if(select===null||select===undefined)
-          setSelected(classes[0].className)
-
-        // console.log('classes='+classes[0].className)
-        // setClasses(a)
         const b = await fetchData2()
         console.log("in use effect3")
         setClassesWaiting(b)
@@ -133,18 +127,11 @@ export default function StudentRequestsToClass() {
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
     console.log(splits)
-    console.log(select.className)
-    // console.log({select})
-    // if(select===undefined){
-    //   console.log('select is undefined')
-    // }
+    console.log(classes)
 
 
     console.log("select value:"+select)
-
-    if(select===undefined || select==null)
-      setSelected(classes[0].className)
-    const url = "http://localhost:5000/registerClass?student="+ splits[3]+"&className="+ select
+    const url = "http://localhost:5000/registerClass?student="+ splits[3]+"&className="+ (select ? select : classes[0].className)
     console.log(url)
     const promise =  await fetch(url)
 
@@ -200,7 +187,7 @@ export default function StudentRequestsToClass() {
 
     <div class="class-list" >
       <h1> הרשמה לכיתה חדשה</h1>
-          <select onChange={e=> setSelected(e.target.value)} defaultValue={classes[0].className}>
+          <select onChange={e=> setSelected(e.target.value)} defaultValue={""}>
             {classes.map(singleClass => 
             <option key={singleClass.id} value={singleClass.className} > 
               class: {singleClass.className},  &nbsp; &nbsp; &nbsp;teacher: {singleClass.teacher} 
