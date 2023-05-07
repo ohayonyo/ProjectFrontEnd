@@ -149,8 +149,6 @@ export default function ClassUnits() {
     const res = fetchData(url)
     return res
   }
-
-  function startUnit(id,cls){ }
   function openUnit(){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
@@ -161,6 +159,12 @@ export default function ClassUnits() {
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+messages[id-1].primary+"/editUnit");
+  }
+
+  function gotoStats(id, cls){
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+messages[id-1].primary+"/unitStats");
   }
 
   return (
@@ -181,6 +185,9 @@ export default function ClassUnits() {
             <React.Fragment key={id}>
               <ListItem Button>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoEdit(id,cls)}>
+                  <AddIcon />
+                </IconButton>
+                <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStats(id,cls)}>
                   <MenuIcon />
                 </IconButton>
                 {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>

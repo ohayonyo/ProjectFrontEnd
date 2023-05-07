@@ -19,6 +19,7 @@ import PickQuestion from './components/PickQuestion';
 import PickParams from './components/PickParams';
 import PickDetails from './components/PickDetails';
 import EditUnit from './components/EditUnit';
+import UnitStats from './components/UnitStats';
 
 import RemoveUnit from './components/RemoveUnit';
 import RegisterClass from './components/RegisterClass';
@@ -298,6 +299,14 @@ function ValidateTeacher(){
             <div>
                 <TeacherMenu></TeacherMenu>
                 <EditUnit></EditUnit>
+            </div>
+            
+            
+          }></Route>
+                    <Route exact path='/:username/:className/:unitName/unitStats' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <UnitStats></UnitStats>
             </div>
             
             
