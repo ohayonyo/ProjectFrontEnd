@@ -20,6 +20,7 @@ import PickParams from './components/PickParams';
 import PickDetails from './components/PickDetails';
 import EditUnit from './components/EditUnit';
 import UnitStats from './components/UnitStats';
+import StudentStats from './components/StudentStats';
 
 import RemoveUnit from './components/RemoveUnit';
 import RegisterClass from './components/RegisterClass';
@@ -303,7 +304,7 @@ function ValidateTeacher(){
             
             
           }></Route>
-                    <Route exact path='/:username/:className/:unitName/unitStats' element={
+          <Route exact path='/:username/:className/:unitName/unitStats' element={
             <div>
                 <TeacherMenu></TeacherMenu>
                 <UnitStats></UnitStats>
@@ -312,6 +313,14 @@ function ValidateTeacher(){
             
           }></Route>
           
+          <Route exact path='/:username/:className/:unitName/:studentName/studentStats' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <StudentStats></StudentStats>
+            </div>
+            
+            
+          }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             <div className='background2' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>

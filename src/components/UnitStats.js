@@ -90,7 +90,7 @@ export default function UnitStats() {
   function gotoStudent(name,cls){
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+name+"/studentStats");
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/studentStats");
   }
 
   return (
