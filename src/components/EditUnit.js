@@ -115,21 +115,28 @@ const EditUnit = () => {
       </label>
 
       <label className='label'>
-      :הגבלת הזמן
+      :הגבלת הזמן בדקות
         <br></br>
-        <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} />
+        <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} min={0} />
       </label>
 
       <label className='label'>
       :תאריך הגשה
         <br></br>
-        <input type="datetime-local" value={dueDate.toISOString().slice(0, 16)} onChange={(e) => setDueDate(new Date(e.target.value))} style={inputStyle} />
+
+        <input 
+          type="datetime-local" 
+          value={new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)} 
+          onChange={(e) => setDueDate(new Date(Date.parse(e.target.value)))} 
+          style={inputStyle} 
+          min={new Date().toLocaleString('en-IL', {timeZone: 'Asia/Jerusalem'}).slice(0, 16)} 
+        />    
       </label>
       
-      <button onClick={handleNext} className="submitButton">סיום</button>
+      <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
       
     </div>
   );
 };
 
-export default EditUnit;
+export default EditUnit;

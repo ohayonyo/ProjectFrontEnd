@@ -1,4 +1,3 @@
-
 // importing components from react-router-dom package
 import {BrowserRouter as Router, Route,Routes,useParams} from 'react-router-dom'
   
@@ -64,7 +63,6 @@ function App() {
 
 `;
 
-
   function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
@@ -91,12 +89,7 @@ function App() {
         buttons[i].style.background = "#c8a970";
       }
     }
-
-  
   }
-
-
-
 
 const studentMenuPage = new RegExp('^[a-zA-Z][a-zA-Z0-9]*/studentMenu$');
 
@@ -134,86 +127,15 @@ function ValidateTeacher(){
 
 
 
-// function App() {
-//   return (
-//     <Routes>
-//       <Route path="/users/:id" element={<ValidateUser />} />
-//       <Route path="/users/*" element={<NotFound />} />
-//     </Routes>
-//   );
-// }
-
-// function ValidateUser() {
-//   let params = useParams();
-//   let userId = params.id.match(/\d+/);
-//   if (!userId) {
-//     return <NotFound />;
-//   }
-//   return <User id={params.userId} />;
-// }
-
-// function User(props) {
-//   let id = props.id;
-//   // ...
-// }
-
-
-
-{/* <Route path={`/-${idRegex}`} component={Home} /> */}
-
-
-
-  // return (
-  //   <>
-  //     {/* This is the alias of BrowserRouter i.e. Router */}
-  //     <Router>
-  //       <Routes>
-  //         {/* This route is for home component 
-  //         with exact path "/", in component props 
-  //         we passes the imported component*/}
-  //         <Route exact path="/" component={Header} />
-            
-  //         {/* This route is for about component 
-  //         with exact path "/about", in component 
-  //         props we passes the imported component*/}
-  //         <Route path="/login" component={LoginPage} />
-            
-  //         {/* This route is for contactus component
-  //         with exact path "/contactus", in 
-  //         component props we passes the imported component*/}
-  //         <Route path="/register" component={RegisterPage} />
-            
-  //         {/* If any route mismatches the upper 
-  //         route endpoints then, redirect triggers 
-  //         and redirects app to home component with to="/" */}
-  //         <Navigate to="/" />
-  //       </Routes>
-  //     </Router>
-  //   </>
-  // );
-
   return (
     
     <Router>
       <div className="App">
 
-        {/* <h1>Home Page</h1>
-
-        <a href='/login'> Login </a>
-        <br></br>
-        <a href='/register'> Register </a> */}
         <Routes>
           <Route exact path='/' element={
             <HomePageTest></HomePageTest>
-            // <div>
-            // <h1>Home Page</h1>
 
-            // <a href='/login'> Login </a>
-            // <br></br>
-            // <a href='/register'> Register </a>
-            // <br></br>
-            // <a href='/questions'> Questions</a>
-            // </div>
           }></Route>
           <Route exact path='/login' element={<Login></Login>}></Route>
 
@@ -296,12 +218,17 @@ function ValidateTeacher(){
             
           }></Route>
           <Route exact path='/:username/:className/:unitName/editUnit' element={
-            <div>
-                <TeacherMenu></TeacherMenu>
+            <div className='main-div' style={{zIndex:-1}}>
+            <TeacherMenu></TeacherMenu>
+
+            <div style={{zIndex:2}}>
+                <div style={{transform: 'scale(0.8)',marginTop:'-1%',marginLeft:'-10%'}}>
                 <EditUnit></EditUnit>
+                </div>
             </div>
-            
-            
+
+            </div>
+
           }></Route>
                     <Route exact path='/:username/:className/:unitName/unitStats' element={
             <div>
@@ -313,7 +240,7 @@ function ValidateTeacher(){
           }></Route>
           
           <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate/:desc' element={
-            <div className='background2' style={{zIndex:-1}}>
+            <div className='main-div' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
               <div style={{zIndex:2}}>
@@ -336,7 +263,7 @@ function ValidateTeacher(){
 
           <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
               
-            <div className='background2' style={{zIndex:-1}}>
+            <div className='main-div' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
               <div style={{zIndex:2}}>
@@ -358,7 +285,7 @@ function ValidateTeacher(){
           }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             
-            <div className='background2' style={{zIndex:-1}}>
+            <div className='main-div' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
               <div style={{zIndex:2}}>
@@ -374,31 +301,16 @@ function ValidateTeacher(){
                   </div>
                   <br></br>
                   <br></br>
-                  {/* <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br> */}
-                  
               </div>
 
             </div>
-            
-
-            // <div>
-            //     <TeacherMenu></TeacherMenu>
-            //     <PickParams></PickParams>
-            // </div>
-            
-            
+                        
           }></Route>
 
           <Route exact path='/:username/:className/openUnit/:prev/details' element={
 
 
-            <div className='background2' style={{zIndex:-1}}>
+            <div className='main-div' style={{zIndex:-1}}>
             <TeacherMenu></TeacherMenu>
 
             <div style={{zIndex:2}}>
@@ -416,14 +328,6 @@ function ValidateTeacher(){
             </div>
 
             </div>
-
-
-
-            // <div>
-            //     <TeacherMenu></TeacherMenu>
-               
-            // </div>
-            
             
           }></Route>
 
@@ -485,7 +389,6 @@ function ValidateTeacher(){
 
             <h1>{textInput}</h1>
 
-            {/* <EditTextarea /> */}
           </div>
             
           }></Route>
@@ -588,27 +491,15 @@ function ValidateTeacher(){
           <Route exact path='/stepper' element={
             <div>
               <Stepper steps={ [{title: 'Step One'}, {title: 'Step Two'}, {title: 'Step Three'}, {title: 'Step Four'}] } activeStep={ 0 } />
-              {/* <HorizontalLinearStepper></HorizontalLinearStepper> */}
             </div>
             
           }></Route>
 
-
-
-
-
-
-
           </Routes>
-
-
-       
-       
-
 
       </div>
     </Router>
   );
 }
 
-export default App;
+export default App;
