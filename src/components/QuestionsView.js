@@ -90,6 +90,7 @@ export default function QuestionView() {
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
     const [remainingTime, setRemainingTime] = useState(splits[8]);
+    const [nextLesson, setNextLesson] = useState("");
 
     useEffect(() => {
       if (remainingTime == 0) window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits");
@@ -123,11 +124,47 @@ export default function QuestionView() {
 
         return isThereGreen
       }
+    const fetchData2 = async (primary) =>{
+
+      //todo make this use the teacher name
+      const thisURL = window.location.href;
+      const splits = thisURL.split('/')
+      const url = "http://localhost:5000/startUnit?className="+splits[5]+"&username="+splits[3]+"&unitName="+primary
+      const result = await fetch(url)      
+      const jsonResult = await result.json();
+      console.log("json2 result is ")
+      console.log(jsonResult)
+      return jsonResult;
+    }
+      async function startUnit(primary){ 
+       
+          console.log("startUnit")
+          const thisURL = window.location.href;
+          const splits = thisURL.split('/')
+    
+    
+          let result = await fetchData2(primary)     
+          console.log(result)
+          if (result == 0){
+            result = -1
+          }
+          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[5]+ "/"+1+ "/QuestionView"+"/"+remainingTime
+          console.log("the next url is " +nextURL)
+          window.location.assign(nextURL);
+        
+        
+      }
 
 
       function nextPage(){
-        console.log("the next url is " +nextURL)
-        window.location.assign(nextURL);
+        if (nextLesson!=""){
+          console.log(nextLesson)
+          startUnit(nextLesson)
+        }
+        else{
+          console.log("the next url is " +nextURL)
+          window.location.assign(nextURL);
+        }
       }
 
       async function submitSingle(qans,id){
@@ -177,12 +214,24 @@ export default function QuestionView() {
           const newColors = [...colors];
           newColors[qans]="green"
           setColors(newColors)
-
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
           nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits"
           console.log("the next URL is " + nextURL)
+        }
+        else if(promise.status ===206){
+          console.log(promise.body)
+          const newColors = [...colors];
+          newColors[qans]="green"
+          setColors(newColors)
+          console.log(promise)
+          console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",nextLesson)
+          let t = await promise.json()
+          console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",t)
+          await setNextLesson(t);
+          console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",nextLesson)
+          
         }
         else
           console.log("didn't work try again")
