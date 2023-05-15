@@ -48,19 +48,9 @@ const Register = () => {
           <h2 className='active h2' style={{fontWeight:400,color:'white'}}>sign up</h2>
         </div>
 
-        <form className='RegisterPage_Form' action="/">
-          {/* <input type="text" className='RegisterPage_text' name="firstname" required/>
-          <span className='LoginRegister_Span text_span'>first name</span>
-
-          <input type="text" className='RegisterPage_text' name="lastname" required/>
-          <span className='LoginRegister_Span text_span'>last name</span>
-
-          <input type="text" className='RegisterPage_text' name="id" required/>
-          <span className='LoginRegister_Span text_span'>id</span> */}
-
-
-          <input type="text" className='RegisterPage_text' name="email" required/>
-          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>email</span>
+        <form className='RegisterPage_Form' style={{marginTop:'13%'}} action="/">
+          {/* <input type="text" className='RegisterPage_text' name="email" required/>
+          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>email</span> */}
           <input type="text" className='RegisterPage_text' name="username" value={username}
             onChange={(e)=>setUsername(e.target.value)} required/>
           <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>username</span>
