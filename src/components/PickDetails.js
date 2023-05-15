@@ -82,7 +82,9 @@ const PickDetails = () => {
 
   if(first){
     return (
-      <div className='container' style={{marginTop:40}}>
+      <div className='container' style={{marginTop: unitNameIsMissing && unitDescIsMissing ? 'calc(40px - 5%)' 
+      : unitNameIsMissing || unitDescIsMissing ?
+      'calc(40px - 2.5%)' : 40 }}>
 
   <label className='label'>
         :שם יחידת הלימוד
@@ -121,9 +123,9 @@ const PickDetails = () => {
           />    
         </label>
       
-        {unitNameIsMissing && <label style={{ color: 'red',fontSize:40 }}>חסר שם יחידת הלימוד</label>}
-
-        {unitDescIsMissing && <label style={{ color: 'red',fontSize:40 }}>חסר תיאור של יחידת הלימוד</label>}
+        {unitNameIsMissing && unitDescIsMissing && <br />}
+        {unitNameIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר שם יחידת הלימוד</label>}
+        {unitDescIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר תיאור של יחידת הלימוד</label>}
         
         
         <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
