@@ -43,8 +43,9 @@ const PickDetails = () => {
     // console.log("unitNameIsMissing="+unitNameIsMissing.current)
     console.log("unitDescIsMissing="+unitDescIsMissing)
 
-
-    if(name.length>0 && desc.length>0)
+    console.log("name="+name)
+    console.log("desc="+desc)
+    if((name.length>0 && desc.length>0)||(!first))
       window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/data/"+name+"/"+qnum+"/"+timeLimit+"/"+dueDate+"/"+((desc=='')?"cont":desc);
     
   };
@@ -87,74 +88,105 @@ const PickDetails = () => {
       'calc(40px - 2.5%)' : 40 }}>
 
   <label className='label'>
-        :שם יחידת הלימוד
-          <br></br>
-          <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
-        </label>
+    :שם יחידת הלימוד
+    <br />
+    <input
+      disabled={!first}
+      type="text"
+      value={first ? name : nname}
+      onChange={(e) => setName(e.target.value)}
+      style={{ ...inputStyle, textAlign: 'center' }}
+    />
+  </label>
 
-        <label className='label'>
-        :תיאור יחידת הלימוד
-          <br></br>
-          <input disabled={!first} type="text" value={desc} onChange={(e) => setDesc(e.target.value)} style={inputStyle}/>
-        </label>
+  <label className='label'>
+    :תיאור יחידת הלימוד
+    <br />
+    <input
+      disabled={!first}
+      type="text"
+      value={desc}
+      onChange={(e) => setDesc(e.target.value)}
+      style={{ ...inputStyle, textAlign: 'center' }}
+    />
+  </label>
 
-        <label className='label'>
-        :כמות שאלות נכונות ברצף שצריך לענות עליהן
-          <br></br>
-          <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} min={1} />
-        </label>
+  <label className='label'>
+    :כמות שאלות נכונות ברצף שצריך לענות עליהן
+    <br />
+    <input
+      type="number"
+      value={qnum}
+      onChange={(e) => setQnum(e.target.value)}
+      style={{ ...inputStyle, textAlign: 'center' }}
+      min={1}
+    />
+  </label>
 
-        <label className='label'>
-        :הגבלת הזמן בדקות
-          <br></br>
-          <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} min={0} />
-        </label>
+  <label className='label'>
+    :הגבלת הזמן בדקות
+    <br />
+    <input
+      type="number"
+      value={timeLimit}
+      onChange={(e) => setTimeLimit(e.target.value)}
+      style={{ ...inputStyle, textAlign: 'center' }}
+      min={0}
+    />
+  </label>
 
-        <label className='label'>
-        :תאריך הגשה
-          <br></br>
+  <label className='label'>
+    :תאריך הגשה
+    <br />
+    <input
+      type="datetime-local"
+      value={new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)}
+      onChange={(e) => setDueDate(new Date(Date.parse(e.target.value)))}
+      style={{ ...inputStyle, textAlign: 'center' }}
+      min={new Date().toLocaleString('en-IL', {timeZone: 'Asia/Jerusalem'}).slice(0, 16)}
+    />
+  </label>
 
-          <input 
-            type="datetime-local" 
-            value={new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)} 
-            onChange={(e) => setDueDate(new Date(Date.parse(e.target.value)))} 
-            style={inputStyle} 
-            min={new Date().toLocaleString('en-IL', {timeZone: 'Asia/Jerusalem'}).slice(0, 16)} 
-          />    
-        </label>
-      
-        {unitNameIsMissing && unitDescIsMissing && <br />}
-        {unitNameIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר שם יחידת הלימוד</label>}
-        {unitDescIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר תיאור של יחידת הלימוד</label>}
-        
-        
-        <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
-        
-      </div>
+  {unitNameIsMissing && unitDescIsMissing && <br />}
+  {unitNameIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר שם יחידת הלימוד</label>}
+  {unitDescIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר תיאור של יחידת הלימוד</label>}
+
+  <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
+
+</div>
     );
 }else{
   return (
-    <div className='container' style={{marginTop:'10%'}}>
+    <div className='container' style={{ marginTop: '10%', textAlign: 'center' }}>
 
-    <div style={{width:'50%',position:'relative',transform: 'scale(1.2)'}}>
-          <label className='label'>
-          :שם יחידת הלימוד
-            <br></br>
-            <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
-          </label>
+  <div style={{ width: '50%', position: 'relative', transform: 'scale(1.2)' }}>
+    <label className='label'>
+      :שם יחידת הלימוד
+      <br />
+      <input
+        disabled={!first}
+        type="text"
+        value={first ? decodeURIComponent(name) : decodeURIComponent(nname)}
+        onChange={(e) => setName(e.target.value)}
+        style={{ ...inputStyle, textAlign: 'center' }}
+      />
+    </label>
 
-          <label className='label'>
-          :כמות שאלות נכונות ברצף שצריך לענות עליהן
-            <br></br>
-            <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} min={1}/>
-          </label>
+    <label className='label'>
+      :כמות שאלות נכונות ברצף שצריך לענות עליהן
+      <br />
+      <input
+        type="number"
+        value={qnum}
+        onChange={(e) => setQnum(e.target.value)}
+        style={{ ...inputStyle, textAlign: 'center' }}
+        min={1}
+      />
+    </label>
 
-          <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
-    </div>
-
-    
-      
-    </div>
+    <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
+  </div>
+</div>
   );
 
 }

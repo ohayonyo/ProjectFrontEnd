@@ -53,18 +53,7 @@ const fetchData = async () =>{
 
 export default function TeacherClasses() {
     const [className,setClassName] = useState(null)
-    const [messages, setMessages] = useState([{
-      id: 1,
-    primary: 'Class1',
-    secondary: "Teacher: Moshe Cohen, Number of students: 32",
-
-  },
-  {
-    id: 2,
-  primary: 'Class2',
-    secondary: "Teacher: David Levi, Number of students: 30",
-
-    }]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(()=>{
 
@@ -87,7 +76,7 @@ export default function TeacherClasses() {
       var newClass = {
         "id": max_id+1,
         "primary" : className,
-        "secondary" : "lalala"
+        "secondary" : ""
       }
       const newMessages = [...messages,newClass]
       setMessages(newMessages);

@@ -56,20 +56,6 @@ const fetchData = async (url) =>{
 export default function ClassUnits() {
 
   const [messages, setMessages] = useState([]);
-  /**{
-      id: 1,
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-
-  },
-  {
-    id: 2,
-  primary: 'Birthday Gift',
-    secondary: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
-
-    } */
-
     useEffect(()=>{
 
       async function fetchDataCall(){
@@ -95,29 +81,23 @@ export default function ClassUnits() {
 
   console.log('unitNamesAtUpload:'+unitNamesAtUpload)
   const [unitNames,setUnitNames] = useState([]);
-  useEffect(()=>{
-
-
-    setUnitNames(unitNamesAtUpload)
-    sleep(10)
-  },unitNamesAtUpload)
-
-  console.log('unitNames:'+unitNames)
   const [UnitDescriptions,setUnitDescriptions] = useState([]);
-  useEffect(()=>{
-    setUnitDescriptions(UnitDescriptionsAtUpload)
-    sleep(10)
-  },UnitDescriptionsAtUpload)
-
-  let editButtonContentsAtUpload=messages.map((value)=>value.secondary!=='');
   const [editButtonContents,setEditButtonContents] = useState([])
-  useEffect(()=>{
-    setEditButtonContents(editButtonContentsAtUpload)
-    sleep(10)
-  },editButtonContentsAtUpload)
+  useEffect(() => {
+    const unitNamesAtUpload = messages.map((value) => value.primary);
+    setUnitNames(unitNamesAtUpload);
+  }, [messages]);
+  
+  useEffect(() => {
+    const UnitDescriptionsAtUpload = messages.map((value) => value.secondary);
+    setUnitDescriptions(UnitDescriptionsAtUpload);
+  }, [messages]);
+  
+  useEffect(() => {
+    const editButtonContentsAtUpload = messages.map((value) => value.secondary !== '');
+    setEditButtonContents(editButtonContentsAtUpload);
+  }, [messages]);
 
-  console.log('UnitDescriptionsAtUpload:'+UnitDescriptionsAtUpload)
-  console.log('UnitDescriptions:'+UnitDescriptions)
 
   const handleChangeUnitName = (event, index) => {
     const newValue = event.target.value;
@@ -176,7 +156,7 @@ export default function ClassUnits() {
     <CssBaseline />
     <Paper square sx={{ pb: '50px' }}>
       <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-        {className}
+        {decodeURIComponent(className)}
       </Typography>
       <div>
 

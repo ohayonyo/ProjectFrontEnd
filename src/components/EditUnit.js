@@ -94,48 +94,68 @@ const EditUnit = () => {
   };
 
   return (
-    <div className='container' style={{marginTop:40}}>
-
-<label className='label'>
+    <div className='container' style={{marginTop: 40}}>
+    <label className='label'>
       :שם יחידת הלימוד
-        <br></br>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
-      </label>
-
-      <label className='label'>
+      <br />
+      <input
+        type="text"
+        value={decodeURIComponent(name)}
+        onChange={(e) => setName(e.target.value)}
+        style={{ ...inputStyle, textAlign: 'center' }}
+      />
+    </label>
+  
+    <label className='label'>
       :תיאור יחידת הלימוד
-        <br></br>
-        <input type="text" value={desc} onChange={(e) => setDesc(e.target.value)} style={inputStyle}/>
-      </label>
-
-      <label className='label'>
+      <br />
+      <input
+        type="text"
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
+        style={{ ...inputStyle, textAlign: 'center' }}
+      />
+    </label>
+  
+    <label className='label'>
       :כמות שאלות נכונות ברצף שצריך לענות עליהן
-        <br></br>
-        <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} />
-      </label>
-
-      <label className='label'>
+      <br />
+      <input
+        type="number"
+        value={qnum}
+        onChange={(e) => setQnum(e.target.value)}
+        style={{ ...inputStyle, textAlign: 'center' }}
+      />
+    </label>
+  
+    <label className='label'>
       :הגבלת הזמן בדקות
-        <br></br>
-        <input type="number" value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} style={inputStyle} min={0} />
-      </label>
-
-      <label className='label'>
+      <br />
+      <input
+        type="number"
+        value={timeLimit}
+        onChange={(e) => setTimeLimit(e.target.value)}
+        style={{ ...inputStyle, textAlign: 'center' }}
+        min={0}
+      />
+    </label>
+  
+    <label className='label'>
       :תאריך הגשה
-        <br></br>
-
-        <input 
-          type="datetime-local" 
-          value={new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)} 
-          onChange={(e) => setDueDate(new Date(Date.parse(e.target.value)))} 
-          style={inputStyle} 
-          min={new Date().toLocaleString('en-IL', {timeZone: 'Asia/Jerusalem'}).slice(0, 16)} 
-        />    
-      </label>
-      
-      <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
-      
-    </div>
+      <br />
+      <input
+        type="datetime-local"
+        value={new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)}
+        onChange={(e) => setDueDate(new Date(Date.parse(e.target.value)))}
+        style={{ ...inputStyle, textAlign: 'center' }}
+        min={new Date().toLocaleString('en-IL', { timeZone: 'Asia/Jerusalem' }).slice(0, 16)}
+      />
+    </label>
+  
+    <button onClick={handleNext} className="form-submit">
+      לבחירת נתונים
+    </button>
+  </div>
   );
 };
 

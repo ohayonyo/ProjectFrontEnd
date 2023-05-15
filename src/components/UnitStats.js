@@ -102,7 +102,7 @@ export default function UnitStats() {
     <CssBaseline />
     <Paper square sx={{ pb: '50px' }}>
       <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-        {splits[5]}
+        {decodeURIComponent(splits[5])}
       </Typography>
       <div>
 
