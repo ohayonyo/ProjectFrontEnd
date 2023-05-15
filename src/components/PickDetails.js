@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import '../css/PickDetails.css';
 import '../css/PickParams.css'
 
@@ -9,11 +9,12 @@ const PickDetails = () => {
   const ord = (splits[6]).split("_")[(splits[6]).split("-").length-1]
   const nname = splits[6]+"_"+((ord.length > 2)?2:ord)
   const [name, setName] = useState(first?"":(nname));
-  const [qnum, setQnum] = useState('');
+  const [qnum, setQnum] = useState('1');
   const [desc, setDesc] = useState('');
   const [timeLimit, setTimeLimit] = useState(0);
   const [dueDate, setDueDate] = useState(new Date());
-
+  const [unitNameIsMissing,setUnitNameIsMissing] = useState(false);
+  const [unitDescIsMissing,setUnitDescIsMissing] = useState(false);
 
   let nameS = first?name:(nname)
 
@@ -22,6 +23,28 @@ const PickDetails = () => {
 
 
   const handleNext = () => {
+    console.log("before updating:")
+    // console.log("unitNameIsMissing="+unitNameIsMissing.current)
+    console.log("unitDescIsMissing="+unitDescIsMissing)
+
+    console.log(name.length)
+    console.log(name.length===0)
+    if(name.length===0){
+      setUnitNameIsMissing(true);
+    }else{
+      setUnitNameIsMissing(false);
+    }if(desc.length===0){
+      setUnitDescIsMissing(true);
+    }else{
+      setUnitDescIsMissing(false);
+    }
+
+    console.log("after updating:")
+    // console.log("unitNameIsMissing="+unitNameIsMissing.current)
+    console.log("unitDescIsMissing="+unitDescIsMissing)
+
+
+    if(name.length>0 && desc.length>0)
       window.location.href = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/data/"+name+"/"+qnum+"/"+timeLimit+"/"+dueDate+"/"+((desc=='')?"cont":desc);
     
   };
@@ -32,18 +55,6 @@ const PickDetails = () => {
     alignItems: 'center',
     marginTop: '50px',
   };
-
-
-  // font-size: 1.2rem;
-  // padding: 0.5rem;
-  // border: none;
-  // border-radius: 5px;
-  // box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  // outline: none;
-  // width: 200px;
-  // height:40px;
-  /* max-width: 100px; */
-  // margin-bottom: 1rem;
 
   const inputStyle = {
     marginBottom: '10px',
@@ -88,7 +99,7 @@ const PickDetails = () => {
         <label className='label'>
         :כמות שאלות נכונות ברצף שצריך לענות עליהן
           <br></br>
-          <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} />
+          <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} min={1} />
         </label>
 
         <label className='label'>
@@ -109,6 +120,11 @@ const PickDetails = () => {
             min={new Date().toLocaleString('en-IL', {timeZone: 'Asia/Jerusalem'}).slice(0, 16)} 
           />    
         </label>
+      
+        {unitNameIsMissing && <label style={{ color: 'red',fontSize:40 }}>חסר שם יחידת הלימוד</label>}
+
+        {unitDescIsMissing && <label style={{ color: 'red',fontSize:40 }}>חסר תיאור של יחידת הלימוד</label>}
+        
         
         <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
         
@@ -116,21 +132,25 @@ const PickDetails = () => {
     );
 }else{
   return (
-    <div className='container' style={{marginTop:40}}>
+    <div className='container' style={{marginTop:'10%'}}>
 
-<label className='label'>
-      :שם יחידת הלימוד
-        <br></br>
-        <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
-      </label>
+    <div style={{width:'50%',position:'relative',transform: 'scale(1.2)'}}>
+          <label className='label'>
+          :שם יחידת הלימוד
+            <br></br>
+            <input disabled={!first} type="text" value={first?name:(nname)} onChange={(e) => setName(e.target.value)} style={inputStyle}/>
+          </label>
 
-      <label className='label'>
-      :כמות שאלות נכונות ברצף שצריך לענות עליהן
-        <br></br>
-        <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} />
-      </label>
+          <label className='label'>
+          :כמות שאלות נכונות ברצף שצריך לענות עליהן
+            <br></br>
+            <input type="number" value={qnum} onChange={(e) => setQnum(e.target.value)} style={inputStyle} min={1}/>
+          </label>
 
-      <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
+          <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
+    </div>
+
+    
       
     </div>
   );

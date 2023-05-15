@@ -12,6 +12,8 @@ const PickQuestion = () => {
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
+  const [isErrorAccured,setIsErrorAccured] = useState(false);
+
 
 
   // const handleChange = (event) => {
@@ -35,9 +37,16 @@ const PickQuestion = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('paremeters sent')
-    const selectedOptionsToUrl = selectedOptions.map(val=>val.value)
-    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptionsToUrl
-    +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]+"/"+splits[13]);
+    if(selectedOptions.length === 0){
+      setIsErrorAccured(true)
+      console.log("no option was selected")
+    }else{
+
+      const selectedOptionsToUrl = selectedOptions.map(val=>val.value)
+      window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/parameters/"+selectedOptionsToUrl
+      +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]+"/"+splits[13]);
+    }
+   
   };
   return (
     <div className="form-wrapper">
@@ -55,6 +64,9 @@ const PickQuestion = () => {
           onChange={handleChange}
           placeholder={"בחר מהרשימה"}
         />
+
+        <br></br>
+        {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'-7%' }}>בחר לפחות נושא שיעור אחד</label>}
         <button className="form-submit" type="submit">
           הבא
         </button>

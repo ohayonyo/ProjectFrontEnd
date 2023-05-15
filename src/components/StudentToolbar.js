@@ -61,7 +61,7 @@ const StudentToolbar = ({btn}) => {
           </div>
           <div class="w3-bar-block" style={{fontSize:'20px',marginTop:'-10%'}}>
             <a href={'/'} onClick={()=>logout('btn1')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn1" style={style_clickable_options}><p style={style_menu_labels}>התנתקות</p></a> 
-            <a href="/openClass" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn2" style={style_clickable_options}><p style={style_menu_labels}>להשלים</p></a> 
+            {/* <a href="/openClass" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn2" style={style_clickable_options}><p style={style_menu_labels}>להשלים</p></a>  */}
             <a href={'/'+splits[3]+"/studentMenu/myClasses"} onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn3" style={style_clickable_options}> <p style={style_menu_labels}>הכיתות שלי</p></a> 
             <a href={'/'+splits[3]+"/studentMenu/studentsRequestToClass"} onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn4" style={style_clickable_options}><p style={style_menu_labels}>הרשמה לכיתה</p></a> 
           </div>

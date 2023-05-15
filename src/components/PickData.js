@@ -12,6 +12,7 @@ const PickData = () => {
 
 
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isErrorAccured,setIsErrorAccured] = useState(false);
 
   function handleChange(selectedOption) {
     setSelectedOption(selectedOption);
@@ -19,18 +20,27 @@ const PickData = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('selectedOption=')
-    console.log(selectedOption.value)
+    if(selectedOption===null){
+      setIsErrorAccured(true)
+      console.log("no option was selected")
+    }else{
+      setIsErrorAccured(false)
+      console.log('selectedOption=')
+      console.log(selectedOption.value)
     // const selectedOptionsToUrl = selectedOptions.map(val=>val.value)
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/openUnit/"+splits[6]+"/question/"+selectedOption.value
     +"/"+splits[8]+"/"+splits[9]+"/"+splits[10]+"/"+splits[11]+"/"+splits[12]);
+    }
+    
   };
   return (
   <div class="form-wrapper">
     <form onSubmit={handleSubmit} class="form">
     <label class="form-label">
       :בחר את סוג הפונקציה
-      <Select
+    </label>
+
+    <Select
           className="form-select"
           options={Object.keys(options).map((option) => ({
             value: option,
@@ -42,7 +52,11 @@ const PickData = () => {
           onChange={handleChange}
           placeholder={"בחר מהרשימה"}
         />
-    </label>
+    
+    <br></br>
+
+    {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'-7%' }}>בחר מה סוג הפונקציה</label>}
+
     <button type="submit" class="form-submit">הבא</button>
     </form>
   </div>
