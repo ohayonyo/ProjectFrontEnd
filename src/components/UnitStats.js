@@ -24,12 +24,13 @@ import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import EditIcon from '@mui/icons-material/Edit';
+import { AiOutlineLineChart } from 'react-icons/ai';
 
 
 import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 
-
+// 
 
 const StyledFab = styled(Fab)({
   position: 'absolute',
@@ -110,9 +111,13 @@ export default function UnitStats() {
           {messages.map(({ name,bad,correct}) => (
             <React.Fragment key={name}>
               <ListItem Button>
-                <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoStudent(name,cls)}>
+                {/* <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoStudent(name,cls)}>
                   <MenuIcon />
-                </IconButton>
+                </IconButton> */}
+
+                <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStudent(name,cls)}>
+                    <AiOutlineLineChart />
+                 </IconButton>
                 {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
                   <AddIcon />
                 </IconButton> */}

@@ -23,6 +23,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import { FiArrowLeft } from 'react-icons/fi';
+import { AiOutlineEnter } from 'react-icons/ai';
+
 import '../css/PickDetails.css';
 
 
@@ -104,7 +107,7 @@ export default function StudentClasses() {
               <React.Fragment key={id}>
                 <ListItem Button onClick={(cls)=>gotoUnits(id,cls)}>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoUnits(id,cls)}>
-                      <MenuIcon />
+                      <FiArrowLeft></FiArrowLeft>
                 </IconButton>
                 <ListItemText 
                 primary={<Typography variant="h6" style={{ color: '#000000' }}>{primary}</Typography>} 

@@ -24,6 +24,11 @@ import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import EditIcon from '@mui/icons-material/Edit';
+import { Icon } from 'semantic-ui-react';
+// import 'semantic-ui-css/semantic.min.css';
+import { LineChart } from 'react-icons/ri';
+import { AiOutlineLineChart } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
 
 
 import { EditText, EditTextarea } from 'react-edit-text';
@@ -43,7 +48,7 @@ const StyledFab = styled(Fab)({
 const thisURL = window.location.href;
 const splits = thisURL.split('/');
 const className = splits[4];
-
+const teacherName = splits[3];
 
 const fetchData = async (url) =>{
   const result = await fetch(url)      
@@ -147,6 +152,25 @@ export default function ClassUnits() {
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+messages[id-1].primary+"/unitStats");
   }
 
+  async function deleteElement(id){
+
+    const ClassToDelete = messages.filter((value)=> value.id === id)
+
+    const unitNameToDelete = ClassToDelete[0].primary
+    const thisURL = window.location.href;
+    const splits = thisURL.split('/')
+    console.log("unitName:"+unitNames[id])
+    console.log("className:"+className)
+    console.log("teacherName:"+teacherName)
+    const url = "http://localhost:5000/removeUnit?unitName="+unitNameToDelete+"&className=" + className+"&teacher="+teacherName
+    const promise =  await fetch(url)
+    if(promise.status ===200)
+      setMessages(messages.filter((value)=>value.id!=id));
+    else
+      console.log("didn't work try again")
+
+  }
+
   return (
     
     <div className='class-list' style={{resize: 'both',
@@ -165,10 +189,21 @@ export default function ClassUnits() {
             <React.Fragment key={id}>
               <ListItem Button>
                 <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoEdit(id,cls)}>
-                  <AddIcon />
+                  <FiEdit />
                 </IconButton>
-                <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStats(id,cls)}>
+                {/* <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStats(id,cls)}>
                   <MenuIcon />
+                </IconButton> */}
+                 <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStats(id,cls)}>
+                    <AiOutlineLineChart />
+                 </IconButton>
+                 <div>
+                 <Icon name="chart line" />
+                 </div>
+                 
+                
+                <IconButton edge="end" aria-label="delete" onClick={() => deleteElement(id)}>
+                    <DeleteIcon></DeleteIcon>
                 </IconButton>
                 {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
                   <AddIcon />

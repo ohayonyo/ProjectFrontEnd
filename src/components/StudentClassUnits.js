@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
+import { BiPlayCircle } from 'react-icons/bi';
 
 
 
@@ -132,7 +133,7 @@ export default function StudentClassUnits() {
               <React.Fragment key={id}>
                 <ListItem Button onClick={(unit)=>startUnit(id,primary)}>
                 <IconButton edge="end" aria-label="units" onClick={(unit)=>startUnit(id,primary)}>
-                      <MenuIcon />
+                <BiPlayCircle style={{ fontSize: '48px' ,color:'black'}} />
                 </IconButton>
                 <ListItemText 
                 primary={<Typography variant="h6" style={{ color: '#000000' }}>
