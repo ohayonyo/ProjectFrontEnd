@@ -125,7 +125,7 @@ const PickParams = () => {
   }
 
   return (
-    <div style={{marginTop:200}}>
+    <div style={{marginTop:'40%'}}>
       <div className="form-container">
         <h1>
           {label}

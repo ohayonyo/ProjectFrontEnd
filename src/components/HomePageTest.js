@@ -92,13 +92,11 @@ const styles = `
     
 }
 const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize:'3vh'};
+const style_clickable_options = {borderStyle:'solid',border:'2px solid black',borderRadius:'5px',marginBottom:10,boxShadow:'2px 2px'};
   return (
+
     <div>
-      {/* <style scoped>
-        {styles}
-      </style> */}
-      {/* Sidebar/menu */}
-      <nav class="w3-sidebar w3-mycolor w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%'}} id="mySidebar">
+      <nav class="w3-sidebar toolbar_background w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%'}} id="mySidebar">
         <br></br>
         <a href="javascript:void(0)" onClick={()=>w3_close('1')} class="w3-button w3-hide-large w3-display-topleft style2" style={{fontSize:'4.5vh'}}>סגור תפריט</a>
         <div style={{textAlign:'center'}}>
@@ -106,18 +104,17 @@ const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize
             <h3 class="w3-padding-64"><b style={{textAlign:'center',fontSize:'3.5vh'}}>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳<br></br></b></h3>
           </div>
           <div class="w3-bar-block" style={{fontSize:'20px',marginTop:'-10%'}}>
-            <a href="#" onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn1" ><p style={style_menu_labels}>דף הבית</p></a> 
-            <a href="#commonquestions" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn2"> <p style={style_menu_labels}>שאלות נפוצות</p></a> 
-            <a href="/login" onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn3"><p style={style_menu_labels}>התחברות</p></a> 
-            {/* <a href="/register" onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button w3-hover-white w3-click-white" id="btn4"><p style={style_menu_labels}>הרשמה</p></a>  */}
+            <a href="#" onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn1" style={style_clickable_options}><p style={style_menu_labels}>דף הבית</p></a> 
+            <a href="#commonquestions" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn2" style={style_clickable_options}> <p style={style_menu_labels}>שאלות נפוצות</p></a> 
+            <a href="/login" onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn3" style={style_clickable_options}><p style={style_menu_labels}>התחברות</p></a> 
           </div>
         </div>
        
       </nav>
 
         {/* Top menu on small screens */}
-      <header class="w3-container w3-top w3-hide-large w3-mycolor w3-xlarge w3-padding">
-        <a href="javascript:void(0)" class="w3-button w3-mycolor w3-margin-right" style={{position:'fixed',right:0,top:0}} onClick={w3_open}>☰</a>
+      <header class="w3-container w3-top w3-hide-large toolbar_background w3-xlarge w3-padding">
+        <a href="javascript:void(0)" class="w3-button toolbar_background w3-margin-right" style={{position:'fixed',right:0,top:0,cursor:'pointer'}} onClick={w3_open}>☰</a>
         <span>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳</span>
       </header>
 
