@@ -6,6 +6,7 @@ const Register = () => {
   let newDest='/login';
   const [username,setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // const [isErrorAccured,setIsErrorAccured] = useState(false);
 
   const options = [
     { value: '1', label: 'Teacher' },
@@ -24,16 +25,33 @@ const Register = () => {
     console.log('password:'+password);
 
     if(username!=''&&password!=''){
+      console.log("im in")
       const urlToFetch='http://localhost:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption;
       console.log(urlToFetch)
-      const response = await fetch(urlToFetch);
-      console.log(response)
-      if(response.status==200){
-        const navigateTo = window.location.href;
-        const myArray2 = navigateTo.split("/");
-        window.location.assign('http://'+myArray2[2]+newDest);
+      let isErrorAccured = false;
+      while(true){
+        isErrorAccured = false;
+        try {
+          const response = await fetch(urlToFetch);
+          console.log("after request");
+          console.log(response);
+      
+          if (response.status === 200) {
+            console.log("okkkkk");
+            const navigateTo = window.location.href;
+            const myArray2 = navigateTo.split("/");
+            window.location.assign('http://' + myArray2[2] + newDest);
+          }
+          break
+          // Handle the response
+        } catch (error) {
+          console.log("isErrorAccured=" + isErrorAccured);
+          isErrorAccured = true;
+          console.log("isErrorAccured=" + isErrorAccured);
+          console.log('Error:', error);
+        }
       }
-
+      
     }
   }
 
@@ -48,7 +66,7 @@ const Register = () => {
           <h2 className='active h2' style={{fontWeight:400,color:'white'}}>sign up</h2>
         </div>
 
-        <form className='RegisterPage_Form' style={{marginTop:'13%'}} action="/">
+        <div className='RegisterPage_Form' style={{marginTop:'13%'}}>
           {/* <input type="text" className='RegisterPage_text' name="email" required/>
           <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>email</span> */}
           <input type="text" className='RegisterPage_text' name="username" value={username}
@@ -73,7 +91,7 @@ const Register = () => {
         
           <h1></h1>
 
-        </form>
+        </div>
       </div>
       
     </div>

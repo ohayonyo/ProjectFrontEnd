@@ -69,7 +69,7 @@ const Login = () => {
           <h2 className='active h2' style={{fontWeight:400,color:'white'}}> sign in </h2>
           <h2 className='nonactive h2'> <a href="/register" style={{textDecoration:'none'}}>sign up</a></h2>
         </div>
-        <form className='LoginPage_Form' action={newDest}>
+        <div className='LoginPage_Form'>
 
           <input 
             type="text" 
@@ -117,7 +117,7 @@ const Login = () => {
           </div>
           
 
-        </form>
+        </div>
       </div>
       
     </div>
