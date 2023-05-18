@@ -24,6 +24,7 @@ import { useState,useEffect } from "react";
 import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import './QuestionView.css'
+import { MyTimer } from './MyTimer';
 
 export var nextURL =""
 
@@ -237,7 +238,8 @@ export default function QuestionView() {
           console.log("didn't work try again")
       }
 
-
+      const currentTime = new Date();
+      const expiryTime = new Date(currentTime.getTime() + remainingTime * 1000); // Calculate expiry time
 
     return (
         <div className='big-question'>
@@ -245,35 +247,39 @@ export default function QuestionView() {
              <h1> 
               {questions[0].preamble}
              </h1>
-             {minutes.toString().padStart(2, "0")}:{seconds.toString().padStart(2, "0")}
-               <div className='multiple-choice'>
-                    <h2 >    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
+             {remainingTime>0 && <div>
+              <MyTimer expiryTimestamp={expiryTime} />
+             </div>}
+             
+             
+               <div className="multiple-choice questions_background" style={{marginLeft:30}}>
+                    <h2 style={{fontWeight:800}}>    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
 
-                <ul>
-                  <li style={{backgroundColor:colors[1]}} className="hover-resize2" onClick={() => submitSingle(1,questions[0].id)} >
+                <ul className='ul'>
+                  <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
                     <div>
-                        <h3>{questions[0].answer1} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].answer1} </h3>
                     </div>
                   </li>
-                  <li style={{backgroundColor:colors[2]}} className="hover-resize2" onClick={() => submitSingle(2,questions[0].id)} >
+                  <li style={{backgroundColor:colors[2]}} className="hover-resize2 li" onClick={() => submitSingle(2,questions[0].id)} >
                     <div>
-                        <h3>{questions[0].answer2} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].answer2} </h3>
                     </div>
                   </li>
-                  <li style={{backgroundColor:colors[3]}} className="hover-resize2" onClick={() => submitSingle(3,questions[0].id)} >
+                  <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(3,questions[0].id)} >
                     <div>
-                        <h3>{questions[0].answer3} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].answer3} </h3>
                     </div>
                   </li>
-                  <li style={{backgroundColor:colors[4]}} className="hover-resize2" onClick={() => submitSingle(4,questions[0].id)} >
+                  <li style={{backgroundColor:colors[4]}} className="hover-resize2 li" onClick={() => submitSingle(4,questions[0].id)} >
                     <div>
-                        <h3>{questions[0].answer4} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].answer4} </h3>
                     </div>
                   </li>
 
                 </ul>
             </div>
-            <button className='button' onClick={()=>nextPage()} style={{float: 'left'}}>
+            <button className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
               השאלה הבאה
             </button>
         </div>

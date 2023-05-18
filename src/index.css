@@ -230,6 +230,12 @@
   /* background-color: lightblue; */
 }
 
+.questions_background{
+  background-image: url("./backgroundexample.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /*---------------------- make scrollbar invisible --------------------*/
 ::-webkit-scrollbar {
     display: none;

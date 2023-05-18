@@ -50,6 +50,7 @@ import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 import { useState } from 'react';
 import MySelect from './components/MySelect';
+import { MyTimer } from './components/MyTimer';
 
 
 function App() {
@@ -126,7 +127,8 @@ function ValidateTeacher(){
   return <TeacherMenu></TeacherMenu>;
 }
 
-
+const time = new Date();
+  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
 
   return (
     
@@ -344,6 +346,13 @@ function ValidateTeacher(){
             <div>
                 <TeacherMenu></TeacherMenu>
                 <RemoveUnit></RemoveUnit>
+            </div>
+            
+          }></Route>
+
+          <Route exact path='/countDown' element={
+            <div>
+              <MyTimer expiryTimestamp={time} />
             </div>
             
           }></Route>
