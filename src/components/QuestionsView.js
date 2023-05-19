@@ -99,6 +99,8 @@ export default function QuestionView() {
   
       const timerId = setInterval(() => {
         setRemainingTime((prevTime) => prevTime - 1);
+        // console.log("in timer")
+        console.log("remaining time:"+remainingTime)
       }, 1000);
   
       return () => clearInterval(timerId);
@@ -158,16 +160,24 @@ export default function QuestionView() {
 
 
       function nextPage(){
+        console.log("in next page")
+        console.log("time left"+remainingTime)
         if (nextLesson!=""){
           console.log(nextLesson)
           startUnit(nextLesson)
         }
         else{
+          if(nextURL.indexOf("studentClassUnits") == -1)
+            nextURL = nextURL + remainingTime
           console.log("the next url is " +nextURL)
           window.location.assign(nextURL);
         }
       }
 
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      
       async function submitSingle(qans,id){
         if(isThereGreen()){
           return
@@ -187,7 +197,7 @@ export default function QuestionView() {
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"+"/"+remainingTime
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"+"/"
           const newColors = [...colors];
           newColors[qans]="green"
           setColors(newColors)
@@ -198,13 +208,16 @@ export default function QuestionView() {
 
           const newColors = [...colors];
           newColors[qans]="red"
+          setColors(newColors)
+          await sleep(500); // Sleep for 0.5 second
           newColors[promise.status-200] = "green"
           setColors(newColors)
+
 
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
-          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"+"/"+remainingTime
+          nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+ "/"+ nextId + "/QuestionView"+"/"
 
         }
         else if(promise.status ===205){
@@ -215,6 +228,7 @@ export default function QuestionView() {
           const newColors = [...colors];
           newColors[qans]="green"
           setColors(newColors)
+
           console.log(promise)
           console.log("success")
           const nextId = questions[0].id +1
