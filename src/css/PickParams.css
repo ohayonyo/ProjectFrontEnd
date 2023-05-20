@@ -25,21 +25,6 @@
   box-shadow: 0 0 10px #6b9ce9;
 }
 
-/* input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-} */
-
-/* input[type=text]:focus, select:focus {
-  outline: none;
-  border-color: #6b9ce9;
-  box-shadow: 0 0 10px #6b9ce9;
-} */
 
 .label {
   margin: 8px 0;
@@ -53,10 +38,6 @@
   transform: scale(1.5);
 }
 
-/* input[type=checkbox] {
-  margin-right: 10px;
-  transform: scale(1.5);
-} */
 
 .submitButton{
   background-color: #c8a970;
@@ -69,23 +50,70 @@
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
-/* button[type=submit] {
-  background-color: #6b9ce9;
-  color: #fff;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-} */
 
 .submitButton:hover{
   background-color: #bfc1ca;
 }
 
-/* button[type=submit]:hover {
-  background-color: #4c7bdb;
+.header {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.header::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #6a91e2;
+  margin-top: 10px;
+}
+
+.form-submit {
+  padding: 0.8rem 1.2rem;
+  background-color: #6a91e2;
+  background-image: linear-gradient(to bottom, #6a91e2, #5277b5);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Added transition for background color and box shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-submit:hover {
+  background-color: #2b8bc6; /* New hover color */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Added box shadow on hover */
+}
+/* .form-submit:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #6a91e2;
+}
+
+.form-submit:after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #6a91e2;
+  box-shadow: 0 0 4px rgba(106, 145, 226, 0.8);
 } */
 

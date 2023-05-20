@@ -102,28 +102,18 @@ const PickParams = () => {
     inputElements.push(
       <div key={i}>
         <div>
-        <div style={{width:'200%',marginRight:200,marginTop:'-10%'}}>
+          <div style={{width:'200%',marginRight:200,marginTop:'-10%'}}>
             <MyRange paramName={paramName} ranges={ranges} setRanges={setRanges} index={i}></MyRange>
-            </div>
-
-            {/* <label className='label'>
-              {paramName} :
-            </label> */}
-
-            
-
-        </div>
-        
-        
-        
+          </div>
+        </div>   
       </div>
     );
   }
 
   return (
-    <div style={{marginTop: numInputs === 3 ? '10.5%' : '20%', transform: 'scale(0.65)', width: '120%',height: numInputs === 3 ? '100%' : '120%',marginLeft: '-10%'}}>
+    <div style={{marginTop: numInputs === 3 ? '9.5%' : '20%', transform: 'scale(0.65)', width: '120%',height: numInputs === 3 ? '100%' : '120%',marginLeft: '-10%'}}>
       <div className="form-container">
-        <h1>
+        <h1 className='header'>
           {label}
         </h1>
         {inputElements}

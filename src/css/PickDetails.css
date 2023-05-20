@@ -72,22 +72,89 @@
     margin-right: 20px;
   }
 
-  .form-submit {
+  .form-submit2 {
     padding: 0.8rem 1.2rem;
-    background-color: #0077b6;
+    background-color: #6a91e2;
+    background-image: linear-gradient(to bottom, #6a91e2, #5277b5);
     color: #fff;
     border: none;
-    border-radius: 0.3rem;
+    border-radius: 2rem;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Added transition for background color and box shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  .form-submit:hover {
-    background-color: #023e8a;
+  .form-submit2:hover {
+    background-color: #2b8bc6; /* New hover color */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Added box shadow on hover */
   }
 
+
   .input_data {
-    font-size: 16px; /* Adjust font size as needed */
+    color: black;
+    height: 42px;
+    margin-top: 15px;
+    direction: rtl;
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
     line-height: 16px;
     padding-top: 8px; /* Half of the line-height */
+    transition: border-color 0.3s ease;
+  }
+  
+  .input_data:focus {
+    outline: none;
+    border-color: #6b9ce9;
+    box-shadow: 0 0 10px #6b9ce9;
+  }
+
+  .input_data2 {
+    color: black;
+    height: 42px;
+    margin-top: 7px;
+    direction: rtl;
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input_data2:focus {
+    outline: none;
+    border-color: #6b9ce9;
+    box-shadow: 0 0 10px #6b9ce9;
+  }
+
+  .input_data2 {
+    width: 250px;
+  }
+
+  .label2 {
+    margin: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .header {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .header::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #6a91e2;
+    /* margin-top: 10px; */
   }

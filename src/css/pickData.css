@@ -58,14 +58,18 @@
 
 .form-submit {
   padding: 0.8rem 1.2rem;
-  background-color: #0077b6;
+  background-color: #6a91e2;
+  background-image: linear-gradient(to bottom, #6a91e2, #5277b5);
   color: #fff;
   border: none;
-  border-radius: 0.3rem;
+  border-radius: 2rem;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Added transition for background color and box shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-submit:hover {
-  background-color: #023e8a;
+  background-color: #2b8bc6; /* New hover color */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Added box shadow on hover */
 }

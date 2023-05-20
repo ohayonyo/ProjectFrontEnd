@@ -56,7 +56,7 @@ export const MyRange = ({ paramName, ranges, setRanges, index }) => {
   };
 
   return (
-    <div className="range-container" style={{ marginTop: 70, width: '50%' }}>
+    <div className="range-container" style={{ marginTop: 65, width: '50%' }}>
       <div className="expand-buttons">
         <button className="expand-button expand-button-left" onClick={handleExpandMinRange}>
           -

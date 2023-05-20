@@ -34,10 +34,10 @@ const PickData = () => {
     
   };
   return (
-  <div class="form-wrapper">
+  <div class="form-wrapper" style={{marginTop:30}}>
     <form onSubmit={handleSubmit} class="form">
-    <label class="form-label">
-      :בחר את סוג הפונקציה
+    <label className='header' style={{fontSize:20}}>
+      סוג הפונקציה
     </label>
 
     <Select

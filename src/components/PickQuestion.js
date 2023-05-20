@@ -49,9 +49,9 @@ const PickQuestion = () => {
    
   };
   return (
-    <div className="form-wrapper">
+    <div className="form-wrapper" style={{marginTop:30}}>
       <form className="form" onSubmit={handleSubmit}>
-        <label className="form-label">:בחר את נושאי יחידת הלימוד</label>
+        <label className='header' style={{fontSize:20}}>נושאי יחידת הלימוד</label>
         <Select
           className="form-select"
           options={Object.keys(options).map((option) => ({

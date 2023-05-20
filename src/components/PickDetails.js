@@ -83,14 +83,17 @@ const PickDetails = () => {
 
   if(first){
     return (
-      <div className='container' style={{marginTop: unitNameIsMissing && unitDescIsMissing ? 'calc(40px - 5%)' 
+      <div className='container' style={{marginTop: unitNameIsMissing && unitDescIsMissing ? -150 
       : unitNameIsMissing || unitDescIsMissing ?
-      'calc(40px - 2.5%)' : 40 }}>
+      -150 : -145 }}>
 
-  <label className='label'>
+  <label className='header' style={{fontSize:30}}>פרטי יחידת הלימוד</label>
+
+  <label className='label2'>
     :שם יחידת הלימוד
     <br />
     <input
+      className='input_data2'
       disabled={!first}
       type="text"
       value={first ? name : nname}
@@ -99,10 +102,11 @@ const PickDetails = () => {
     />
   </label>
 
-  <label className='label'>
+  <label className='label2'>
     :תיאור יחידת הלימוד
     <br />
     <input
+      className='input_data2'
       disabled={!first}
       type="text"
       value={desc}
@@ -111,10 +115,11 @@ const PickDetails = () => {
     />
   </label>
 
-  <label className='label'>
+  <label className='label2'>
     :כמות שאלות נכונות ברצף שצריך לענות עליהן
     <br />
     <input
+      className='input_data2'
       type="number"
       value={qnum}
       onChange={(e) => setQnum(e.target.value)}
@@ -123,10 +128,11 @@ const PickDetails = () => {
     />
   </label>
 
-  <label className='label'>
+  <label className='label2'>
     :הגבלת הזמן בדקות
     <br />
     <input
+      className='input_data2'
       type="number"
       value={timeLimit}
       onChange={(e) => setTimeLimit(e.target.value)}
@@ -135,10 +141,11 @@ const PickDetails = () => {
     />
   </label>
 
-  <label className='label'>
+  <label className='label2'>
     :תאריך הגשה
     <br />
     <input
+      className='input_data2'
       type="datetime-local"
       value={new Date(dueDate.getTime() - (dueDate.getTimezoneOffset() * 60000)).toISOString().slice(0, 16)}
       onChange={(e) => setDueDate(new Date(Date.parse(e.target.value)))}
@@ -147,23 +154,25 @@ const PickDetails = () => {
     />
   </label>
 
-  {unitNameIsMissing && unitDescIsMissing && <br />}
+  {unitNameIsMissing && unitDescIsMissing}
   {unitNameIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר שם יחידת הלימוד</label>}
   {unitDescIsMissing && <label style={{ color: 'red', fontSize: 20 }}>חסר תיאור של יחידת הלימוד</label>}
-
-  <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
+  
+  <button onClick={handleNext} className="form-submit2" style={{transform: 'scale(1.2)',paddingBottom:-15}}>לבחירת נתונים</button>
 
 </div>
     );
 }else{
   return (
-    <div className='container' style={{ marginTop: '10%', textAlign: 'center' }}>
+    <div className='container' style={{ marginTop: '5.5%', textAlign: 'center' }}>
 
   <div style={{ width: '50%', position: 'relative', transform: 'scale(1.2)' }}>
-    <label className='label'>
+    <label className='header' style={{fontSize:30}}>פרטי יחידת הלימוד</label>
+    <label className='label2'>
       :שם יחידת הלימוד
       <br />
       <input
+        className='input_data2'
         disabled={!first}
         type="text"
         value={first ? decodeURIComponent(name) : decodeURIComponent(nname)}
@@ -172,10 +181,11 @@ const PickDetails = () => {
       />
     </label>
 
-    <label className='label'>
+    <label className='label2'>
       :כמות שאלות נכונות ברצף שצריך לענות עליהן
       <br />
       <input
+        className='input_data2'
         type="number"
         value={qnum}
         onChange={(e) => setQnum(e.target.value)}
@@ -184,7 +194,9 @@ const PickDetails = () => {
       />
     </label>
 
-    <button onClick={handleNext} className="form-submit">לבחירת נתונים</button>
+    <button onClick={handleNext} className="form-submit2" style={{transform: 'scale(1.2)',paddingBottom:-15,marginTop:10}}>לבחירת נתונים</button>
+    <br></br>
+    <br></br>
   </div>
 </div>
   );
