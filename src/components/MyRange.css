@@ -1,0 +1,15 @@
+.range-container {
+  margin: 20px;
+}
+
+.value {
+  /* margin-top: 10px; */
+  font-size: 24px;
+}
+
+.rc-slider-mark-text {
+  font-size: 20px;
+  color: #999;
+  /* margin-top: 10px; */
+}
+

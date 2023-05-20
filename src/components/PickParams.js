@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 //import { useHistory } from 'react-router-dom';
 import '../css/PickParams.css'
+import { MyRange } from './MyRange';
 const dict ={"quadratic":3,"linear":2,"trigonometric":4}
 const PickParams = () => {
   const thisURL = window.location.href;
@@ -13,6 +14,9 @@ const PickParams = () => {
   const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
   const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'trigonometric':'פונקציה טריגונומטרית', 'exponential':'פונקציה אקספוננציאלית'}
   const label = options[splits[9]];
+
+  const initialState = [-20, 0];
+  const [ranges, setRanges] = useState(Array.from({ length: numInputs }, () => initialState));
   
   //const history = useHistory();
   // const [teacherName, setTeacherName] = useState('');
@@ -23,8 +27,8 @@ const PickParams = () => {
 
   const parseTemp = () =>{
     let res = []
-    for (let i = 0; i < minValues.length; i++){
-      res.push([minValues[i],maxValues[i]])
+    for (let i = 0; i < ranges.length; i++){
+      res.push([ranges[i][0],ranges[i][1]])
     }
     console.log(splits[8]+'_'+splits[9]+'_'+res)
     return splits[8]+'_'+splits[9]+'_'+res
@@ -59,8 +63,12 @@ const PickParams = () => {
   const handleFinishUnit = async () => {
     const res = await fetchData()
     console.log(res + " in finishUnit")
+    for (let i = 0; i < numInputs; i++) {
+      let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
+      console.log(""+paramName+":"+ranges[i][0]+"->"+ranges[i][1])
+    }
     if(res){
-      window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/classUnits`;
+       window.location.href = `http://${splits[2]}/${splits[3]}/${splits[4]}/classUnits`;
     }
   };
 
@@ -72,60 +80,48 @@ const PickParams = () => {
     }
   };
 
-  const handleChangeMin = (event, index) => {
-    const newValue = parseInt(event.target.value);
-    setMinValues(prevMinValues => {
-      if (newValue <= parseInt(maxValues[index])){
-        const newMinValues = [...prevMinValues];
-        newMinValues[index] = newValue;
-        return newMinValues;
-      }
-      return prevMinValues;
-    });
-  };
-  
-  const handleChangeMax = (event, index) => {
-    const newValue = parseInt(event.target.value);
-    setMaxValues(prevMaxValues => {
-      if (newValue >= parseInt(minValues[index])){
-        const newMaxValues = [...prevMaxValues];
-        newMaxValues[index] = newValue;
-        return newMaxValues;
-      }
-      return prevMaxValues;
-    });
-  };
-
-  const handleCheckboxChange = (event, index) => {
-    const newValue = event.target.checked;
-    setCheckboxValues(prevCheckboxValues => {
-      const newCheckboxValues = [...prevCheckboxValues];
-      newCheckboxValues[index] = newValue;
-      return newCheckboxValues;
-    });
-  };
-
   const inputElements = [];
+
+
+
+  // for (let i = 0; i < numInputs; i++) {
+  //   let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
+  //   inputElements.push(
+  //     <div key={i}>
+  //       <label className='label'>
+  //         {paramName} :
+  //         <input type="number" name="min" value={minValues[i]} onChange={(event) => handleChangeMin(event, i)} />
+  //         <input type="number" name="max" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
+  //       </label>
+  //     </div>
+  //   );
+  // }
 
   for (let i = 0; i < numInputs; i++) {
     let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
     inputElements.push(
       <div key={i}>
-        <label className='label'>
-          {paramName} :
-          <input type="number" name="min" value={minValues[i]} onChange={(event) => handleChangeMin(event, i)} />
-          <input type="number" name="max" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
-        </label>
-        {/* <label className='label'>
-          <input className='inputCheckBox' style={{marginLeft:10}}type="checkbox" checked={checkboxValues[i]} onChange={(event) => handleCheckboxChange(event, i)} />
-          randomize?
-        </label> */}
+        <div>
+        <div style={{width:'200%',marginRight:200,marginTop:'-10%'}}>
+            <MyRange paramName={paramName} ranges={ranges} setRanges={setRanges} index={i}></MyRange>
+            </div>
+
+            {/* <label className='label'>
+              {paramName} :
+            </label> */}
+
+            
+
+        </div>
+        
+        
+        
       </div>
     );
   }
 
   return (
-    <div style={{marginTop:'40%'}}>
+    <div style={{marginTop: numInputs === 3 ? '13%' : '20%', transform: 'scale(0.65)', width: '120%', marginLeft: '-10%'}}>
       <div className="form-container">
         <h1>
           {label}

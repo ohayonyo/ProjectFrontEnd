@@ -51,6 +51,7 @@ import 'react-edit-text/dist/index.css';
 import { useState } from 'react';
 import MySelect from './components/MySelect';
 import { MyTimer } from './components/MyTimer';
+import { MyRange } from './components/MyRange';
 
 
 function App() {
@@ -356,6 +357,13 @@ const time = new Date();
             </div>
             
           }></Route>
+
+          {/* <Route exact path='/slider' element={
+            <div>
+              <MyRange></MyRange>
+            </div>
+            
+          }></Route> */}
 
 
           <Route exact path='/selection' element={
