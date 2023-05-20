@@ -272,22 +272,22 @@ export default function QuestionView() {
                 <ul className='ul'>
                   <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].answer1} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer1+")" : questions[0].answer1} </h3>
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[2]}} className="hover-resize2 li" onClick={() => submitSingle(2,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].answer2} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer2+")" : questions[0].answer2} </h3>
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(3,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].answer3} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer3+")" : questions[0].answer3} </h3>
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[4]}} className="hover-resize2 li" onClick={() => submitSingle(4,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].answer4} </h3>
+                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer4+")" : questions[0].answer4} </h3>
                     </div>
                   </li>
 

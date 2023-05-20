@@ -4,12 +4,53 @@
 
 .value {
   /* margin-top: 10px; */
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .rc-slider-mark-text {
-  font-size: 20px;
+  font-size: 24px;
   color: #999;
   /* margin-top: 10px; */
 }
 
+
+.range-container {
+  position: relative;
+}
+
+.expand-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.expand-button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #6a91e2;
+  background-color: white;
+  font-size: 16px;
+  color: #6a91e2;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.expand-button:hover {
+  background-color: #6a91e2;
+  color: white;
+}
+
+.expand-button-left {
+  margin-right: 55px;
+  margin-left: -55px;
+  margin-bottom: -10px;
+}
+
+.expand-button-right {
+  margin-left: 55px;
+  margin-right: -55px;
+  margin-bottom: -10px;
+}

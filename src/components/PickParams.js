@@ -13,9 +13,9 @@ const PickParams = () => {
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
   const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
   const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'trigonometric':'פונקציה טריגונומטרית', 'exponential':'פונקציה אקספוננציאלית'}
-  const label = options[splits[9]];
+  const label = "טווח פרמטרים של "+options[splits[9]];
 
-  const initialState = [-20, 0];
+  const initialState = [-10, 10];
   const [ranges, setRanges] = useState(Array.from({ length: numInputs }, () => initialState));
   
   //const history = useHistory();
@@ -121,7 +121,7 @@ const PickParams = () => {
   }
 
   return (
-    <div style={{marginTop: numInputs === 3 ? '13%' : '20%', transform: 'scale(0.65)', width: '120%', marginLeft: '-10%'}}>
+    <div style={{marginTop: numInputs === 3 ? '10.5%' : '20%', transform: 'scale(0.65)', width: '120%',height: numInputs === 3 ? '100%' : '120%',marginLeft: '-10%'}}>
       <div className="form-container">
         <h1>
           {label}
@@ -129,10 +129,10 @@ const PickParams = () => {
         {inputElements}
         <br></br>
         <div>
-          <button onClick={handleAddExercise} className="form-submit">להוספת תרגילים</button>
+          <button onClick={handleAddExercise} className="form-submit" style={{transform: 'scale(1.35)',marginBottom:20}}>להוספת תרגילים</button>
         </div>
         <div style={{marginTop:'1.5%'}}>
-          <button onClick={handleFinishUnit} className="form-submit">לסיום</button>
+          <button onClick={handleFinishUnit} className="form-submit" style={{transform: 'scale(1.35)'}}>לסיום</button>
         </div>
         
       </div>

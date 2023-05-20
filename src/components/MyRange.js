@@ -6,20 +6,17 @@ import './MyRange.css'; // Import custom CSS for styling
 export const MyRange = ({ paramName, ranges, setRanges, index }) => {
   const range = ranges[index];
 
-  const maxRange = 20;
-  const minRange = -20;
+  const [minRange, setMinRange] = useState(-20);
+  const [maxRange, setMaxRange] = useState(20);
   const step = 1;
 
   const marks = {};
-  const totalSections = 10;
-  const minorSections = 5;
 
-  for (let i = minRange; i <= maxRange; i += step) {
-    if (i % (totalSections * step) === 0) {
-      marks[i] = i;
-    } else if (maxRange > 30 && i % (step * minorSections) === 0) {
-      marks[i] = '';
-    }
+  const sectionSize = (maxRange - minRange) / 4; // Divide the range into 4 sections
+
+  for (let i = 0; i < 5; i++) {
+    const value = minRange + i * sectionSize;
+    marks[value] = value;
   }
 
   const railStyle = {
@@ -50,8 +47,24 @@ export const MyRange = ({ paramName, ranges, setRanges, index }) => {
     setRanges(updatedRanges);
   };
 
+  const handleExpandMinRange = () => {
+    setMinRange(minRange - 10);
+  };
+
+  const handleExpandMaxRange = () => {
+    setMaxRange(maxRange + 10);
+  };
+
   return (
-    <div className="range-container" style={{ marginTop: 100, width: '50%' }}>
+    <div className="range-container" style={{ marginTop: 70, width: '50%' }}>
+      <div className="expand-buttons">
+        <button className="expand-button expand-button-left" onClick={handleExpandMinRange}>
+          -
+        </button>
+        <button className="expand-button expand-button-right" onClick={handleExpandMaxRange}>
+          +
+        </button>
+      </div>
       <Slider
         range
         min={minRange}
@@ -65,7 +78,7 @@ export const MyRange = ({ paramName, ranges, setRanges, index }) => {
         marks={marks}
       />
       <div className="value">
-        <label style={{ fontSize: '30px', fontWeight: 'bold' }}>{paramName}:</label> {range[0]} -> {range[1]}
+        <label style={{ fontSize: '34px', fontWeight: 'bold' }}>{paramName}:</label> {range[0]} -> {range[1]}
       </div>
     </div>
   );
