@@ -56,7 +56,9 @@ export const MyRange = ({ paramName, ranges, setRanges, index }) => {
   };
 
   return (
-    <div className="range-container" style={{ marginTop: 65, width: '50%' }}>
+    <div className="range-container" style={{ marginTop: 110, width: 580 }}>
+
+      <div style={{marginLeft:200}}>
       <div className="expand-buttons">
         <button className="expand-button expand-button-left" onClick={handleExpandMinRange}>
           -
@@ -65,21 +67,25 @@ export const MyRange = ({ paramName, ranges, setRanges, index }) => {
           +
         </button>
       </div>
-      <Slider
-        range
-        min={minRange}
-        max={maxRange}
-        step={step}
-        value={range}
-        onChange={handleChange}
-        railStyle={railStyle}
-        trackStyle={trackStyle}
-        handleStyle={handleStyle}
-        marks={marks}
-      />
-      <div className="value">
-        <label style={{ fontSize: '34px', fontWeight: 'bold' }}>{paramName}:</label> {range[0]} -> {range[1]}
+
+        <Slider
+          range
+          min={minRange}
+          max={maxRange}
+          step={step}
+          value={range}
+          onChange={handleChange}
+          railStyle={railStyle}
+          trackStyle={trackStyle}
+          handleStyle={handleStyle}
+          marks={marks}
+        />
+        <div className="value">
+          <label style={{ fontSize: '34px', fontWeight: 'bold' }}>{paramName}:</label> 
+            {range[0] === range[1] ? range[0] + '               ' : `${range[0]} -> ${range[1]}`}
+        </div>
       </div>
+      
     </div>
   );
 };
