@@ -173,6 +173,13 @@ export default function QuestionView() {
           window.location.assign(nextURL);
         }
       }
+      async function quit(){
+        const url = "http://localhost:5000/quitActiveUnit?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]
+        const promise = await fetch(url)
+        nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits"
+        console.log("the next URL is " + nextURL)
+        window.location.assign(nextURL);
+      }
 
       function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -295,6 +302,9 @@ export default function QuestionView() {
             </div>
             <button className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
               השאלה הבאה
+            </button>
+            <button className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
+              סיום נסיון מענה
             </button>
         </div>
         
