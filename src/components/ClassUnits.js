@@ -152,126 +152,120 @@ export default function ClassUnits() {
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+messages[id-1].primary+"/unitStats");
   }
 
-  async function deleteElement(id){
-
-    const ClassToDelete = messages.filter((value)=> value.id === id)
-
-    const unitNameToDelete = ClassToDelete[0].primary
-    const thisURL = window.location.href;
-    const splits = thisURL.split('/')
-    console.log("unitName:"+unitNames[id])
-    console.log("className:"+className)
-    console.log("teacherName:"+teacherName)
-    const url = "http://localhost:5000/removeUnit?unitName="+unitNameToDelete+"&className=" + className+"&teacher="+teacherName
-    const promise =  await fetch(url)
-    if(promise.status ===200)
-      setMessages(messages.filter((value)=>value.id!=id));
-    else
-      console.log("didn't work try again")
-
+  async function deleteElement(id) {
+    if (messages !== null && messages.length > 0) {
+      const ClassToDelete = messages.filter((value) => value.id === id);
+      const unitNameToDelete = ClassToDelete[0].primary;
+      const thisURL = window.location.href;
+      const splits = thisURL.split('/');
+      console.log("unitName:" + unitNames[id]);
+      console.log("className:" + className);
+      console.log("teacherName:" + teacherName);
+      const url =
+        "http://localhost:5000/removeUnit?unitName=" +
+        unitNameToDelete +
+        "&className=" +
+        className +
+        "&teacher=" +
+        teacherName;
+  
+      const response = await fetch(url);
+      if (response.status === 200) {
+        const updatedMessages = messages.filter((value) => value.id !== id);
+        setMessages(updatedMessages);
+      } else {
+        console.log("Deletion failed. Please try again.");
+      }
+    }
   }
 
   return (
-    
-    <div className='class-list' style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
-      
-  <React.Fragment>
-    <CssBaseline />
-    <Paper square sx={{ pb: '50px' }}>
-      <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
-        {decodeURIComponent(className)}
-      </Typography>
-      <div>
-
-        <List sx={{ mb: 2 }}>
-          {messages.map(({ id,primary, secondary, due }) => (
-            <React.Fragment key={id}>
-              <ListItem Button>
-                <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoEdit(id,cls)}>
-                  <FiEdit />
-                </IconButton>
-                {/* <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStats(id,cls)}>
-                  <MenuIcon />
-                </IconButton> */}
-                 <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStats(id,cls)}>
-                    <AiOutlineLineChart />
-                 </IconButton>
-                 <div>
-                 <Icon name="chart line" />
-                 </div>
-                 
-                
-                <IconButton edge="end" aria-label="delete" onClick={() => deleteElement(id)}>
-                    <DeleteIcon></DeleteIcon>
-                </IconButton>
-                {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
-                  <AddIcon />
-                </IconButton> */}
-
-                <ListItemText 
-                  primary={
-                    <Typography variant="h6" style={{ color: '#000000' }}>
-                      <div style={{color:'black', float: 'right', width: '100%'}}>
-                        <EditText 
-                          showEditButton
-                          onChange={(e) => handleChangeUnitName(e,id-1)}
-                          onSave={(e)=>handleSave(e,id-1)}
-                          value={unitNames[id-1]}
-                          style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6', textAlign: 'right'}}
-                        />
+  
+      <div className="class-list" style={{ resize: 'both', overflow: 'auto', width: '105%', paddingRight: '20%' }}>
+        <React.Fragment>
+          <CssBaseline />
+          <Paper square sx={{ pb: '50px' }}>
+            <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{ textAlign: 'center', marginRight: '-100px' }}>
+              {decodeURIComponent(className)}
+            </Typography>
+            <div>
+              <List sx={{ mb: 2 }}>
+                {messages.map(({ id, primary, secondary, due }) => (
+                  <React.Fragment key={id}>
+                    <ListItem button>
+                      <IconButton edge="end" aria-label="units" onClick={(cls) => gotoEdit(id, cls)}>
+                        <FiEdit />
+                      </IconButton>
+                      <IconButton edge="end" aria-label="unitsStats" onClick={(cls) => gotoStats(id, cls)}>
+                        <AiOutlineLineChart />
+                      </IconButton>
+                      <div>
+                        <Icon name="chart line" />
                       </div>
-                    </Typography>
-                  } 
-                  secondary={
-                    <div>
-                          <div style={{color:'black', float: 'right', width: '100%'}}>
-                            <EditText 
-                              showEditButton 
-                              onChange={(e) => handleChangeUnitDescription(e,id-1)}
-                              onSave={(e)=>handleSave(e,id-1)}
-                              value={UnitDescriptions[id-1]}
-                              style={{width:'90%',marginLeft:'10%',color:'black', textAlign: 'right'}}
-                            />
+                      <IconButton edge="end" aria-label="delete" onClick={() => deleteElement(id)}>
+                        <DeleteIcon />
+                      </IconButton>
+                      <ListItemText
+                        primary={
+                          <Typography variant="h6" style={{ color: '#000000' }}>
+                            <div style={{ color: 'black', float: 'right', width: '100%' }}>
+                              <EditText
+                                showEditButton
+                                onChange={(e) => handleChangeUnitName(e, id - 1)}
+                                onSave={(e) => handleSave(e, id - 1)}
+                                value={unitNames[id - 1]}
+                                style={{ width: '90%', marginLeft: '10%', color: 'black', fontSize: 'h6', textAlign: 'right' }}
+                              />
+                            </div>
+                          </Typography>
+                        }
+                        secondary={
+                          <div>
+                            <div style={{ color: 'black', float: 'right', width: '100%' }}>
+                              <EditText
+                                showEditButton
+                                onChange={(e) => handleChangeUnitDescription(e, id - 1)}
+                                onSave={(e) => handleSave(e, id - 1)}
+                                value={UnitDescriptions[id - 1]}
+                                style={{ width: '90%', marginLeft: '10%', color: 'black', textAlign: 'right' }}
+                              />
+                            </div>
+                            <div
+                              style={{
+                                textAlign: 'right',
+                                fontSize: '0.8rem',
+                                marginTop: '5px',
+                                marginRight: '10px',
+                                color: dueDates[id - 1]?.getTime() < now.getTime() + 10750000 ? 'red' : 'black'
+                              }}
+                            >
+                              {dueDates[id - 1]?.toLocaleString('he-IL', {
+                                timeZone: 'UTC',
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit'
+                              })?.replace(',', ' ')?.replace('.', '/')?.replace('.', '/')}
+                              :מועד אחרון לפתירה
+                            </div>
                           </div>
-
-                          <div style={{ textAlign: 'right', fontSize: '0.8rem', marginTop: '5px', marginRight:'10px', color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black' }}>
-                            {dueDates[id-1].toLocaleString('he-IL', {
-                              timeZone: 'UTC',
-                              day: '2-digit',
-                              month: '2-digit',
-                              year: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              second: '2-digit'
-                            }).replace(',', ' ').replace('.','/').replace('.','/')}
-                            :מועד אחרון לפתירה
-                          </div>
-                    </div>
-                  }
-                />
-                <div style={{textAlign: 'center', fontWeight: 'bold', marginTop: '10px'}}>
-                  <Typography variant="body1" style={{ color: dueDates[id-1].getTime() < (now.getTime()+10750000) ? 'red' : 'black', textAlign: 'center' }}>
-                    {/* {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)} */}
-                    {/* <div style={{textAlign: 'center'}}>{due}</div> */}
-                    
-                  </Typography>
-                </div>
-              </ListItem>
-            </React.Fragment>
-          ))}
-        </List>
+                        }
+                      />
+                    </ListItem>
+                  </React.Fragment>
+                ))}
+              </List>
+            </div>
+          </Paper>
+        </React.Fragment>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <button className="form-submit" onClick={openUnit} style={{ float: 'left' }}>
+            הוספת שיעור חדש
+          </button>
+        </div>
       </div>
-    
-    </Paper>  
-  </React.Fragment>
-  <div style={{ display: 'flex', justifyContent: 'center' }}>
-    <button className="form-submit" onClick={()=>openUnit()} style={{float: 'left'}}>
-      הוספת שיעור חדש
-    </button>
-  </div>
-
-</div>
     
   );
 }

@@ -65,27 +65,28 @@ export default function TeacherClasses() {
     fetchDataCall()
     },[]);
 
-  async function openClass(){
-    const thisURL = window.location.href;
-    const splits = thisURL.split('/')
-    const url = "http://localhost:5000/openClass?teacher="+splits[3]+"&className=" + className
-    const promise =  await fetch(url)
-    if(promise.status ===200){
-      var max_id=0
-      messages.forEach(i => {if (i.id >max_id) max_id=i.id; })
-      var newClass = {
-        "id": max_id+1,
-        "primary" : className,
-        "secondary" : ""
+    async function openClass() {
+      if (className !== null && className.length > 0) {
+        const thisURL = window.location.href;
+        const splits = thisURL.split('/');
+        const url = "http://localhost:5000/openClass?teacher=" + splits[3] + "&className=" + className;
+        const promise = await fetch(url);
+        if (promise.status === 200) {
+          var max_id = 0;
+          messages.forEach(i => { if (i.id > max_id) max_id = i.id; });
+          var newClass = {
+            "id": max_id + 1,
+            "primary": className,
+            "secondary": ""
+          };
+          const newMessages = [...messages, newClass];
+          setMessages(newMessages);
+          setClassName(""); // Reset className state to an empty string
+        } else {
+          console.log("Didn't work, try again");
+        }
       }
-      const newMessages = [...messages,newClass]
-      setMessages(newMessages);
     }
-    else
-      console.log("didn't work try again")
-
-
-  }
 
   function getClassName(val){
     setClassName( val.target.value)
@@ -175,7 +176,14 @@ export default function TeacherClasses() {
         הוספת כיתה חדשה
       </button>
     </div>
-    <input type="text" className='input_data' style={{color:'black',height:42,marginTop:15,direction:'rtl'}} onChange = {getClassName.bind(this)}/>
+    <input
+    type="text"
+    className='input_data'
+    style={{ color: 'black', height: 42, marginTop: 15, direction: 'rtl' }}
+    value={className}
+    onChange={(e) => setClassName(e.target.value)}
+    />
+
   </div>
 </div>
     
