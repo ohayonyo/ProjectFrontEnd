@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 //import { useHistory } from 'react-router-dom';
 import '../css/PickParams.css'
 import { MyRange } from './MyRange';
@@ -13,20 +13,24 @@ const PickParams = () => {
 
   const [func_type,setFunc_type] = useState(splits[9])
   
-  const [numInputs,setNumInputs] = useState(dict[splits[9]]);
-  const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
-  const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
-  const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
+  const [numInputs,setNumInputs] = useState(func_type!=="polynomial" ? dict[splits[9]] : 1);
   const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'trigonometric':'פונקציה טריגונומטרית', 'exponential':'פונקציה אקספוננציאלית','polynomial':'פונקצית פולינום'}
   const label = "טווח פרמטרים של "+options[splits[9]];
 
   const initialState = [-10, 10];
   const [ranges, setRanges] = useState(Array.from({ length: numInputs }, () => initialState));
+  const [degree, setDegree] = useState(0);
 
   const [className, setClassName] = useState(splits[4]);
   const first = (splits[6]=="new") 
   const nname = splits[6]+"n"
   let nameS = splits[10]
+  
+
+  useEffect(() => {
+    setRanges(Array.from({ length: numInputs }, () => initialState));
+  }, [numInputs]);
+
 
   const parseTemp = () =>{
     let res = []
@@ -66,7 +70,7 @@ const PickParams = () => {
   const handleFinishUnit = async () => {
     const res = await fetchData()
     console.log(res + " in finishUnit")
-    for (let i = 0; i < numInputs; i++) {
+    for (let i = 0; i < ranges.length; i++) {
       let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
       console.log(""+paramName+":"+ranges[i][0]+"->"+ranges[i][1])
     }
@@ -83,7 +87,11 @@ const PickParams = () => {
     }
   };
 
-  const inputElements = [];
+  const moveToParamsPage = () => {
+    setFunc_type("polynomial_cont")
+    // setNumInputs(prevNumInputs => prevNumInputs + 1);
+  }
+
 
   const inputStyle = {
     marginBottom: '10px',
@@ -98,34 +106,6 @@ const PickParams = () => {
     color: 'black'
   };
 
-
-
-  // for (let i = 0; i < numInputs; i++) {
-  //   let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
-  //   inputElements.push(
-  //     <div key={i}>
-  //       <label className='label'>
-  //         {paramName} :
-  //         <input type="number" name="min" value={minValues[i]} onChange={(event) => handleChangeMin(event, i)} />
-  //         <input type="number" name="max" value={maxValues[i]} onChange={(event) => handleChangeMax(event, i)} />
-  //       </label>
-  //     </div>
-  //   );
-  // }
-
-  for (let i = 0; i < numInputs; i++) {
-    let paramName=String.fromCharCode(i+'a'.charCodeAt(0));
-    inputElements.push(
-      <div key={i}>
-        <div>
-          <div style={{width:'200%',marginRight:200,marginTop:'-10%'}}>
-            <MyRange paramName={paramName} ranges={ranges} setRanges={setRanges} index={i}></MyRange>
-          </div>
-        </div>   
-      </div>
-    );
-  }
-
   if(func_type==="polynomial"){
     return(
       <div>
@@ -136,23 +116,25 @@ const PickParams = () => {
             :דרגת הפולינום
           <br />
           <input
-            className='input_data2'
-            type="number"
-            // value={qnum}
-            onChange={(e) => setNumInputs(e.target.value)}
-            style={{ ...inputStyle, textAlign: 'center' }}
-            min={1}
-          />
+              className='input_data2'
+              type="number"
+              value={numInputs - 1}
+              onChange={(e) => setNumInputs(parseInt(e.target.value) + 1)}
+              style={{ ...inputStyle, textAlign: 'center' }}
+              min={0}
+            />
           </label>
+          <button className="form-submit" onClick={moveToParamsPage}>המשך</button>
         </div>
 
-        <button className="form-submit" onClick={()=>setFunc_type("polynomial_cont")}>המשך</button>
+       
     </div>
     )
   }if(func_type!=="polynomial"){
     if(func_type==="polynomial_cont"){
-      setRanges(Array.from({ length: numInputs }, () => initialState))
+      // setRanges(Array.from({ length: numInputs }, () => initialState))
     }
+    
     return (
       <div style={{transform: 'scale(0.65)',marginLeft: '-10%'}}>
             <div className={numInputs>=3 ? "form-container" : "form-container2"} style={{marginTop: numInputs>=3 ? '9.5%' :'17.5%'}}>
