@@ -4,13 +4,16 @@ import '../css/PickParams.css'
 import { MyRange } from './MyRange';
 import ReactList from 'react-list';
 
-const dict ={"quadratic":3,"linear":2,"trigonometric":4,"polynomial":10}
+const dict ={"quadratic":3,"linear":2,"trigonometric":4,"polynomial":4}
 const PickParams = () => {
   const thisURL = window.location.href;
   const temp = thisURL.split('?')
   const splits = temp[0].split('/')
+
+
+  const [func_type,setFunc_type] = useState(splits[9])
   
-  const numInputs = dict[splits[9]]
+  const [numInputs,setNumInputs] = useState(dict[splits[9]]);
   const [minValues, setMinValues] = useState(Array(numInputs).fill(5));
   const [maxValues, setMaxValues] = useState(Array(numInputs).fill(5));
   const [checkboxValues, setCheckboxValues] = useState(Array(numInputs).fill(true));
@@ -20,45 +23,6 @@ const PickParams = () => {
   const initialState = [-10, 10];
   const [ranges, setRanges] = useState(Array.from({ length: numInputs }, () => initialState));
 
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
-  const itemsPerPage = 3;
-
-  const loadMore = () => {
-    if (page * itemsPerPage >= 1000) {
-      setHasMore(false);
-    } else {
-      setTimeout(() => {
-        setPage(page + 1);
-      }, 2000);
-    }
-  };
-
-  const renderItems = () => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-
-    const items = [];
-    for (let i = startIndex; i < endIndex; i++) {
-      items.push(
-        <div key={i}>
-          <div style={{ width: '200%', marginRight: 200, marginTop: '-10%' }}>
-            <MyRange
-              paramName={String.fromCharCode(i + 'a'.charCodeAt(0))}
-              ranges={ranges}
-              setRanges={setRanges}
-              index={i}
-            />
-          </div>
-        </div>
-      );
-    }
-
-    return items;
-  };
-  
-  //const history = useHistory();
-  // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
   const first = (splits[6]=="new") 
   const nname = splits[6]+"n"
@@ -121,6 +85,19 @@ const PickParams = () => {
 
   const inputElements = [];
 
+  const inputStyle = {
+    marginBottom: '10px',
+    padding: '0.5 rem',
+    fontSize: '1.2rem',
+    borderRadius: '5px',
+    border: '1px solid gray',
+    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.1)',
+    outline: 'none',
+    width: '250px',
+    height:'35px',
+    color: 'black'
+  };
+
 
 
   // for (let i = 0; i < numInputs; i++) {
@@ -149,72 +126,70 @@ const PickParams = () => {
     );
   }
 
+  if(func_type==="polynomial"){
+    return(
+      <div>
+        <div className='container' style={{marginTop:200,height:400}}>
+          <label className='header' style={{fontSize:30}}>פרטי הפולינום</label>
 
-  return (
-    <div style={{transform: 'scale(0.65)',marginLeft: '-10%'}}>
-          <div className={numInputs>=3 ? "form-container" : "form-container2"} style={{marginTop: numInputs>=3 ? '9.5%' :'17.5%'}}>
-            <div className="scrollable-content">
-              <h1 className='header'>
-                {label}
-              </h1>
+          <label className='label2'>
+            :דרגת הפולינום
+          <br />
+          <input
+            className='input_data2'
+            type="number"
+            // value={qnum}
+            onChange={(e) => setNumInputs(e.target.value)}
+            style={{ ...inputStyle, textAlign: 'center' }}
+            min={1}
+          />
+          </label>
+        </div>
 
-              {Array.from({ length: numInputs }).map((_, index) => (
-                  <div key={index}>
-                    <div style={{ width: '200%', marginTop: '-10%' }}>
-                      <MyRange paramName={String.fromCharCode(index+'a'.charCodeAt(0))} ranges={ranges} setRanges={setRanges} index={index}></MyRange>
-                    </div>
-                  </div>
-              ))}
-
-              <br></br>
-
-              <div>
-                <button onClick={handleAddExercise} className="form-submit" style={{transform: 'scale(1.35)',marginBottom:20}}>להוספת תרגילים</button>
-              </div>
-              <div style={{marginTop:'1.5%'}}>
-                <button onClick={handleFinishUnit} className="form-submit" style={{transform: 'scale(1.35)'}}>לסיום</button>
-              </div>
-
-            </div>
-          </div>
-    
+        <button className="form-submit" onClick={()=>setFunc_type("polynomial_cont")}>המשך</button>
     </div>
+    )
+  }if(func_type!=="polynomial"){
+    if(func_type==="polynomial_cont"){
+      setRanges(Array.from({ length: numInputs }, () => initialState))
+    }
+    return (
+      <div style={{transform: 'scale(0.65)',marginLeft: '-10%'}}>
+            <div className={numInputs>=3 ? "form-container" : "form-container2"} style={{marginTop: numInputs>=3 ? '9.5%' :'17.5%'}}>
+              <div className="scrollable-content">
+                <h1 className='header'>
+                  {label}
+                </h1>
+  
+                {Array.from({ length: numInputs }).map((_, index) => (
+                    <div key={index}>
+                      <div style={{ width: '200%', marginTop: '-10%',marginLeft:-30 }}>
+                        <MyRange paramName={String.fromCharCode(index+'a'.charCodeAt(0))} ranges={ranges} setRanges={setRanges} index={index}></MyRange>
+                      </div>
+                    </div>
+                ))}
+  
+                <br></br>
+  
+                <div>
+                  <button onClick={handleAddExercise} className="form-submit" style={{transform: 'scale(1.35)',marginBottom:20}}>להוספת תרגילים</button>
+                </div>
+                <div style={{marginTop:'1.5%'}}>
+                  <button onClick={handleFinishUnit} className="form-submit" style={{transform: 'scale(1.35)'}}>לסיום</button>
+                </div>
+  
+              </div>
+            </div>
+      
+      </div>
+  
+      
+    );
+  }
 
-    
-  );
 
-//   return (
-//   <div style={{ marginTop: numInputs === 3 ? '9.5%' : '20%', transform: 'scale(0.65)', width: '120%', height: numInputs === 3 ? '100%' : '120%', marginLeft: '-10%' }}>
-//     <div className="form-container" style={{ height: 'calc(600px)'}}>
-//       <h1 className='header'>
-//         {label}
-//       </h1>
-//       <div style={{ maxHeight: 'calc(500px)', overflowY: 'auto' }}>
-//         <ReactList
-//           itemRenderer={(index, key) => (
-//             <div key={key}>
-//               <div>
-//                 <div style={{ width: '200%', marginRight: 200, marginTop: '-10%' }}>
-//                   <MyRange paramName={String.fromCharCode(index + 'a'.charCodeAt(0))} ranges={ranges} setRanges={setRanges} index={index}></MyRange>
-//                 </div>
-//               </div>
-//             </div>
-//           )}
-//           length={numInputs}
-//           type="uniform"
-//           pageSize={3}
-//         />
-//       </div>
-//       <br />
-//       <div>
-//         <button onClick={handleAddExercise} className="form-submit" style={{ transform: 'scale(1.35)', marginBottom: 20 }}>להוספת תרגילים</button>
-//       </div>
-//       <div style={{ marginTop: '1.5%' }}>
-//         <button onClick={handleFinishUnit} className="form-submit" style={{ transform: 'scale(1.35)' }}>לסיום</button>
-//       </div>
-//     </div>
-//   </div>
-// );
+  
+
 }
  
 export default PickParams;
