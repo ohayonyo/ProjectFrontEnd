@@ -21,6 +21,8 @@
     "react-dom": "^18.2.0",
     "react-edit-text": "^5.1.0",
     "react-icons": "^4.8.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-list": "^0.8.17",
     "react-multistep": "^5.3.4",
     "react-native": "^0.70.9",
     "react-native-config": "^1.4.11",
