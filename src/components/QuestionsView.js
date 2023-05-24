@@ -73,7 +73,9 @@ export default function QuestionView() {
     answer1:"(0,4) (2,0)",
     answer2:"(0,2) (4,0)",
     answer3:"(0,4) (-2,0)",
-    answer4:"(0,2) (-4,0)"
+    answer4:"(0,2) (-4,0)",
+    currentQuestion:"0",
+    questionsNeeded:"4"
     }
   ,
   {
@@ -268,7 +270,7 @@ export default function QuestionView() {
              <h1> 
               {questions[0].preamble}
              </h1>
-             {remainingTime>0 && <div>
+              <h3>{questions[0].currentQuestion}/{questions[0].questionsNeeded} </h3>  {remainingTime>0 && <div>
               <MyTimer expiryTimestamp={expiryTime} />
              </div>}
              
