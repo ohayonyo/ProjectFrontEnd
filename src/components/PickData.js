@@ -6,7 +6,8 @@ import Select from 'react-select';
 const PickData = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'trigonometric':'פונקציה טריגונומטרית', 'exponential':'פונקציה אקספוננציאלית','polynomial':'פונקצית פולינום'}
+  const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'sin':'פונקציה סינוס', 'log':'פונקציה ln','polynomial':'פונקצית פולינום','eexp':'בחזקת e פונקציית'
+,'2exp':'בחזקת 2 פונקציית','3exp':'בחזקת 3 פונקציית'}
   // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
 
@@ -34,24 +35,40 @@ const PickData = () => {
     
   };
   return (
-  <div class="form-wrapper" style={{marginTop:30}}>
+  <div class="form-wrapper" style={{marginTop:-30}}>
     <form onSubmit={handleSubmit} class="form">
     <label className='header' style={{fontSize:20}}>
       סוג הפונקציה
     </label>
 
     <Select
-          className="form-select"
-          options={Object.keys(options).map((option) => ({
-            value: option,
-            label: options[option],
-          }))}
-          isMulti={false}
-          isRtl={true}
-          value={selectedOption}
-          onChange={handleChange}
-          placeholder={"בחר מהרשימה"}
-        />
+  className="form-select"
+  options={Object.keys(options).map((option) => ({
+    value: option,
+    label: options[option],
+  }))}
+  isMulti={false}
+  isRtl={true}
+  value={selectedOption}
+  onChange={handleChange}
+  placeholder={"בחר מהרשימה"}
+  styles={{
+    menu: (provided) => ({
+      ...provided,
+      maxHeight: '200px', // Set the maximum height of the dropdown menu
+      overflowScrolling: 'touch', // Enable smooth scrolling behavior
+    }),
+    option: (provided) => ({
+      ...provided,
+      height: '40px', // Set the height of each menu item
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: '200px', // Set the maximum height of the menu list
+      overflowScrolling: 'touch', // Enable smooth scrolling behavior
+    }),
+  }}
+/>
     
     <br></br>
 
