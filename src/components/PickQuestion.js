@@ -6,7 +6,9 @@ import Select from 'react-select';
 const PickQuestion = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const options ={'intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'}
+  const options ={'intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
+  ,'definiteIntegral':'אינטגרל מסוים'
+}
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   //const history = useHistory();

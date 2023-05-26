@@ -12,6 +12,18 @@ const PickParams = () => {
 
 
   const [func_type,setFunc_type] = useState(splits[9])
+  const question_types = splits[8].split(',')
+  let hasIntegral = false;
+  console.log("print question types:")
+  for(let i=0;i<question_types.length;i++){
+      if(question_types[i] === 'definiteIntegral')
+      hasIntegral=true;
+      console.log("question_types["+i+"]="+question_types[i])
+  }
+
+  console.log("hasIntegral="+hasIntegral)
+
+  console.log("question_types="+question_types)
   
   const [numInputs,setNumInputs] = useState(func_type!=="polynomial" ? dict[splits[9]] : 1);
   const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'sin':'פונקציה סינוס','cos':'פונקציה קוסינוס', 'log':'ln','polynomial':'פונקצית פולינום','eexp':'בחזקת e פונקציית'
@@ -21,7 +33,7 @@ const PickParams = () => {
   const label = "טווח פרמטרים של "+options[splits[9]];
 
   const initialState = [-10, 10];
-  const [ranges, setRanges] = useState(Array.from({ length: numInputs }, () => initialState));
+  const [ranges, setRanges] = useState(Array.from({ length: hasIntegral ? numInputs + 1 : numInputs}, () => initialState));
   const [degree, setDegree] = useState(0);
 
   const [className, setClassName] = useState(splits[4]);
@@ -31,12 +43,22 @@ const PickParams = () => {
   
 
   useEffect(() => {
-    setRanges(Array.from({ length: numInputs }, () => initialState));
+    setRanges(Array.from({ length: hasIntegral ? numInputs + 1 : numInputs}, () => initialState));
   }, [numInputs]);
 
 
   const parseTemp = () =>{
     let res = []
+    if(hasIntegral){
+      let params = []
+      for (let i = 0; i < ranges.length-1; i++){
+        params.push([ranges[i][0],ranges[i][1]])
+      }
+      res.push([ranges[ranges.length-1][0],ranges[ranges.length-1][1]])
+      console.log(splits[8]+'_'+splits[9]+'_'+params+'_'+res)
+      return splits[8]+'_'+splits[9]+'_'+params+'_'+res
+    }
+    
     for (let i = 0; i < ranges.length; i++){
       res.push([ranges[i][0],ranges[i][1]])
     }
@@ -153,6 +175,12 @@ const PickParams = () => {
                       </div>
                     </div>
                 ))}
+
+                {hasIntegral && <div style={{ width: '200%', marginTop: '-10%',marginLeft:-30 }}>
+                        <MyRange paramName={'Integral range'} ranges={ranges} setRanges={setRanges} index={numInputs}></MyRange>
+                      </div>
+                  
+                }
   
                 <br></br>
   
