@@ -54,19 +54,7 @@ const fetchData = async () =>{
 }
 
 export default function StudentClasses() {
-    const [messages, setMessages] = useState([{
-      id: 1,
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-
-  },
-  {
-    id: 2,
-  primary: 'Birthday Gift',
-    secondary: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
-
-    }]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(()=>{
 
@@ -91,13 +79,16 @@ export default function StudentClasses() {
   }
 
   return (
-    <div class="class-list" style={{resize: 'both',
+    <div>
+      <div className='Home_page_background'></div>
+
+      <div class="class-list" style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       
       <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
+        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:1}}>
           הכיתות שלי
         </Typography>
         <div>
@@ -121,6 +112,9 @@ export default function StudentClasses() {
       </Paper>  
     </React.Fragment>
     </div>
+
+    </div>
+    
     
   );
 }

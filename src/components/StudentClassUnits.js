@@ -66,19 +66,7 @@ const fetchData2 = async (primary) =>{
 
 export default function StudentClassUnits() {
 
-    const [messages, setMessages] = useState([{
-      id: 1,
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-
-  },
-  {
-    id: 2,
-  primary: 'Birthday Gift',
-    secondary: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
-
-    }]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(()=>{
 
@@ -86,7 +74,6 @@ export default function StudentClassUnits() {
           const a = await fetchData()
           console.log("in use effect2")
           setMessages(a)
-          console.log("the message are" + messages[0].primary + " " +  messages[0].secondary )
       }
     fetchDataCall()
     },[]);
@@ -117,13 +104,16 @@ export default function StudentClassUnits() {
   }
 
   return (
-    <div style={{resize: 'both',
+    <div>
+      <div className='Home_page_background'></div>
+
+      <div style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}} className="class-list">
       
       <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
+        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:1}}>
            התרגילים שלי
         </Typography>
         <div>
@@ -170,6 +160,7 @@ export default function StudentClassUnits() {
       </Paper>  
     </React.Fragment>
     </div>
-    
+
+    </div>
   );
 }

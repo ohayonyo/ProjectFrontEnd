@@ -180,12 +180,14 @@ export default function ClassUnits() {
   }
 
   return (
-  
+    <div>
+      <div className='Home_page_background'></div>
+
       <div className="class-list" style={{ resize: 'both', overflow: 'auto', width: '105%', paddingRight: '20%' }}>
         <React.Fragment>
           <CssBaseline />
           <Paper square sx={{ pb: '50px' }}>
-            <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{ textAlign: 'center', marginRight: '-100px' }}>
+            <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{ textAlign: 'center', marginRight: '-100px',position:'relative',zIndex:1}}>
               {decodeURIComponent(className)}
             </Typography>
             <div>
@@ -260,12 +262,15 @@ export default function ClassUnits() {
             </div>
           </Paper>
         </React.Fragment>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+        <hr className='bar-line' style={{position:'relative',zIndex:1}}></hr>
+        <div style={{ display: 'flex', justifyContent: 'center',position:'relative',zIndex:1}}>
           <button className="form-submit" onClick={openUnit} style={{ float: 'left' }}>
             הוספת שיעור חדש
           </button>
         </div>
       </div>
-    
+
+    </div>
   );
 }
