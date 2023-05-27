@@ -95,7 +95,7 @@ const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize
 const style_clickable_options = {borderStyle:'solid',border:'2px solid black',borderRadius:'5px',marginBottom:10,boxShadow:'2px 2px'};
   return (
 
-    <div>
+    <div className='Home_page_background'>
       <nav class="w3-sidebar toolbar_background w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%'}} id="mySidebar">
         <br></br>
         <a href="javascript:void(0)" onClick={()=>w3_close('1')} class="w3-button w3-hide-large w3-display-topleft style2" style={{fontSize:'4.5vh'}}>סגור תפריט</a>
@@ -127,28 +127,21 @@ const style_clickable_options = {borderStyle:'solid',border:'2px solid black',bo
       <div >
 
           {/* Header */}
-        <div  style={{textAlign:'center',marginRight:'20%'}}>
+        <div  style={{textAlign:'center',marginRight:'10%'}}>
           <h1 class="w3-jumbo"><b style={{fontSize:'7vh'}}>MathematicX-ברוכים הבאים ל</b></h1>
-
-          <br></br>
           <h1 class="w3-xxxlarge w3-text-mycolor"><b style={{fontSize:'5.5vh'}}>?מי אנחנו</b></h1>
-          <div style={{fontWeight:'bold',fontSize:20,textAlign:'right'}}>
-            <p>האתר הינו כלי חינוכי למורים המעודד יצירתיות בקרב התלמידים בכך שהוא מאפשר להם ליצור בעיות מתמטיות משלהם. המערכת יכולה לעזור למורה לעקוב אחר התקדמות השיפור של התלמידים. בנוסף, המערכת יכולה לעזור לתלמידים לשפר את כישורי המתמטיקה שלהם על ידי יצירת השאלות עליהן לא הצליחו לענות עם נתונים שונים</p>
-            {/* <a>.האתר הינו כלי חינוכי למורים המעודד יצירתיות בקרב התלמידים בכך שהוא מאפשר להם ליצור בעיות מתמטיות משלהם</a>
-            <br></br>
-            <a>.המערכת יכולה לעזור למורה לעקוב אחר התקדמות השיפור של התלמידים</a>
-            <br></br>
-            <a>.בנוסף, המערכת יכולה לעזור לתלמידים לשפר את כישורי המתמטיקה שלהם על ידי יצירת השאלות עליהן לא הצליחו לענות עם נתונים שונים</a> */}
+          <div style={{fontWeight:'bold',fontSize:20,textAlign:'right', marginRight:'10%'}}>
+          <p> האתר הינו כלי חינוכי לתרגול מתמטיקה עבור תלמידי תיכון המספק פלטפורמה נוחה לשימוש ונועד לצרכי מחקר {<br></br>}שמטרתו הינה בחינת התקדמות התלמידים
+ ומידת הצלחתם לפתור תרגילים בתנאים של הגבלת זמן וכמות תרגילים {<br></br>} שעליהם לפתור ברצף על-מנת להשלים מטלות. 
+האתר מאפשר למורה ליצור כמות בלתי מוגבלת של שאלות לתרגול {<br></br>} בנושא חקירת פונקציות ע"י הגרלת פרמטרים.
+באמצעות האתר המורה יכול לבצע מעקב אחר התקדמות {<br></br>}תלמידיו ולהיות מודע לנקודות החוזקה והחולשה של כל תלמיד</p>
+            
           </div>
           
         </div>
 
       
-      {/* Common questions */}
-      <div class="w3-container" id="commonquestions" style={{textAlign:'center',marginRight:'20%'}}>
-        <h1 class="w3-xxxlarge w3-text-mycolor"><b style={{fontSize:'5.5vh'}}>שאלות נפוצות</b></h1>
-        <p style={{fontWeight:'bold',fontSize:20,textAlign:'right'}}>כאן יופיעו שאלות נפוצות להתמצאות</p>
-      </div>
+   
 
 
       </div>
