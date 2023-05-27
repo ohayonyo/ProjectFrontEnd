@@ -8,6 +8,10 @@ const Register = () => {
   const [password, setPassword] = useState('');
   // const [isErrorAccured,setIsErrorAccured] = useState(false);
 
+  const [userNameIsAlreadyExists,setUserNameIsAlreadyExists] = useState(false);
+  const [userNameIsEmpty,setUserNameIsEmpty] = useState(false);
+  const [PasswordIsEmpty,setPasswordIsEmpty] = useState(false);
+
   const options = [
     { value: '1', label: 'Teacher' },
     { value: '2', label: 'Student'},
@@ -24,7 +28,21 @@ const Register = () => {
     console.log('username:'+username);
     console.log('password:'+password);
 
-    if(username!=''&&password!=''){
+    if(username===''){
+      setUserNameIsEmpty(true);
+      setUserNameIsAlreadyExists(false);
+    }
+
+    if(PasswordIsEmpty===''){
+      setPasswordIsEmpty(true);
+      setUserNameIsAlreadyExists(false);
+    }
+
+    if(username!==''&&password!==''){
+      setUserNameIsEmpty(false);
+      setPasswordIsEmpty(false);
+      setUserNameIsAlreadyExists(false);
+
       console.log("im in")
       const urlToFetch='http://localhost:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption;
       console.log(urlToFetch)
@@ -37,10 +55,13 @@ const Register = () => {
           console.log(response);
       
           if (response.status === 200) {
+            setUserNameIsAlreadyExists(false);
             console.log("okkkkk");
             const navigateTo = window.location.href;
             const myArray2 = navigateTo.split("/");
             window.location.assign('http://' + myArray2[2] + newDest);
+          }else{
+            setUserNameIsAlreadyExists(true);
           }
           break
           // Handle the response
@@ -85,11 +106,20 @@ const Register = () => {
           </select>
 
           
-          <button className='RegisterPage_SignupButton' onClick={fetchData}>
+          <button style={{marginTop:10}} className='RegisterPage_SignupButton' onClick={fetchData}>
             Sign Up
           </button>
-        
-          <h1></h1>
+
+          {userNameIsAlreadyExists && <div style={{marginTop:20}}>
+            <label style={{color:'red',fontSize:24,fontWeight:200}}>שם משתמש זה כבר קיים במערכת</label>
+            </div>
+            }
+
+          {(userNameIsEmpty || PasswordIsEmpty) && <div style={{marginTop:20}}>
+            <label style={{color:'red',fontSize:24,fontWeight:200}}>אחד או יותר מהשדות ריקים</label>
+            </div>
+            }
+          
 
         </div>
       </div>

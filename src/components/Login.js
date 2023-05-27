@@ -12,6 +12,10 @@ const Login = () => {
   const asyncCallWithTimeout = (asyncPromise, timeLimit) => {};
   const [x,setX] = useState(true);
 
+  const [wrongPasswordOrUserName,setWrongPasswordOrUserName] = useState(false);
+  const [userNameIsEmpty,setUserNameIsEmpty] = useState(false);
+  const [PasswordIsEmpty,setPasswordIsEmpty] = useState(false);
+
   function timeoutPromise(timeout, err, promise) {
     return new Promise(function(resolve,reject) {
       promise.then(resolve,reject);
@@ -30,7 +34,20 @@ const Login = () => {
     console.log('username:'+username);
     console.log('password:'+password);
 
-    if(username!=''&&password!=''){
+    if(username===''){
+      setUserNameIsEmpty(true);
+      setWrongPasswordOrUserName(false);
+    }
+
+    if(password===''){
+      setPasswordIsEmpty(true);
+      setWrongPasswordOrUserName(false);
+    }
+
+    if(username!==''&&password!==''){
+      setUserNameIsEmpty(false);
+      setPasswordIsEmpty(false);
+      setWrongPasswordOrUserName(false);
       
       console.log("if")
       const urlToFetch='http://localhost:5000/login?username=' + username + '&password='+password;
@@ -56,6 +73,8 @@ const Login = () => {
         const myArray2 = navigateTo.split("/");
         console.log('http://'+myArray2[2]+newDest);
         window.location.assign('http://'+myArray2[2]+newDest);
+      }else{
+        setWrongPasswordOrUserName(true);
       }
 
     }
@@ -111,6 +130,17 @@ const Login = () => {
           <div className='dont_have_an_account'>
             <p style={{color:'white'}}>Don't have an account? <a href="/register">sign up</a></p>
           </div>
+
+          {wrongPasswordOrUserName && <div style={{marginTop:-20}}>
+            <label style={{color:'red',fontSize:24,fontWeight:200}}>שם המשתמש או הסיסמה שגויים</label>
+            </div>
+            }
+
+          {(userNameIsEmpty || PasswordIsEmpty) && <div style={{marginTop:-20}}>
+            <label style={{color:'red',fontSize:24,fontWeight:200}}>אחד או יותר מהשדות ריקים</label>
+            </div>
+            }
+
           
           <div className='LoginPage_forgotPasswordLink'>
             <a href="#">Forgot Password?</a>
