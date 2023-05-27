@@ -103,11 +103,13 @@
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Added transition for background color and box shadow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
 .form-submit:hover {
   background-color: #2b8bc6; /* New hover color */
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Added box shadow on hover */
+  z-index: 1;
 }
 /* .form-submit:before {
   content: "";

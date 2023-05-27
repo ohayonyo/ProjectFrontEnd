@@ -50,10 +50,12 @@
     margin-bottom: 10px;
     padding: 10px;
     cursor: pointer;
+    z-index: 1;
   }
   
   .class-list .MuiListItem-root:hover {
     background-color: #eee;
+    z-index: 1;
   }
 
   .ListItem {
@@ -103,12 +105,14 @@
     line-height: 16px;
     padding-top: 8px; /* Half of the line-height */
     transition: border-color 0.3s ease;
+    z-index: 1;
   }
   
   .input_data:focus {
     outline: none;
     border-color: #6b9ce9;
     box-shadow: 0 0 10px #6b9ce9;
+    z-index: 1;
   }
 
   .input_data2 {
@@ -121,16 +125,19 @@
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s ease;
+    z-index: 1;
   }
   
   .input_data2:focus {
     outline: none;
     border-color: #6b9ce9;
     box-shadow: 0 0 10px #6b9ce9;
+    z-index: 1;
   }
 
   .input_data2 {
     width: 250px;
+    z-index: 1;
   }
 
   .label2 {
