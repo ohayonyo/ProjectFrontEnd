@@ -236,6 +236,18 @@
   background-size: cover;
 }
 
+.Home_page_background{
+  background-image: url("./pictures/Home-background-picture-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
 /*---------------------- make scrollbar invisible --------------------*/
 ::-webkit-scrollbar {
     display: none;
