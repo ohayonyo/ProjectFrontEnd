@@ -48,20 +48,7 @@ const fetchData = async () =>{
 }
 
 export default function StudentRequestsToClass() {
-  const [messages, setMessages] = useState([
-  
-  {
-    id: 7,
-    primary: 'Summer BBQ',
-    secondary: `Who wants to have a cookout this weekend? I just got some furniture
-      for my backyard and would love to fire up the grill.`,
-  },
-  {
-    id: 8,
-    primary: 'Summer BBQ2',
-    secondary: `Who wants to have a cookout this weekend? I just got some furniture
-      for my backyard and would love to fire up the grill.`,
-  },]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(()=>{
 
@@ -120,15 +107,17 @@ export default function StudentRequestsToClass() {
 
 
   return (
-    <div className='class-list' style={{resize: 'both',
+    <div>
+      <div className='background3'></div>
+      <div className='class-list' style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
       <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
+        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:2}}>
           בקשות רישום לכיתות
         </Typography>
-        <div>
+        <div style={{position:'relative',zIndex:2}}>
 
           <List sx={{ mb: 2 }}>
             {messages.map(({ id, primary, secondary }) => (
@@ -162,6 +151,8 @@ export default function StudentRequestsToClass() {
       </Paper>  
     </React.Fragment>
     </div>
+    </div>
+    
     
   );
 }

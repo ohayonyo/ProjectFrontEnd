@@ -67,31 +67,9 @@ const fetchData2 = async () =>{
 export default function StudentRequestsToClass() {
 
   const [select, setSelected] = useState()
-    const [classes, setClasses] = useState([{
-    id: 1,
-    className: 'Brunch this week?',
-    teacher: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    const [classes, setClasses] = useState([]);
 
-},
-{
-  id: 2,
-  className: 'Birthday Gift',
-  teacher: `Do you have a suggestion for a good present for John on his work
-    anniversary. I am really confused & would love your thoughts on it.`,
-
-  }]);
-
-  const [classesWaiting, setClassesWaiting] = useState([{
-    id: 1,
-    className: 'Brunch this week?',
-    teacher: "I'll be in the neighbourhood this week. Let's grab a bite to eat"
-},
-{
-  id: 2,
-  className: 'Birthday Gift',
-  teacher: "I'll be in the neighbourhood this week. Let's grab a bite to eat"
-
-  }]);
+  const [classesWaiting, setClassesWaiting] = useState([]);
 
   useEffect(()=>{
 
@@ -183,10 +161,13 @@ export default function StudentRequestsToClass() {
 
 
   return (
+    <div>
+      <div className='background3'></div>
 
+      <div className="class-list" >
+      <h1 style={{position:'relative',zIndex:2}}> הרשמה לכיתה חדשה</h1>
 
-    <div class="class-list" >
-      <h1> הרשמה לכיתה חדשה</h1>
+      <div style={{position:'relative',zIndex:2}}>
           <select onChange={e=> setSelected(e.target.value)} defaultValue={""}>
             {classes.map(singleClass => 
             <option key={singleClass.id} value={singleClass.className} > 
@@ -194,9 +175,11 @@ export default function StudentRequestsToClass() {
             </option>)};
           </select>
           <button onClick={()=>signUpToClass()}> sign up </button>
+      </div>
+         
         
-      <h3 style={{textAlign:'right',marginTop:-1,marginRight:350}}> בקשות שממתינות לתשובה</h3>
-      <div>
+      <h3 style={{textAlign:'right',marginTop:-1,marginRight:350,position:'relative',zIndex:2}}> בקשות שממתינות לתשובה</h3>
+      <div style={{position:'relative',zIndex:2}}>
           <List sx={{ mb: 2 }} >
             {classesWaiting.map(({ id, className,teacher }) => (
               <React.Fragment key={id}>
@@ -207,12 +190,15 @@ export default function StudentRequestsToClass() {
                
                   <ListItemText 
                 primary={<Typography variant="h6" style={{ color: '#000000' }}>{className}</Typography>} 
-                secondary= {teacher} style={{textAlign:'right',marginTop:-1,marginRight:350}}/>
+                secondary= {teacher} style={{textAlign:'right',marginTop:-1,marginRight:200}}/>
                 </ListItem>
               </React.Fragment>
             ))}
           </List>
         </div>
     </div>
+    </div>
+
+    
   );
 }
