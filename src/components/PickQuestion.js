@@ -7,7 +7,7 @@ const PickQuestion = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
   const options ={'intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
-  ,'definiteIntegral':'אינטגרל מסוים'
+  ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת של הפונקציה'
 }
 
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -69,7 +69,7 @@ const PickQuestion = () => {
 
         <br></br>
         {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'-7%' }}>בחר לפחות נושא שיעור אחד</label>}
-        <button className="form-submit" type="submit">
+        <button style={{position:'relative',zIndex:0}} className="form-submit" type="submit">
           הבא
         </button>
       </form>

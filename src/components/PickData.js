@@ -74,7 +74,7 @@ const PickData = () => {
 
     {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'-7%' }}>בחר מה סוג הפונקציה</label>}
 
-    <button type="submit" class="form-submit">הבא</button>
+    <button style={{position:'relative',zIndex:0}} type="submit" class="form-submit">הבא</button>
     </form>
   </div>
   );
