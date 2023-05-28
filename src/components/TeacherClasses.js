@@ -54,6 +54,8 @@ const fetchData = async () =>{
 export default function TeacherClasses() {
     const [className,setClassName] = useState(null)
     const [messages, setMessages] = useState([]);
+    const [cantDeleteClass,setCantDeleteClass] = useState(false);
+    const [cantAddClass,setCantAddClass] = useState(false);
 
     useEffect(()=>{
 
@@ -65,10 +67,13 @@ export default function TeacherClasses() {
     fetchDataCall()
     },[]);
 
+
     async function openClass() {
       if (className !== null && className.length > 0) {
         const thisURL = window.location.href;
         const splits = thisURL.split('/');
+        setCantDeleteClass(false);
+        setClassName(""); // Reset className state to an empty string
         const url = "http://localhost:5000/openClass?teacher=" + splits[3] + "&className=" + className;
         const promise = await fetch(url);
         if (promise.status === 200) {
@@ -81,9 +86,11 @@ export default function TeacherClasses() {
           };
           const newMessages = [...messages, newClass];
           setMessages(newMessages);
-          setClassName(""); // Reset className state to an empty string
+          setCantAddClass(false);
         } else {
           console.log("Didn't work, try again");
+          setCantAddClass(true);
+          setCantDeleteClass(false);
         }
       }
     }
@@ -96,15 +103,19 @@ export default function TeacherClasses() {
 
     const ClassToDelete = messages.filter((value)=> value.id === id)
 
+    setCantAddClass(false);
     const classNameDelete = ClassToDelete[0].primary
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
     const url = "http://localhost:5000/removeClass?teacher="+splits[3]+"&className=" + classNameDelete
     const promise =  await fetch(url)
-    if(promise.status ===200)
+    if(promise.status ===200){
       setMessages(messages.filter((value)=>value.id!=id));
-    else
+      setCantDeleteClass(false);
+    }else{
       console.log("didn't work try again")
+      setCantDeleteClass(true);
+    }
 
   }
 
@@ -196,6 +207,18 @@ export default function TeacherClasses() {
               />
 
             </div>
+
+            {cantDeleteClass && 
+              <div style={{position:'relative',zIndex:1,fontSize:24,color:'red',marginTop:20}}>
+                <label>לא ניתן למחוק את הכיתה מאחר ויש בה יחידות לימוד</label>
+                </div>
+                }
+
+            {cantAddClass && 
+              <div style={{position:'relative',zIndex:1,fontSize:24,color:'red',marginTop:20}}>
+                <label>לא ניתן ליצור את הכיתה מאחר ושם זה כבר נמצא בשימוש</label>
+                </div>
+                }
           </div>
     </div>
    
