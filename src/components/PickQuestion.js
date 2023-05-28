@@ -50,10 +50,11 @@ const PickQuestion = () => {
     }
    
   };
+
   return (
-    <div className="form-wrapper" style={{marginTop:30}}>
-      <form className="form" onSubmit={handleSubmit}>
-        <label className='header' style={{fontSize:20}}>נושאי יחידת הלימוד</label>
+    <div className="form-wrapper" style={{marginTop:-30}}>
+      <form className="form1" onSubmit={handleSubmit} style={{marginTop:-80}}>
+        <label className='header' style={{fontSize:20,marginTop:90}}>נושאי יחידת הלימוד</label>
         <Select
           className="form-select"
           options={Object.keys(options).map((option) => ({
@@ -68,10 +69,11 @@ const PickQuestion = () => {
         />
 
         <br></br>
-        {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'-7%' }}>בחר לפחות נושא שיעור אחד</label>}
-        <button style={{position:'relative',zIndex:0}} className="form-submit" type="submit">
+        <button style={{position:'relative',zIndex:0,marginTop:-20}} className="form-submit" type="submit">
           הבא
         </button>
+        {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'1%'}}>בחר לפחות נושא שיעור אחד</label>}
+
       </form>
     </div>
   );

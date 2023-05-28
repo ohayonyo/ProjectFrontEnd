@@ -35,9 +35,9 @@ const PickData = () => {
     
   };
   return (
-  <div class="form-wrapper" style={{marginTop:-30}}>
-    <form onSubmit={handleSubmit} class="form">
-    <label className='header' style={{fontSize:20}}>
+  <div className="form-wrapper" style={{marginTop:-30}}>
+    <form onSubmit={handleSubmit} className="form1" style={{marginTop:-80}}>
+    <label className='header' style={{fontSize:20,marginTop:90}}>
       סוג הפונקציה
     </label>
 
@@ -72,9 +72,9 @@ const PickData = () => {
     
     <br></br>
 
-    {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'-7%' }}>בחר מה סוג הפונקציה</label>}
+    <button style={{position:'relative',zIndex:0,marginTop:-20}} type="submit" className="form-submit">הבא</button>
+    {isErrorAccured && <label style={{ color: 'red',fontSize:20,marginTop:'1%' }}>בחר מה סוג הפונקציה</label>}
 
-    <button style={{position:'relative',zIndex:0}} type="submit" class="form-submit">הבא</button>
     </form>
   </div>
   );

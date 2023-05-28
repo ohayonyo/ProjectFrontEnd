@@ -134,8 +134,8 @@ const PickParams = () => {
   if(func_type==="polynomial"){
     return(
       <div>
-        <div className='container' style={{marginTop:200,height:400}}>
-          <label className='header' style={{fontSize:30}}>פרטי הפולינום</label>
+        <div className='container2' style={{marginTop:100,height:410,width:700,marginLeft:-45}}>
+          <label className='header' style={{fontSize:30,marginTop:115}}>פרטי הפולינום</label>
 
           <label className='label2'>
             :דרגת הפולינום
@@ -162,21 +162,21 @@ const PickParams = () => {
     
     return (
       <div style={{transform: 'scale(0.65)',marginLeft: '-10%'}}>
-            <div className={numInputs>=3 ? "form-container" : "form-container2"} style={{marginTop: numInputs>=3 ? '9.5%' :'17.5%'}}>
-              <div className="scrollable-content">
+            <div className={numInputs>=3 ? "form-container" : "form-container2"} style={{marginTop: (numInputs>=3 || (numInputs===2 && hasIntegral)) ? -325 : (numInputs===2 && !hasIntegral) || (numInputs==1 && hasIntegral) ? -280 : (numInputs==1 && !hasIntegral) ? -270:-320 ,marginLeft:(numInputs<3 && !hasIntegral) ? -90 : -115,height:(numInputs>=3 || (numInputs===2 && hasIntegral)) ? 900 : (numInputs===2 && !hasIntegral) || (numInputs==1 && hasIntegral) ? 750 : (numInputs===2 && hasIntegral) ? 920 :700,width:1000}}>
+              <div className="scrollable-content" style={{marginTop:170}}>
                 <h1 className='header'>
                   {label}
                 </h1>
   
                 {Array.from({ length: numInputs }).map((_, index) => (
                     <div key={index}>
-                      <div style={{ width: '200%', marginTop: '-10%',marginLeft:-30 }}>
+                      <div style={{ width: '200%', marginTop: numInputs>=3 ? '-10%' :'-7%',marginLeft: 65 }}>
                         <MyRange paramName={String.fromCharCode(index+'a'.charCodeAt(0))} ranges={ranges} setRanges={setRanges} index={index}></MyRange>
                       </div>
                     </div>
                 ))}
 
-                {hasIntegral && <div style={{ width: '200%', marginTop: '-10%',marginLeft:-30 }}>
+                {hasIntegral && <div style={{width: '200%', marginTop: numInputs>=3 ? '-10%' : '-7%',marginLeft: 65 }}>
                         <MyRange paramName={'Integral range'} ranges={ranges} setRanges={setRanges} index={numInputs}></MyRange>
                       </div>
                   

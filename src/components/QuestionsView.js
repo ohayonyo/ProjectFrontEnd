@@ -25,6 +25,7 @@ import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import './QuestionView.css'
 import { MyTimer } from './MyTimer';
+import MathJax from 'react-mathjax2';
 
 export var nextURL =""
 
@@ -265,50 +266,55 @@ export default function QuestionView() {
       const expiryTime = new Date(currentTime.getTime() + remainingTime * 1000); // Calculate expiry time
 
     return (
-        <div className='big-question'>
+      <div>
+        <div className='background3'></div>
+
+        <div className='big-question' style={{position:'relative',zIndex:2}}>
           
-             <h1> 
+             <h1 style={{position:'relative',zIndex:1}}> 
               {questions[0].preamble}
              </h1>
-              <h3>{questions[0].currentQuestion}/{questions[0].questionsNeeded} </h3>  {remainingTime>0 && <div>
-              <MyTimer expiryTimestamp={expiryTime} />
+              <h3 style={{position:'relative',zIndex:1}}>{questions[0].currentQuestion}/{questions[0].questionsNeeded} </h3>  {remainingTime>0 && <div style={{position:'relative',zIndex:1}}>
+              <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
              </div>}
              
              
                <div className="multiple-choice questions_background" style={{marginLeft:30}}>
-                    <h2 style={{fontWeight:800}}>    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
+                    <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
 
                 <ul className='ul'>
                   <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer1+")" : questions[0].answer1} </h3>
+                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer1+")" : questions[0].answer1} </h3>
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[2]}} className="hover-resize2 li" onClick={() => submitSingle(2,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer2+")" : questions[0].answer2} </h3>
+                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer2+")" : questions[0].answer2} </h3>
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(3,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer3+")" : questions[0].answer3} </h3>
+                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer3+")" : questions[0].answer3} </h3>
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[4]}} className="hover-resize2 li" onClick={() => submitSingle(4,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer4+")" : questions[0].answer4} </h3>
+                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer4+")" : questions[0].answer4} </h3>
                     </div>
                   </li>
 
                 </ul>
             </div>
-            <button className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
+            <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
               השאלה הבאה
             </button>
-            <button className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
+            <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
               סיום נסיון מענה
             </button>
         </div>
+      </div>
+        
         
       );
 

@@ -83,11 +83,13 @@ const PickDetails = () => {
 
   if(first){
     return (
-      <div className='container' style={{marginTop: unitNameIsMissing && unitDescIsMissing ? -150 
+    <div className='container1' style={{marginTop: unitNameIsMissing && unitDescIsMissing ? -300 
       : unitNameIsMissing || unitDescIsMissing ?
-      -150 : -145 }}>
+      -300 : -295 }}>
 
-  <label className='header' style={{fontSize:30}}>פרטי יחידת הלימוד</label>
+        
+
+  <label className='header' style={{fontSize:30,marginTop:180}}>פרטי יחידת הלימוד</label>
 
   <label className='label2'>
     :שם יחידת הלימוד

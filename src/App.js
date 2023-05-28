@@ -219,7 +219,7 @@ function ValidateTeacher(){
             
           }></Route>
           <Route exact path='/:username/:className/:unitName/editUnit' element={
-            <div className='main-div' style={{zIndex:-1}}>
+            <div className='background3' style={{zIndex:-1}}>
             <TeacherMenu></TeacherMenu>
 
             <div style={{zIndex:2}}>
@@ -249,12 +249,12 @@ function ValidateTeacher(){
             
           }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate/:desc' element={
-            <div className='main-div' style={{zIndex:-1}}>
+            <div className='background3' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
-              <div style={{zIndex:2}}>
+              <div style={{zIndex:2,marginTop:28}}>
 
-                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)',zIndex:1}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
                     steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={1} />
@@ -272,12 +272,12 @@ function ValidateTeacher(){
 
           <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
               
-            <div className='main-div' style={{zIndex:-1}}>
+            <div className='background3' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
-              <div style={{zIndex:2}}>
+              <div style={{zIndex:2,marginTop:28}}>
 
-                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)',zIndex:2}}>
                     <Stepper circleTop={'20%'} 
                     size={40}
                     steps={ [{title:'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={2} />
@@ -294,16 +294,21 @@ function ValidateTeacher(){
           }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             
-            <div className='main-div' style={{zIndex:-1}}>
+            <div className='background3' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
-              <div style={{zIndex:2}}>
+              <div style={{zIndex:2,marginTop:28}}>
 
-                  <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
-                    <Stepper circleTop={'20%'} 
-                    size={40}
-                    steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={3} />
+                  <div>
+                    {/* <div style={{width: 510,height: 100,backgroundColor:'red',marginLeft:300}}></div> */}
+
+                    <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)',zIndex:2}}>
+                      <Stepper circleTop={'20%'} 
+                      size={40}
+                      steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={3} />
                     </div>
+
+                  </div>
                  
                   <div style={{width:'50%',position:'relative',transform: 'scale(0.8)',marginLeft:'20%',marginTop:'-20%'}}>
                     <PickParams></PickParams>
@@ -319,12 +324,14 @@ function ValidateTeacher(){
           <Route exact path='/:username/:className/openUnit/:prev/details' element={
 
 
-            <div className='main-div' style={{zIndex:-1}}>
+            <div className='background3' style={{zIndex:-1}}>
             <TeacherMenu></TeacherMenu>
 
-            <div style={{zIndex:2}}>
+            <div style={{zIndex:2,marginTop:0}}>
 
-                <div style={{width:'50%',position:'relative',left:'20%',transform: 'scale(0.8)'}}>
+
+            
+                <div style={{width:'50%',position:'relative',left:'20.3%',transform: 'scale(0.8)',position:'relative',zIndex:3}}>
                   <Stepper circleTop={'15%'} 
                   size={40}
                   steps={ [{title: 'פרטי יחידת הלימוד'},{title: 'סוג הפונקציה'}, {title: 'נושאי היחידה'}, {title: 'ערכי פרמטרים'}] } activeStep={0} />

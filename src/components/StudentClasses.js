@@ -80,7 +80,7 @@ export default function StudentClasses() {
 
   return (
     <div>
-      <div className='Home_page_background'></div>
+      <div className='class_background'></div>
 
       <div class="class-list" style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}}>
