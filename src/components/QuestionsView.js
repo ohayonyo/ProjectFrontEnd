@@ -267,7 +267,7 @@ export default function QuestionView() {
 
     return (
       <div>
-        <div className='background3'></div>
+        <div className='background5'></div>
 
         <div className='big-question' style={{position:'relative',zIndex:2}}>
           

@@ -219,7 +219,7 @@ function ValidateTeacher(){
             
           }></Route>
           <Route exact path='/:username/:className/:unitName/editUnit' element={
-            <div className='background3' style={{zIndex:-1}}>
+            <div className='background5' style={{zIndex:-1}}>
             <TeacherMenu></TeacherMenu>
 
             <div style={{zIndex:2}}>
@@ -249,7 +249,7 @@ function ValidateTeacher(){
             
           }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/data/:name/:qnum/:timeLimit/:dueDate/:desc' element={
-            <div className='background3' style={{zIndex:-1}}>
+            <div className='background5' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
               <div style={{zIndex:2,marginTop:28}}>
@@ -272,7 +272,7 @@ function ValidateTeacher(){
 
           <Route exact path='/:username/:className/openUnit/:prev/question/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
               
-            <div className='background3' style={{zIndex:-1}}>
+            <div className='background5' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
               <div style={{zIndex:2,marginTop:28}}>
@@ -294,7 +294,7 @@ function ValidateTeacher(){
           }></Route>
           <Route exact path='/:username/:className/openUnit/:prev/parameters/:questionS/:dataS/:name/:qnum/:timeLimit/:dueDate/:desc' element={
             
-            <div className='background3' style={{zIndex:-1}}>
+            <div className='background5' style={{zIndex:-1}}>
               <TeacherMenu></TeacherMenu>
               
               <div style={{zIndex:2,marginTop:28}}>
@@ -324,7 +324,7 @@ function ValidateTeacher(){
           <Route exact path='/:username/:className/openUnit/:prev/details' element={
 
 
-            <div className='background3' style={{zIndex:-1}}>
+            <div className='background5' style={{zIndex:-1}}>
             <TeacherMenu></TeacherMenu>
 
             <div style={{zIndex:2,marginTop:0}}>

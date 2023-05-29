@@ -95,8 +95,8 @@ const style_menu_labels = {textAlign:'right',marginTop:0,marginBottom:0,fontSize
 const style_clickable_options = {borderStyle:'solid',border:'2px solid black',borderRadius:'5px',marginBottom:10,boxShadow:'2px 2px'};
   return (
 
-    <div className='Home_page_background'>
-      <nav class="w3-sidebar toolbar_background w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%'}} id="mySidebar">
+    <div className='background5'>
+      <nav class="w3-sidebar toolbar_background3 w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%'}} id="mySidebar">
         <br></br>
         <a href="javascript:void(0)" onClick={()=>w3_close('1')} class="w3-button w3-hide-large w3-display-topleft style2" style={{fontSize:'4.5vh'}}>סגור תפריט</a>
         <div style={{textAlign:'center'}}>
@@ -113,8 +113,8 @@ const style_clickable_options = {borderStyle:'solid',border:'2px solid black',bo
       </nav>
 
         {/* Top menu on small screens */}
-      <header class="w3-container w3-top w3-hide-large toolbar_background w3-xlarge w3-padding">
-        <a href="javascript:void(0)" class="w3-button toolbar_background w3-margin-right" style={{position:'fixed',right:0,top:0,cursor:'pointer'}} onClick={w3_open}>☰</a>
+      <header class="w3-container w3-top w3-hide-large toolbar_background3 w3-xlarge w3-padding">
+        <a href="javascript:void(0)" class="w3-button toolbar_background3 w3-margin-right" style={{position:'fixed',right:0,top:0,cursor:'pointer'}} onClick={w3_open}>☰</a>
         <span>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳</span>
       </header>
 

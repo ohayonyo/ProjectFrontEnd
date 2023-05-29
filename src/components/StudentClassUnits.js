@@ -105,7 +105,7 @@ export default function StudentClassUnits() {
 
   return (
     <div>
-      <div className='Home_page_background'></div>
+      <div className='background5'></div>
 
       <div style={{resize: 'both',
     overflow: 'auto',width:'105%',paddingRight:'20%'}} className="class-list">

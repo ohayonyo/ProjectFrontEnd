@@ -162,7 +162,7 @@ export default function StudentRequestsToClass() {
 
   return (
     <div>
-      <div className='background3'></div>
+      <div className='background5'></div>
 
       <div className="class-list" >
       <h1 style={{position:'relative',zIndex:2}}> הרשמה לכיתה חדשה</h1>

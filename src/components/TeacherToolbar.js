@@ -49,7 +49,7 @@ const TeacherToolbar = ({btn}) => {
   const style_clickable_options = {borderStyle:'solid',border:'2px solid black',borderRadius:'5px',marginBottom:10,boxShadow:'2px 2px'};
   return (
     <div>
-       <nav class="w3-sidebar toolbar_background w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%',backgroundColor:'red'}} id="mySidebar">
+       <nav class="w3-sidebar toolbar_background3 w3-collapse w3-top w3-large w3-padding style1" style={{position:'fixed',right:0,top:0,width:'15%',backgroundColor:'red'}} id="mySidebar">
         <br></br>
         <a href="javascript:void(0)" onClick={()=>w3_close('1')} class="w3-button w3-hide-large w3-display-topleft style2 toolbar_background" style={{fontSize:'4.5vh'}}>סגור תפריט</a>
         <div style={{textAlign:'center'}}>
@@ -65,8 +65,8 @@ const TeacherToolbar = ({btn}) => {
         </nav>
 
         {/* Top menu on small screens */}
-      <header class="w3-container w3-top w3-hide-large toolbar_background w3-xlarge w3-padding">
-        <a href="javascript:void(0)" class="w3-button toolbar_background w3-margin-right" style={{position:'fixed',right:0,top:0}} onClick={w3_open}>☰</a>
+      <header class="w3-container w3-top w3-hide-large toolbar_background3 w3-xlarge w3-padding">
+        <a href="javascript:void(0)" class="w3-button toolbar_background3 w3-margin-right" style={{position:'fixed',right:0,top:0}} onClick={w3_open}>☰</a>
         <span>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳</span>
       </header>
 

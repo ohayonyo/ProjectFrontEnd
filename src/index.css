@@ -230,6 +230,22 @@
   /* background-color: lightblue; */
 }
 
+.toolbar_background2{
+  background-image: url("./pictures/backgroundPage5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* background-color: lightblue; */
+}
+
+.toolbar_background3{
+  background-image: url("./pictures/toolbarBackground3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* background-color: lightblue; */
+}
+
 .questions_background{
   background-image: url("./backgroundexample.jpg");
   background-repeat: no-repeat;
@@ -272,6 +288,18 @@
   z-index: 0;
 }
 
+
+.background5{
+  background-image: url("./pictures/backgroundPage5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
 /*---------------------- make scrollbar invisible --------------------*/
 ::-webkit-scrollbar {
     display: none;
@@ -305,7 +333,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-image: url("./pictures/backgroundPage4.jpg");
+  background-image: url("./pictures/toolbarBackground3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
