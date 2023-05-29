@@ -7,7 +7,7 @@ const PickQuestion = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
   const options ={'intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
-  ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת של הפונקציה'
+  ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת של הפונקציה','funcValue':'ערך הפונקציה בנקודה'
 }
 
   const [selectedOptions, setSelectedOptions] = useState([]);

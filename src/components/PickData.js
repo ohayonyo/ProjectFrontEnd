@@ -6,8 +6,8 @@ import Select from 'react-select';
 const PickData = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית', 'sin':'פונקציה סינוס', 'log':'פונקציה ln','polynomial':'פונקצית פולינום','eexp':'בחזקת e פונקציית'
-,'2exp':'בחזקת 2 פונקציית','3exp':'בחזקת 3 פונקציית'}
+  const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית','polynomial':'פונקצית פולינום', 'sin':'פונקצית סינוס','cos':'פונקצית קוסינוס', 'log':'פונקצית ln','eexp':'פונקציה מעריכית בבסיס e'
+,'2exp':'פונקציה מעריכית בבסיס 2','3exp':'פונקציה מעריכית בבסיס 3'}
   // const [teacherName, setTeacherName] = useState('');
   const [className, setClassName] = useState(splits[4]);
 
