@@ -6,8 +6,9 @@ import Select from 'react-select';
 const PickQuestion = () => {
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const options ={'intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
-  ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת של הפונקציה','funcValue':'ערך הפונקציה בנקודה'
+  const options ={'domain':'תחום הגדרה','intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
+  ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת של הפונקציה','funcValue':'ערך הפונקציה בנקודה',
+  'posNeg':'תחומי חיוביות שליליות'
 }
 
   const [selectedOptions, setSelectedOptions] = useState([]);
