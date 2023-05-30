@@ -103,7 +103,7 @@ export default function QuestionView() {
       const timerId = setInterval(() => {
         setRemainingTime((prevTime) => prevTime - 1);
         // console.log("in timer")
-        console.log("remaining time:"+remainingTime)
+        //console.log("remaining time:"+remainingTime)
       }, 1000);
   
       return () => clearInterval(timerId);
@@ -274,7 +274,8 @@ export default function QuestionView() {
              <h1 style={{position:'relative',zIndex:1}}> 
               {questions[0].preamble}
              </h1>
-              <h3 style={{position:'relative',zIndex:1}}>{questions[0].currentQuestion}/{questions[0].questionsNeeded} </h3>  {remainingTime>0 && <div style={{position:'relative',zIndex:1}}>
+              <h3 style={{position:'relative',zIndex:1}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
+               {remainingTime>0 && <div style={{position:'relative',zIndex:1}}>
               <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
              </div>}
              

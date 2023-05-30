@@ -89,7 +89,20 @@ export default function UnitStats() {
 
     console.log("correct incorrect is" + dataCorrectIncorrect)
 
+    const handleClick = (elements) => {
+      if (elements.length > 0) {
+        const clickedElement = elements[0];
+        if("#1BBC63" === clickedElement.element.options.backgroundColor)
+          window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+splits[6]+"/" + "Correct"+"/"+ "questionReview");
+        else
+          window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+splits[6]+"/" + "Incorrect"+"/"+ "questionReview");
 
+        }
+    };
+
+    const options = {
+      onClick: (_, elements) => handleClick(elements),
+    };
 
 
 
@@ -104,7 +117,7 @@ export default function UnitStats() {
 
 
       <div style= {{padding:'20px',width:'500px'}}>
-            <Pie data={dataCorrectIncorrect} />
+            <Pie data={dataCorrectIncorrect} options={options} />
       </div>
       <div style= {{padding:'20px',width:'500px'}}>
             <Line data={datalast5Grades} />
