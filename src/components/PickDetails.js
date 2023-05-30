@@ -166,37 +166,34 @@ const PickDetails = () => {
     );
 }else{
   return (
-    <div className='container' style={{ marginTop: '5.5%', textAlign: 'center' }}>
+    <div className='container1' style={{ marginTop: '5.5%', textAlign: 'center',marginTop:-215,height:600}}>
 
-  <div style={{ width: '50%', position: 'relative', transform: 'scale(1.2)' }}>
+  <div style={{ width: '50%', position: 'relative', transform: 'scale(1.2)',marginTop:150}}>
     <label className='header' style={{fontSize:30}}>פרטי יחידת הלימוד</label>
-    <label className='label2'>
-      :שם יחידת הלימוד
-      <br />
-      <input
-        className='input_data2'
-        disabled={!first}
-        type="text"
-        value={first ? decodeURIComponent(name) : decodeURIComponent(nname)}
-        onChange={(e) => setName(e.target.value)}
-        style={{ ...inputStyle, textAlign: 'center' }}
-      />
-    </label>
+    <div style={{marginTop:30,marginBottom:15}}>
+      <label className='label2' style={{marginTop:150,position:'relative'}}>
+      {decodeURIComponent(name).split("_")[0]} 
+         :שם יחידת הלימוד
+        <br></br>
+      </label>
+
+    </div>
+    
 
     <label className='label2'>
-      :כמות שאלות נכונות ברצף שצריך לענות עליהן
+      :כמות שאלות נכונות ברצף שצריך לענות 
       <br />
       <input
         className='input_data2'
         type="number"
         value={qnum}
         onChange={(e) => setQnum(e.target.value)}
-        style={{ ...inputStyle, textAlign: 'center' }}
+        style={{ ...inputStyle, textAlign: 'center',marginTop:15 }}
         min={1}
       />
     </label>
 
-    <button onClick={handleNext} className="form-submit2" style={{transform: 'scale(1.2)',paddingBottom:-15,marginTop:10}}>לבחירת נתונים</button>
+    <button onClick={handleNext} className="form-submit2" style={{transform: 'scale(1.2)',paddingBottom:-15,marginTop:20}}>לבחירת נתונים</button>
     <br></br>
     <br></br>
   </div>

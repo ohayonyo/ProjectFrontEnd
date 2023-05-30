@@ -66,6 +66,23 @@ const PickQuestion = () => {
           value={selectedOptions}
           onChange={handleChange}
           placeholder={"בחר מהרשימה"}
+
+          styles={{
+            menu: (provided) => ({
+              ...provided,
+              maxHeight: '200px', // Set the maximum height of the dropdown menu
+              overflowScrolling: 'touch', // Enable smooth scrolling behavior
+            }),
+            option: (provided) => ({
+              ...provided,
+              height: '40px', // Set the height of each menu item
+            }),
+            menuList: (provided) => ({
+              ...provided,
+              maxHeight: '200px', // Set the maximum height of the menu list
+              overflowScrolling: 'touch', // Enable smooth scrolling behavior
+            }),
+          }}
         />
 
         <br></br>
