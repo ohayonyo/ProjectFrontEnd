@@ -38,6 +38,7 @@ const StudentToolbar = ({btn}) => {
     const thisURL = window.location.href;
     const splits = thisURL.split('/');
     const urlToFetch='http://localhost:5000/logout?username=' + splits[3]
+    console.log(urlToFetch)
     const response = await fetch(urlToFetch);
     console.log(response.status)
     return response.status==200

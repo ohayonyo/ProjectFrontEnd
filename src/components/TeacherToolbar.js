@@ -60,6 +60,8 @@ const TeacherToolbar = ({btn}) => {
             <a href={'/'} onClick={()=>logout('btn1')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn1" style={style_clickable_options} ><p style={style_menu_labels}>התנתקות</p></a> 
             <a href={'/'+splits[3]+"/teacherMenu/myClasses"} onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn3" style={style_clickable_options}> <p style={style_menu_labels}>הכיתות שלי</p></a> 
             <a href={'/'+splits[3]+"/teacherMenu/studentsRegisterToClass"} onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn4" style={style_clickable_options}><p style={style_menu_labels}>בקשות רישום לכיתות</p></a> 
+            <a href={'/'+splits[3]+"/teacherMenu/logingStudents"} onClick={()=>w3_close('btn4')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn4" style={style_clickable_options}><p style={style_menu_labels}>התלמידים שלי</p></a> 
+
           </div>
         </div>
         </nav>
