@@ -51,6 +51,7 @@ import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 import { useState } from 'react';
 import MySelect from './components/MySelect';
+import ListOfLoginUsers from './components/ListOfLoginUsers';
 
 
 function App() {
@@ -392,6 +393,15 @@ function ValidateTeacher(){
             </div>
             
           }></Route>
+             <Route exact path='/:username/teacherMenu/logingStudents' element={
+            <div>
+                <TeacherMenu></TeacherMenu>
+                <ListOfLoginUsers></ListOfLoginUsers>
+            </div>
+            
+          }></Route>
+
+          
           <Route exact path='/:username/studentMenu/myClasses' element={
             <div>
                 <StudentMenu></StudentMenu>

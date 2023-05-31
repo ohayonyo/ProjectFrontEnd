@@ -25,7 +25,7 @@ import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import './QuestionView.css'
 import { MyTimer } from './MyTimer';
-import MathJax from 'react-mathjax2';
+// import MathJax from 'react-mathjax2';
 
 export var nextURL =""
 
