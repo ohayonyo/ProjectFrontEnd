@@ -165,20 +165,21 @@ export default function StudentRequestsToClass() {
       <div className='background5'></div>
 
       <div className="class-list" >
-      <h1 style={{position:'relative',zIndex:2}}> הרשמה לכיתה חדשה</h1>
+      <h1 className='header' style={{position:'relative',zIndex:2}}> הרשמה לכיתה חדשה</h1>
 
       <div style={{position:'relative',zIndex:2}}>
-          <select onChange={e=> setSelected(e.target.value)} defaultValue={""}>
+      <button className='form-submit3' style={{height:40}} onClick={()=>signUpToClass()}> הירשם לכיתה</button>
+          <select onChange={e=> setSelected(e.target.value)} defaultValue={""} style={{height:40}}>
             {classes.map(singleClass => 
             <option key={singleClass.id} value={singleClass.className} > 
-              class: {singleClass.className},  &nbsp; &nbsp; &nbsp;teacher: {singleClass.teacher} 
+              כיתה: {singleClass.className},  &nbsp;&nbsp;מורה: {singleClass.teacher} 
             </option>)};
           </select>
-          <button onClick={()=>signUpToClass()}> sign up </button>
+          
       </div>
          
         
-      <h3 style={{textAlign:'right',marginTop:-1,marginRight:350,position:'relative',zIndex:2}}> בקשות שממתינות לתשובה</h3>
+      <h3 style={{textAlign:'right',marginTop:-1,marginRight:250,position:'relative',zIndex:2}}> בקשות שממתינות לתשובה</h3>
       <div style={{position:'relative',zIndex:2}}>
           <List sx={{ mb: 2 }} >
             {classesWaiting.map(({ id, className,teacher }) => (

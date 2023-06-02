@@ -4,7 +4,7 @@ import '../css/PickParams.css'
 import { MyRange } from './MyRange';
 import ReactList from 'react-list';
 
-const dict ={"quadratic":3,"linear":2,"trigonometric":4,"polynomial":4,"eexp":4,"2exp":4,"3exp":4,"sin":4,"cos":4,"log":4,"tan":4,"cot":4,"root":4}
+const dict ={"quadratic":3,"linear":2,"trigonometric":4,"polynomial":4,"eexp":4,"2exp":4,"3exp":4,"sin":4,"cos":4,"log":4,"tan":4,"cot":4,"root":4,"3root":4}
 const PickParams = () => {
   const thisURL = window.location.href;
   const temp = thisURL.split('?')
@@ -27,7 +27,7 @@ const PickParams = () => {
   
   const [numInputs,setNumInputs] = useState(func_type!=="polynomial" ? dict[splits[9]] : 1);
   const options ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית','polynomial':'פונקצית פולינום', 'sin':'פונקצית סינוס','cos':'פונקצית קוסינוס','tan':'פונקצית טנגנס','cot':'פונקצית קוטנגנס','log':'פונקצית ln','eexp':'פונקציה מעריכית בבסיס e'
-,'2exp':'פונקציה מעריכית בבסיס 2','3exp':'פונקציה מעריכית בבסיס 3','root':'פונקצית שורש'
+,'2exp':'פונקציה מעריכית בבסיס 2','3exp':'פונקציה מעריכית בבסיס 3','root':'פונקצית שורש','3root':'פונקצית שורש שלישי'
 
 }
 

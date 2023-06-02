@@ -269,12 +269,12 @@ export default function QuestionView() {
       <div>
         <div className='background5'></div>
 
-        <div className='big-question' style={{position:'relative',zIndex:2}}>
+        <div className='big-question' style={{position:'relative',zIndex:2,transform: 'scale(0.85)',marginTop:-55}}>
           
-             <h1 style={{position:'relative',zIndex:1}}> 
+             <h1 style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginRight:'7%'}}> 
               {questions[0].preamble}
              </h1>
-              <h3 style={{position:'relative',zIndex:1}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
+              <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
                {remainingTime>0 && <div style={{position:'relative',zIndex:1}}>
               <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
              </div>}
@@ -307,12 +307,15 @@ export default function QuestionView() {
 
                 </ul>
             </div>
-            <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
-              השאלה הבאה
-            </button>
-            <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
-              סיום נסיון מענה
-            </button>
+            <div style={{marginLeft:370}}>
+              <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
+                השאלה הבאה
+              </button>
+              <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
+                סיום נסיון מענה
+              </button>
+            </div>
+            
         </div>
       </div>
         

@@ -113,7 +113,7 @@ export default function StudentClassUnits() {
       <React.Fragment>
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:1}}>
+        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:1,fontWeight:600}}>
            התרגילים שלי
         </Typography>
         <div>

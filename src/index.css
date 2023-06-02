@@ -247,7 +247,8 @@
 }
 
 .questions_background{
-  background-image: url("./backgroundexample.jpg");
+  /* background-image: url("./backgroundexample.jpg"); */
+  background-image: url("./pictures/toolbarBackground3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
