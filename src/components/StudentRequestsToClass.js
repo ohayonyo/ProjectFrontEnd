@@ -165,7 +165,7 @@ export default function StudentRequestsToClass() {
       <div className='background5'></div>
 
       <div className="class-list" >
-      <h1 className='header' style={{position:'relative',zIndex:2}}> הרשמה לכיתה חדשה</h1>
+      <h1 className='header' style={{position:'relative',zIndex:2,marginRight:'7%'}}> הרשמה לכיתה חדשה</h1>
 
       <div style={{position:'relative',zIndex:2}}>
       <button className='form-submit3' style={{height:40}} onClick={()=>signUpToClass()}> הירשם לכיתה</button>

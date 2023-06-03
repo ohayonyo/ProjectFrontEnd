@@ -115,7 +115,9 @@ export default function StudentRequestsToClass() {
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:2}}>
-          בקשות רישום לכיתות
+          <div className='header' style={{marginRight:'7%',transform:'scale(1.1)',fontSize:30}}>
+             בקשות רישום לכיתות
+          </div>
         </Typography>
         <div style={{position:'relative',zIndex:2}}>
 

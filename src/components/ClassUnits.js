@@ -188,7 +188,10 @@ export default function ClassUnits() {
           <CssBaseline />
           <Paper square sx={{ pb: '50px' }}>
             <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{ textAlign: 'center', marginRight: '-100px',position:'relative',zIndex:1}}>
-              {decodeURIComponent(className)}
+            <div className='header2' style={{marginRight:'7%',transform:'scale(1.1)',fontSize:30}}>
+                {decodeURIComponent(className)}
+            </div>
+              
             </Typography>
             <div>
               <List sx={{ mb: 2 }}>
@@ -209,7 +212,7 @@ export default function ClassUnits() {
                       </IconButton>
                       <ListItemText
                         primary={
-                          <Typography variant="h6" style={{ color: '#000000' }}>
+                          <Typography variant="h6" style={{ color: '#000000',fontWeight:500,fontSize:20 }}>
                             <div style={{ color: 'black', float: 'right', width: '100%' }}>
                               <EditText
                                 showEditButton

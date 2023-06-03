@@ -21,7 +21,7 @@ export function MyTimer({ expiryTimestamp }) {
   return (
     <div className="timer-container">
   {expiryTimestamp > 0 && (
-    <div className="countdown-display" style={{ marginRight: 100 }}>
+    <div className="countdown-display" style={{ marginRight: -30 }}>
       <div className="countdown-value">{formattedMinutes}</div>
       <div className="countdown-separator">:</div>
       <div className="countdown-value">{formattedSeconds}</div>

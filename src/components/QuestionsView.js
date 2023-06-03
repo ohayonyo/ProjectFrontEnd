@@ -269,13 +269,13 @@ export default function QuestionView() {
       <div>
         <div className='background5'></div>
 
-        <div className='big-question' style={{position:'relative',zIndex:2,transform: 'scale(0.85)',marginTop:-55}}>
+        <div className='big-question' style={{position:'relative',zIndex:2,transform: 'scale(0.80)',marginTop:-55}}>
           
-             <h1 style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginRight:'7%'}}> 
+             <h1 className='header' style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginLeft:'12%',width:'60%'}}> 
               {questions[0].preamble}
              </h1>
               <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
-               {remainingTime>0 && <div style={{position:'relative',zIndex:1}}>
+               {remainingTime>0 && <div style={{position:'relative',zIndex:1,width:'80%',marginLeft:30}}>
               <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
              </div>}
              
