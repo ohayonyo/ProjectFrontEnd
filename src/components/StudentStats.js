@@ -24,6 +24,7 @@ const fetchData = async (url) =>{
   return jsonResult;
 }
 
+
 export default function UnitStats() {
     Chart.register(ArcElement,Tooltip,Legend,CategoryScale,LineController,LineElement,PointElement, LinearScale, Title);
 
@@ -48,8 +49,20 @@ export default function UnitStats() {
                 fill: false,
                 borderColor: 'blue',
                 },],
-          });      
+          });    
+    
+    const [messages, setMessages] = useState([]); 
 
+    useEffect(()=>{
+
+      async function fetchDataCall2(){
+        const url = "http://localhost:5000/getStudentStats?username="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]+"&student="+splits[6]
+          const a = await fetchData(url)
+          console.log("in use effect2")
+          setMessages(a)
+      }
+    fetchDataCall2()
+    },[]);
 
 
 
@@ -117,7 +130,15 @@ export default function UnitStats() {
 
 
       <div style= {{padding:'20px',width:'500px'}}>
-            <Pie data={dataCorrectIncorrect} options={options} />
+            <Pie data={{
+              labels: ['Correct Questions', 'Incorrect Questions'],
+              datasets: [
+                {
+                  data: [messages['correct'], messages['bad']],
+                  backgroundColor: ['#3CB371', '#DC143C']
+                },
+              ]
+            }} options={options} />
       </div>
       <div style= {{padding:'20px',width:'500px'}}>
             <Line data={datalast5Grades} />
