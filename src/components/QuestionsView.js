@@ -284,24 +284,48 @@ export default function QuestionView() {
                     <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
 
                 <ul className='ul'>
-                  <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
+                <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer1+")" : questions[0].answer1} </h3>
+                      <h3 style={{ position: 'relative', zIndex: 1 }}>
+                        <pre style={{ whiteSpace: 'pre-wrap' }}>
+                          <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
+                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer1+")" : questions[0].answer1} 
+                          </h3>
+                        </pre>
+                      </h3>    
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[2]}} className="hover-resize2 li" onClick={() => submitSingle(2,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer2+")" : questions[0].answer2} </h3>
+                      <h3 style={{ position: 'relative', zIndex: 1 }}>
+                        <pre style={{ whiteSpace: 'pre-wrap' }}>
+                          <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
+                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer2+")" : questions[0].answer2} 
+                          </h3>
+                        </pre>
+                      </h3>    
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(3,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer3+")" : questions[0].answer3} </h3>
+                      <h3 style={{ position: 'relative', zIndex: 1 }}>
+                        <pre style={{ whiteSpace: 'pre-wrap' }}>
+                          <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
+                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer3+")" : questions[0].answer3} 
+                          </h3>
+                        </pre>
+                      </h3>    
                     </div>
                   </li>
                   <li style={{backgroundColor:colors[4]}} className="hover-resize2 li" onClick={() => submitSingle(4,questions[0].id)} >
                     <div>
-                        <h3 style={{fontWeight:800,position:'relative',zIndex:1}}>{questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer4+")" : questions[0].answer4} </h3>
+                      <h3 style={{ position: 'relative', zIndex: 1 }}>
+                        <pre style={{ whiteSpace: 'pre-wrap' }}>
+                          <h3 style={{ fontWeight: 800 ,fontSize:25,color:'black'}}>
+                            {questions[0].preamble === "מצא את נקודת הקיצון:" ? "(" + questions[0].answer4 + ")" : questions[0].answer4}
+                          </h3>
+                        </pre>
+                      </h3>    
                     </div>
                   </li>
 
