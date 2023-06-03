@@ -284,7 +284,7 @@ export default function QuestionView() {
                     <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
 
                 <ul className='ul'>
-                <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
+                <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
                     <div>
                       <h3 style={{ position: 'relative', zIndex: 1 }}>
                         <pre style={{ whiteSpace: 'pre-wrap' }}>
