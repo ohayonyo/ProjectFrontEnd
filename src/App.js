@@ -52,6 +52,7 @@ import 'react-edit-text/dist/index.css';
 import { useState } from 'react';
 import MySelect from './components/MySelect';
 import ListOfLoginUsers from './components/ListOfLoginUsers';
+import { Tmln } from './components/Tmln';
 
 
 function App() {
@@ -530,6 +531,13 @@ function ValidateTeacher(){
           <Route exact path='/stepper' element={
             <div>
               <Stepper steps={ [{title: 'Step One'}, {title: 'Step Two'}, {title: 'Step Three'}, {title: 'Step Four'}] } activeStep={ 0 } />
+            </div>
+            
+          }></Route>
+
+          <Route exact path='/tmln' element={
+            <div>
+              <Tmln></Tmln>
             </div>
             
           }></Route>

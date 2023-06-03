@@ -25,10 +25,11 @@ import { NearMeOutlined } from '@mui/icons-material';
 import OpenClass from './OpenClass';
 import EditIcon from '@mui/icons-material/Edit';
 import { AiOutlineLineChart } from 'react-icons/ai';
-
+import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@mui/lab';
 
 import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
+import { Tmln } from './Tmln';
 
 // 
 
@@ -94,7 +95,7 @@ export default function UnitStats() {
     }
   fetchDataCall2()
   },[]);
-  console.log(timeline)
+  console.log('TL',timeline)
 
 
   
@@ -148,14 +149,27 @@ export default function UnitStats() {
                   } 
                   secondary={
                     <div>
-                      
+                        {console.log('TIMELINE---------',timeline[name])}
+                        <div style={styles.container}>
+                          <Timeline position="left" style={styles.timeline}>
+                            {timeline[name]?
+                            timeline[name].map(({question, solved_correctly}) => (
+                            <TimelineItem style={styles.timelineItem}>
+                              <TimelineSeparator>
+                                <TimelineDot onClick={() => window.location.assign('http://localhost:3000/')} style={{backgroundColor: solved_correctly? "green":"red"}} />
+                                <TimelineConnector style={styles.timelineConnector} />
+                              </TimelineSeparator>
+                              <TimelineContent style={{marginTop: -55}}>{question}</TimelineContent>
+                            </TimelineItem>)) :
+                             [] }
+                          </Timeline>
+                        </div>
                           <div style={{color:'red', float: 'right', width: '100%'}}>
                             <EditText 
                               value={"mistakes: " + bad}
                               style={{width:'90%',marginLeft:'10%',color:'red', textAlign: 'right'}}
                             />
                           </div>
-
                           <div style={{color:'green', float: 'right', width: '100%'}}>
                             <EditText 
                               value={"correct answers: " + correct}
@@ -185,3 +199,63 @@ export default function UnitStats() {
     
   );
 }
+
+/* [{
+  active_unit: 
+  "asdasd",
+  active_unit_attempt: 1,
+  answer1: "הפונקציה מוגדרת לכל x",
+  answer2: "[(-82, 82)]",
+  answer3: "[(-inf, -6.246), (-6.246, 6.246), (6.246, inf)]",
+  answer4: "[(-inf, -7.983), (-7.983, 7.983), (7.983, inf)]",
+  correct_ans: 1,
+  id: 1,
+  question: "y=-5x^2+3",
+  question_preamble: "מצא מה תחום ההגדרה של הפונקציה",
+  solve_time: "1685791282760",
+  solved_correctly: false},
+  {
+    active_unit: 
+    "asdasd",
+    active_unit_attempt: 1,
+    answer1: "הפונקציה מוגדרת לכל x",
+    answer2: "[(-82, 82)]",
+    answer3: "[(-inf, -6.246), (-6.246, 6.246), (6.246, inf)]",
+    answer4: "[(-inf, -7.983), (-7.983, 7.983), (7.983, inf)]",
+    correct_ans: 1,
+    id: 2,
+    question: "y=-8x^2+3",
+    question_preamble: "מצא מה תחום ההגדרה של הפונקציה",
+    solve_time: "1685791282760",
+    solved_correctly: false}]*/
+    
+
+    const styles = {
+      container: {
+        marginTop: -200,
+        marginBottom: -280,
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      timeline: {
+        marginRight: '15%',
+        transform: 'rotate(90deg)',
+      },
+      timelineItem: {
+        marginBottom: '-5px',
+      },
+      timelineDot: {
+        
+        backgroundColor: '#FF5722',
+      },
+      timelineConnector: {
+        backgroundColor: '#FF5722',
+      },
+      timelineContent: {
+        backgroundColor: '#F5F5F5',
+        padding: '10px',
+        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+      },
+    };
