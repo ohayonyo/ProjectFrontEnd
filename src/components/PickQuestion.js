@@ -8,7 +8,7 @@ const PickQuestion = () => {
   const splits = thisURL.split('/')
   const options ={'domain':'תחום הגדרה','intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
   ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת של הפונקציה','funcValue':'ערך הפונקציה בנקודה',
-  'posNeg':'תחומי חיוביות שליליות'
+  'posNeg':'תחומי חיוביות שליליות','asym':'אסימפטוטות', 'symmetry': 'סימטריה ואסימטריה', 'inflection': 'נקודות פיתול', 'convexConcave': 'תחומי קעירות וקמירות', 'oddEven': 'זוגיות ואי זוגיות'
 }
 
   const [selectedOptions, setSelectedOptions] = useState([]);

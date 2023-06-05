@@ -106,148 +106,144 @@ export default function UnitStats() {
     const splits = thisURL.split('/')
     window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/studentStats");
   }
+  
 
   return (
-    
-    <div className='class-list' style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+    <div>
+      <div className='background5'></div>
+      <div className='class-list' style={{resize: 'both',
+    overflow: 'auto',width:'105%',paddingRight:'20%', scrollBehavior: 'smooth'
+  }}>
       
-  <React.Fragment>
-    <CssBaseline />
-    <Paper square sx={{ pb: '50px' }}>
-      <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100}}>
+        <React.Fragment>
+          <CssBaseline />
+          <Paper square sx={{ pb: '50px' }}>
+          <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:1}}>
         {decodeURIComponent(splits[5])}
       </Typography>
-      <div>
+            <div>
+              <List sx={{ mb: 2 }}>
+                {messages.map(({ name,bad,correct}) => (
+                  <React.Fragment key={name}>
+                    <ListItem Button onClick={(cls)=>gotoStudent(name,cls)}>
+                      {/* <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoStudent(name,cls)}>
+                        <MenuIcon />
+                      </IconButton> */}
 
-        <List sx={{ mb: 2 }}>
-          {messages.map(({ name,bad,correct}) => (
-            <React.Fragment key={name}>
-              <ListItem Button>
-                {/* <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoStudent(name,cls)}>
-                  <MenuIcon />
-                </IconButton> */}
+                      <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStudent(name,cls)}>
+                          <AiOutlineLineChart />
+                      </IconButton>
+                      {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
+                        <AddIcon />
+                      </IconButton> */}
 
-                <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStudent(name,cls)}>
-                    <AiOutlineLineChart />
-                 </IconButton>
-                {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
-                  <AddIcon />
-                </IconButton> */}
+                      <ListItemText 
+                        primary={
+                          <Typography variant="h6" style={{ color: '#000000' }}>
+                            <div style={{color:'black', float: 'right', width: '100%'}}>
+                              <EditText 
+                                
+                                value={name}
+                                style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6', textAlign: 'right'}}
+                              />
+                            </div>
+                          </Typography>
+                        } 
+                        secondary={
+                          <div>
+                              {console.log('TIMELINE---------',timeline[name])}
+                              <div style={styles.container}>
+                                  <Timeline position="left" style={styles.timeline}>
+                                    {timeline[name] ? (
+                                      timeline[name].map(({ question, solved_correctly }, index) => {
+                                        if (timeline[name].length - index <= 10) {
+                                          return (
+                                            <TimelineItem key={index} style={styles.timelineItem}>
+                                              <TimelineSeparator>
+                                                <TimelineDot style={{ backgroundColor: solved_correctly ? "green" : "red" }} />
+                                                <TimelineConnector style={styles.timelineConnector} />
+                                              </TimelineSeparator>
+                                              <TimelineContent style={{ marginTop: -55, width: '100%', whiteSpace: 'normal' }}>{question}</TimelineContent>
+                                            </TimelineItem>
+                                          );
+                                        } else {
+                                          return null;
+                                        }
+                                      })
+                                    ) : (
+                                      []
+                                    )}
+                                  </Timeline>
+                              </div>
 
-                <ListItemText 
-                  primary={
-                    <Typography variant="h6" style={{ color: '#000000' }}>
-                      <div style={{color:'black', float: 'right', width: '100%'}}>
-                        <EditText 
+                                <div style={{color:'red', float: 'right', width: '100%'}}>
+                                  <EditText 
+                                    value={"mistakes: " + bad}
+                                    style={{width:'90%',marginLeft:'10%',color:'red', textAlign: 'right'}}
+                                  />
+                                </div>
+                                <div style={{color:'green', float: 'right', width: '100%'}}>
+                                  <EditText 
+                                    value={"correct answers: " + correct}
+                                    style={{width:'90%',marginLeft:'10%',color:'green', textAlign: 'right'}}
+                                  />
+                                </div>
+                          </div>
+                        }
+                      />
+                      <div style={{textAlign: 'center', fontWeight: 'bold', marginTop: '10px'}}>
+                        <Typography variant="body1" style={{ color: 'black', textAlign: 'center' }}>
+                          {/* {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)} */}
+                          {/* <div style={{textAlign: 'center'}}>{due}</div> */}
                           
-                          value={name}
-                          style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6', textAlign: 'right'}}
-                        />
+                        </Typography>
                       </div>
-                    </Typography>
-                  } 
-                  secondary={
-                    <div>
-                        {console.log('TIMELINE---------',timeline[name])}
-                        <div style={styles.container}>
-                          <Timeline position="left" style={styles.timeline}>
-                            {timeline[name]?
-                            timeline[name].map(({question, solved_correctly}) => (
-                            <TimelineItem style={styles.timelineItem}>
-                              <TimelineSeparator>
-                                <TimelineDot onClick={() => window.location.assign('http://localhost:3000/')} style={{backgroundColor: solved_correctly? "green":"red"}} />
-                                <TimelineConnector style={styles.timelineConnector} />
-                              </TimelineSeparator>
-                              <TimelineContent style={{marginTop: -55}}>{question}</TimelineContent>
-                            </TimelineItem>)) :
-                             [] }
-                          </Timeline>
-                        </div>
-                          <div style={{color:'red', float: 'right', width: '100%'}}>
-                            <EditText 
-                              value={"mistakes: " + bad}
-                              style={{width:'90%',marginLeft:'10%',color:'red', textAlign: 'right'}}
-                            />
-                          </div>
-                          <div style={{color:'green', float: 'right', width: '100%'}}>
-                            <EditText 
-                              value={"correct answers: " + correct}
-                              style={{width:'90%',marginLeft:'10%',color:'green', textAlign: 'right'}}
-                            />
-                          </div>
-                    </div>
-                  }
-                />
-                <div style={{textAlign: 'center', fontWeight: 'bold', marginTop: '10px'}}>
-                  <Typography variant="body1" style={{ color: 'black', textAlign: 'center' }}>
-                    {/* {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)} */}
-                    {/* <div style={{textAlign: 'center'}}>{due}</div> */}
-                    
-                  </Typography>
-                </div>
-              </ListItem>
-            </React.Fragment>
-          ))}
-        </List>
-      </div>
-    
-    </Paper>  
-  </React.Fragment>
+                    </ListItem>
+                  </React.Fragment>
+                ))}
+              </List>
+            </div>
+          
+          </Paper>  
+        </React.Fragment>
 
-</div>
+      </div>
+    </div>
+    
     
   );
 }
 
-/* [{
-  active_unit: 
-  "asdasd",
-  active_unit_attempt: 1,
-  answer1: "הפונקציה מוגדרת לכל x",
-  answer2: "[(-82, 82)]",
-  answer3: "[(-inf, -6.246), (-6.246, 6.246), (6.246, inf)]",
-  answer4: "[(-inf, -7.983), (-7.983, 7.983), (7.983, inf)]",
-  correct_ans: 1,
-  id: 1,
-  question: "y=-5x^2+3",
-  question_preamble: "מצא מה תחום ההגדרה של הפונקציה",
-  solve_time: "1685791282760",
-  solved_correctly: false},
-  {
-    active_unit: 
-    "asdasd",
-    active_unit_attempt: 1,
-    answer1: "הפונקציה מוגדרת לכל x",
-    answer2: "[(-82, 82)]",
-    answer3: "[(-inf, -6.246), (-6.246, 6.246), (6.246, inf)]",
-    answer4: "[(-inf, -7.983), (-7.983, 7.983), (7.983, inf)]",
-    correct_ans: 1,
-    id: 2,
-    question: "y=-8x^2+3",
-    question_preamble: "מצא מה תחום ההגדרה של הפונקציה",
-    solve_time: "1685791282760",
-    solved_correctly: false}]*/
-    
 
     const styles = {
       container: {
-        marginTop: -200,
-        marginBottom: -280,
+        // transform:'scale(0.8)',
+        marginTop: 20,
+        marginBottom: -150,
+        marginLeft: '0%',
         width: '100%',
+        height: 400,
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start', // Adjust justifyContent to 'flex-start' to align items to the left
         alignItems: 'center',
+  overflowY: 'hidden', // Change overflowY to 'hidden' to disable vertical scrolling
+        scrollBehavior: 'smooth',
+        maxWidth: '100%', // Adjust the maximum width to the available space
+        minWidth: '500px', // Set the minimum width to 500px
+        // padding: '0 10px',
       },
       timeline: {
         marginRight: '15%',
         transform: 'rotate(90deg)',
+        width: '200%', // Set a fixed width to make the timeline size permanent
       },
       timelineItem: {
         marginBottom: '-5px',
+        paddingTop: '5px',
+        flex: '0 0 auto', // Allow items to shrink and grow, but not auto-expand
+        whiteSpace: 'normal', // Allow the content to wrap to multiple lines
       },
       timelineDot: {
-        
         backgroundColor: '#FF5722',
       },
       timelineConnector: {
@@ -257,5 +253,9 @@ export default function UnitStats() {
         backgroundColor: '#F5F5F5',
         padding: '10px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+        display: 'flex',
+        alignItems: 'center', // Align the content vertically
+        minHeight: '50px', // Set a minimum height to ensure consistent height for all items
       },
     };
+    
