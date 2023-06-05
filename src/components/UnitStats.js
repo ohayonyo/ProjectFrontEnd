@@ -235,10 +235,11 @@ export default function UnitStats() {
                                               width: '100%',
                                               whiteSpace: 'normal',
                                               fontWeight:600,
-                                              color:'black'
+                                              color:'black',
+                                              marginLeft:'5%'
                                             }}
                                           >
-                                            {question}
+                                            {(index+1)+". "+question}
                                           </TimelineContent>
                                         </TimelineItem>
                                       )
