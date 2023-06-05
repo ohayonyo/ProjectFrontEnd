@@ -60,6 +60,7 @@ const fetchData = async (url) =>{
 
 export default function ClassUnits() {
 
+  
   const [messages, setMessages] = useState([]);
     useEffect(()=>{
 
@@ -68,6 +69,8 @@ export default function ClassUnits() {
           const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
+
+          
       }
     fetchDataCall()
     },[]);

@@ -80,7 +80,7 @@ export const MyRange = ({ paramName, ranges, setRanges, index }) => {
           handleStyle={handleStyle}
           marks={marks}
         />
-        <div className="value">
+        <div className="value" style={{marginTop:35}}>
           <label style={{ fontSize: '34px', fontWeight: 'bold' }}>{paramName}:</label> 
             {range[0] === range[1] ? range[0] + '               ' : `${range[0]} -> ${range[1]}`}
         </div>
