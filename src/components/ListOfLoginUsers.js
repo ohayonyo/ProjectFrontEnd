@@ -192,7 +192,7 @@ export default function ListOfLoginUsers() {
                 {messages.map(({ id, username, isLoggedIn }) => (
                   <React.Fragment key={id}>
                     <ListItem button>
-                        <div style={{position:'relative', zIndex:2, marginTop:70, marginLeft:850, marginBottom:-40}}>
+                        <div style={{position:'relative', zIndex:2, marginLeft:850,paddingTop:10,paddingBottom:10 }}>
                              <LoginStatus username={username} isLoggedIn={isLoggedIn}/>
                         </div>
                     

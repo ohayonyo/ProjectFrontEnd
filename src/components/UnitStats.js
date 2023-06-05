@@ -30,6 +30,7 @@ import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnect
 import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 import { Tmln } from './Tmln';
+import { fontSize, fontWeight } from '@mui/system';
 
 // 
 
@@ -111,91 +112,200 @@ export default function UnitStats() {
   return (
     <div>
       <div className='background5'></div>
-      <div className='class-list' style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%', scrollBehavior: 'smooth'
-  }}>
-      
+      <div
+        className='class-list'
+        style={{
+          resize: 'both',
+          overflowY: 'auto',
+          width: '105%',
+          paddingRight: '20%',
+          scrollBehavior: 'smooth'
+        }}
+      >
         <React.Fragment>
           <CssBaseline />
           <Paper square sx={{ pb: '50px' }}>
-          <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:1}}>
-        {decodeURIComponent(splits[5])}
-      </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              component="div"
+              sx={{
+                p: 2,
+                pb: 0
+              }}
+              style={{
+                textAlign: 'center',
+                marginRight: -100,
+                position: 'relative',
+                zIndex: 1,
+                fontSize:28,
+                fontWeight:700,
+                textDecoration: 'underline'
+              }}
+            >
+              {decodeURIComponent(splits[5])+"  סטטיסטיקות של יחידת הלימוד  "}
+            </Typography>
             <div>
               <List sx={{ mb: 2 }}>
-                {messages.map(({ name,bad,correct}) => (
+                {messages.map(({ name, bad, correct }) => (
                   <React.Fragment key={name}>
-                    <ListItem Button onClick={(cls)=>gotoStudent(name,cls)}>
-                      {/* <IconButton edge="end" aria-label="units" onClick={(cls)=>gotoStudent(name,cls)}>
-                        <MenuIcon />
-                      </IconButton> */}
-
-                      <IconButton edge="end" aria-label="unitsStats" onClick={(cls)=>gotoStudent(name,cls)}>
-                          <AiOutlineLineChart />
+                    <ListItem Button onClick={(cls) => gotoStudent(name, cls)}>
+                      <IconButton
+                        edge="end"
+                        aria-label="unitsStats"
+                        onClick={(cls) => gotoStudent(name, cls)}
+                      >
+                        <AiOutlineLineChart />
                       </IconButton>
-                      {/* <IconButton edge="end" aria-label="edit" onClick={(cls)=>gotoEdit(id,cls)}>
-                        <AddIcon />
-                      </IconButton> */}
-
-                      <ListItemText 
+                      <ListItemText
                         primary={
                           <Typography variant="h6" style={{ color: '#000000' }}>
-                            <div style={{color:'black', float: 'right', width: '100%'}}>
-                              <EditText 
-                                
-                                value={name}
-                                style={{width:'90%',marginLeft:'10%',color:'black',fontSize:'h6', textAlign: 'right'}}
-                              />
+                            <div
+                              style={{
+                                color: 'black',
+                                float: 'right',
+                                width: '100%',
+                                marginLeft: '10%',
+                                color: 'black',
+                                fontSize: 20,
+                                textAlign: 'center',
+                                fontWeight:700,
+                              }}
+                            >
+
+                          <div style={{position:'relative'}}>
+                            <span >{name}&nbsp;</span>
+                            <span>:</span>
+                            <span style={{textDecoration:'underline',fontSize: 20,color: 'black'}}>{"שם התלמיד "}</span>
+                            
+                            
+                          </div>
+
+                              
                             </div>
                           </Typography>
-                        } 
+                        }
                         secondary={
                           <div>
-                              {console.log('TIMELINE---------',timeline[name])}
-                              <div style={styles.container}>
-                                  <Timeline position="left" style={styles.timeline}>
-                                    {timeline[name] ? (
-                                      timeline[name].map(({ question, solved_correctly }, index) => {
-                                        if (timeline[name].length - index <= 10) {
-                                          return (
-                                            <TimelineItem key={index} style={styles.timelineItem}>
-                                              <TimelineSeparator>
-                                                <TimelineDot style={{ backgroundColor: solved_correctly ? "green" : "red" }} />
-                                                <TimelineConnector style={styles.timelineConnector} />
-                                              </TimelineSeparator>
-                                              <TimelineContent style={{ marginTop: -55, width: '100%', whiteSpace: 'normal' }}>{question}</TimelineContent>
-                                            </TimelineItem>
-                                          );
-                                        } else {
-                                          return null;
-                                        }
-                                      })
-                                    ) : (
-                                      []
+                            {console.log('TIMELINE---------', timeline[name])}
+                            <div style={{...styles.container,marginLeft:'40%',overflowX: 'hidden'}}>
+                              <div
+                                style={{
+                                  height: 350,
+                                  width: 300,
+                                  overflowY: 'scroll',
+                                  marginTop:-120,
+                                  overflowX: 'hidden',
+                                  marginLeft:-50,
+                                  
+                                }}
+                              >
+                                <Timeline
+                                  position="left"
+                                  style={{...styles.timeline,marginLeft:200,width:'200%'}}
+                                >
+
+                                  <div style={{position:'relative',right:230}}>
+                                  {timeline[name] &&
+                                    timeline[name].map(
+                                      (
+                                        { question, solved_correctly },
+                                        index
+                                      ) => (
+                                        <TimelineItem
+                                          key={index}
+                                          style={styles.timelineItem}
+                                        >
+                                          <TimelineSeparator>
+                                            <TimelineDot
+                                              style={{
+                                                backgroundColor: solved_correctly
+                                                  ? 'green'
+                                                  : 'red'
+                                              }}
+                                            />
+                                            {index+1<timeline[name].length && <TimelineConnector
+                                              style={styles.timelineConnector}
+                                            />}
+                                            
+                                          </TimelineSeparator>
+                                          <TimelineContent
+                                            style={{
+                                              // marginTop: -55,
+                                              width: '100%',
+                                              whiteSpace: 'normal',
+                                              fontWeight:600,
+                                              color:'black'
+                                            }}
+                                          >
+                                            {question}
+                                          </TimelineContent>
+                                        </TimelineItem>
+                                      )
                                     )}
-                                  </Timeline>
+
+                                  </div>
+                                  
+                                </Timeline>
+                              </div>
+                            </div>
+  
+                            <div
+                              style={{
+                                color: 'red',
+                                float: 'right',
+                                width: '100%',
+                                marginLeft: '10%',
+                                color: 'red',
+                                textAlign: 'right',
+                                fontSize:20,
+                                fontWeight:600
+                              }}
+                            >
+
+                          <div style={{position:'relative'}}>
+                            <span >{bad}&nbsp;</span>
+                            <span>: </span>
+                            <span style={{textDecoration:'underline'}}>{"מספר תשובות שגויות"}</span>        
+                          </div>
+
+                            </div>
+                            <div
+                              style={{
+                                color: 'green',
+                                float: 'right',
+                                width: '100%',
+                                marginLeft: '10%',
+                                color: 'green',
+                                textAlign: 'right',
+                                fontSize:20,
+                                fontWeight:600
+                              }}
+                            >
+
+                              <div style={{position:'relative'}}>
+                                <span >{correct}&nbsp;</span>
+                                <span>: </span>
+                                <span style={{textDecoration:'underline'}}>{"מספר תשובות נכונות"}</span>        
                               </div>
 
-                                <div style={{color:'red', float: 'right', width: '100%'}}>
-                                  <EditText 
-                                    value={"mistakes: " + bad}
-                                    style={{width:'90%',marginLeft:'10%',color:'red', textAlign: 'right'}}
-                                  />
-                                </div>
-                                <div style={{color:'green', float: 'right', width: '100%'}}>
-                                  <EditText 
-                                    value={"correct answers: " + correct}
-                                    style={{width:'90%',marginLeft:'10%',color:'green', textAlign: 'right'}}
-                                  />
-                                </div>
+                            </div>
                           </div>
                         }
                       />
-                      <div style={{textAlign: 'center', fontWeight: 'bold', marginTop: '10px'}}>
-                        <Typography variant="body1" style={{ color: 'black', textAlign: 'center' }}>
+                      <div
+                        style={{
+                          textAlign: 'center',
+                          fontWeight: 'bold',
+                          marginTop: '10px'
+                        }}
+                      >
+                        <Typography
+                          variant="body1"
+                          style={{ color: 'black', textAlign: 'center' }}
+                        >
                           {/* {console.log(dueDates[id-1].getTime() - now.getTime()-10750000)} */}
                           {/* <div style={{textAlign: 'center'}}>{due}</div> */}
-                          
                         </Typography>
                       </div>
                     </ListItem>
@@ -203,14 +313,10 @@ export default function UnitStats() {
                 ))}
               </List>
             </div>
-          
-          </Paper>  
+          </Paper>
         </React.Fragment>
-
       </div>
     </div>
-    
-    
   );
 }
 
@@ -221,27 +327,29 @@ export default function UnitStats() {
         marginTop: 20,
         marginBottom: -150,
         marginLeft: '0%',
-        width: '100%',
-        height: 400,
+        // width: '100%',
+        height: 500,
         display: 'flex',
         justifyContent: 'flex-start', // Adjust justifyContent to 'flex-start' to align items to the left
         alignItems: 'center',
-  overflowY: 'hidden', // Change overflowY to 'hidden' to disable vertical scrolling
-        scrollBehavior: 'smooth',
-        maxWidth: '100%', // Adjust the maximum width to the available space
-        minWidth: '500px', // Set the minimum width to 500px
+  // overflowY: 'auto', // Change overflowY to 'hidden' to disable vertical scrolling
+  //       scrollBehavior: 'smooth',
+        // maxWidth: '100%', // Adjust the maximum width to the available space
+        // minWidth: '500px', // Set the minimum width to 500px
         // padding: '0 10px',
       },
       timeline: {
         marginRight: '15%',
-        transform: 'rotate(90deg)',
+        transform: 'rotate(0deg)',
         width: '200%', // Set a fixed width to make the timeline size permanent
+        height:'100%'
       },
       timelineItem: {
-        marginBottom: '-5px',
-        paddingTop: '5px',
+        // marginBottom: '-5px',
+        // paddingTop: '5px',
         flex: '0 0 auto', // Allow items to shrink and grow, but not auto-expand
         whiteSpace: 'normal', // Allow the content to wrap to multiple lines
+        width:'100%'
       },
       timelineDot: {
         backgroundColor: '#FF5722',

@@ -99,7 +99,7 @@ const Login = () => {
             required
           ></input>
 
-          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>username</span>
+          <span className='LoginRegister_Span text_span span' style={{marginRight:'100%'}}>username</span>
     
   
           <input 
@@ -111,7 +111,7 @@ const Login = () => {
             required>
            </input>
 
-          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>password</span>
+          <span className='LoginRegister_Span text_span span' style={{marginRight:'100%'}}>password</span>
           <br></br>
 
           <div className='keep_me_signed' style={{marginRight:160}}>

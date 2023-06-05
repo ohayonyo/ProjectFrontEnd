@@ -46,7 +46,7 @@
 }
 
 
-.LoginRegister_Span,span{
+.LoginRegister_Span,.span{
   text-transform: uppercase;
   font-size: 12px;
   opacity: 0.4; 
@@ -78,7 +78,7 @@
   background: rgba(0, 0, 0, 0);
 }
 
-.text:focus + span,.LoginPage_text:focus + span,.RegisterPage_text:focus + span {
+.text:focus + .span,.LoginPage_text:focus + .span,.RegisterPage_text:focus + .span {
   opacity: 0.6;
 }
 

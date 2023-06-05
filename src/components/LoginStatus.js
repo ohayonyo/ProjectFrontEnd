@@ -4,8 +4,8 @@ import '../css/LoginStatus.css'; // Import CSS file for styling
 const LoginStatus = ({ username, isLoggedIn }) => {
 
   return (
-    <div className="login-status" style={{marginTop:-110}}>
-  <div className="user-details" style={{marginTop:110}}>
+    <div className="login-status" style={{marginTop:0}}>
+  <div className="user-details" style={{marginTop:0}}>
     <span className="username">{username}</span>
     <span style={{paddingRight: isLoggedIn ? 25 : 10, color: isLoggedIn ? 'green' : 'grey'}} className="status">{isLoggedIn ? 'מחובר' : 'לא מחובר'}</span>
   </div>

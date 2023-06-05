@@ -92,10 +92,10 @@ const Register = () => {
           <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>email</span> */}
           <input type="text" className='RegisterPage_text' name="username" value={username}
             onChange={(e)=>setUsername(e.target.value)} required/>
-          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>username</span>
+          <span className='LoginRegister_Span text_span span' style={{marginRight:'100%'}}>username</span>
           <input type="password" className='RegisterPage_text' name="password" value={password}
             onChange={(e)=>setPassword(e.target.value)} required></input>
-          <span className='LoginRegister_Span text_span' style={{marginRight:'100%'}}>password</span> 
+          <span className='LoginRegister_Span text_span span' style={{marginRight:'100%'}}>password</span> 
 
           <select value={selectedOption.value} onChange={handleSelectionChange}>
             {options.map(option => (
