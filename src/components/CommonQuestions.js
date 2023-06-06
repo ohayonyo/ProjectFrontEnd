@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../index.css'
 
-const HomePageTest = () => {
+const CommonQuestions = () => {
   
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
@@ -104,7 +104,7 @@ const style_clickable_options = {borderStyle:'solid',border:'2px solid black',bo
             <h3 class="w3-padding-64"><b style={{textAlign:'center',fontSize:'3.5vh'}}>𝑀𝒶𝓉𝒽𝑒𝓂𝒶𝓉𝒾𝒸𝒳<br></br></b></h3>
           </div>
           <div class="w3-bar-block" style={{fontSize:'20px',marginTop:'-10%'}}>
-            <a href="#" onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn1" style={style_clickable_options}><p style={style_menu_labels}>דף הבית</p></a> 
+            <a href="/" onClick={()=>w3_close('btn1')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn1" style={style_clickable_options}><p style={style_menu_labels}>דף הבית</p></a> 
             <a href="/commonquestions" onClick={()=>w3_close('btn2')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn2" style={style_clickable_options}> <p style={style_menu_labels}>שאלות נפוצות</p></a> 
             <a href="/login" onClick={()=>w3_close('btn3')} class="w3-bar-item w3-button hover-resize w3-click-white" id="btn3" style={style_clickable_options}><p style={style_menu_labels}>התחברות</p></a> 
           </div>
@@ -127,15 +127,24 @@ const style_clickable_options = {borderStyle:'solid',border:'2px solid black',bo
       <div >
 
           {/* Header */}
-        <div  style={{textAlign:'center',marginRight:'10%',marginTop:'6%'}}>
-          <h1 class="w3-jumbo"><b style={{fontSize:'7vh'}}>MathematicX-ברוכים הבאים ל</b></h1>
-          <h1 class="w3-xxxlarge w3-text-mycolor"><b style={{fontSize:'5.5vh'}}>?מי אנחנו</b></h1>
-          <div style={{fontWeight:'bold',fontSize:20,textAlign:'center', marginRight:'2%'}}>
-          <p> האתר הינו כלי חינוכי לתרגול מתמטיקה עבור תלמידי תיכון המספק פלטפורמה נוחה לשימוש ונועד לצרכי מחקר {<br></br>}שמטרתו הינה בחינת התקדמות התלמידים
- ומידת הצלחתם לפתור תרגילים בתנאים של הגבלת זמן וכמות תרגילים {<br></br>} שעליהם לפתור ברצף על-מנת להשלים מטלות. 
-האתר מאפשר למורה ליצור כמות בלתי מוגבלת של שאלות לתרגול {<br></br>} בנושא חקירת פונקציות ע"י הגרלת פרמטרים.
-באמצעות האתר המורה יכול לבצע מעקב אחר התקדמות {<br></br>}תלמידיו ולהיות מודע לנקודות החוזקה והחולשה של כל תלמיד</p>
-            
+        <div  style={{textAlign:'center',marginRight:'10%'}}>
+          <h1 class="w3-xxxlarge w3-text-mycolor"><b style={{fontSize:'5.5vh'}}>שאלות נפוצות</b></h1>
+          <div style={{fontWeight:'bold',fontSize:20,textAlign:'right', marginRight:'10%'}}>
+                      <p>
+             שאלה : איך משלימים בהצלחה יחידת לימוד? 
+            {<br></br>}
+            תשובה : בכדי להשלים יחידת לימוד בהצלחה, יש לענות נכונה ברצף על כמות השאלות שהמורה שפתח את יחידת הלימוד הגדיר כאשר הוא פתח את יחידת הלימוד. 
+            כמות שאלות זו מופיעה בראש יחידת הלימוד כאשר פותרים אותה. בכדי לענות בהצלחה על יחידת לימוד מורכבת, תנאי זה חייב להתקיים עבור כל יחידת לימוד בנפרד.
+            {<br></br>}
+            2. שאלה : כמה פעמים ניתן לפתור יחידת לימוד?
+            {<br></br>}
+            תשובה : ניתן לפתור יחידת ללא הגבלה בתנאי שתאריך ההגשה של יחידת הלימוד לא הסתיים.
+            {<br></br>}
+            3. שאלה :מה ההבדל בין יחידת לימוד פשוטה ליחידת לימוד מורכבת? 
+            {<br></br>}
+            יחידת לימוד מורכבת מכונה שיעור והיא מורכבת מרצף של שתי יחידות לימוד או יותר.
+            </p>
+                        
           </div>
           
         </div>
@@ -152,4 +161,4 @@ const style_clickable_options = {borderStyle:'solid',border:'2px solid black',bo
   )
 }
 
-export default HomePageTest
+export default CommonQuestions

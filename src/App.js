@@ -53,6 +53,7 @@ import { useState } from 'react';
 import MySelect from './components/MySelect';
 import ListOfLoginUsers from './components/ListOfLoginUsers';
 import { Tmln } from './components/Tmln';
+import CommonQuestions from './components/CommonQuestions';
 
 
 function App() {
@@ -142,6 +143,10 @@ function ValidateTeacher(){
 
           }></Route>
           <Route exact path='/login' element={<Login></Login>}></Route>
+
+          <Route exact path='/commonquestions' element={
+            <CommonQuestions></CommonQuestions>
+          }></Route>
 
           <Route path="/:username/studentMenu" element={
             <div>
