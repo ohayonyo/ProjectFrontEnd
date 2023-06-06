@@ -83,7 +83,15 @@ export default function UnitStats() {
         const url = "http://localhost:5000/getStats?username="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
           const a = await fetchData(url)
           console.log("in use effect2")
-          setMessages(a)
+          const sortedMessages = a.sort((a, b) => {
+            if(b.bad - a.bad)
+              return b.bad - a.bad
+            else 
+              return a.correct - b.correct
+          }
+          );
+          setMessages(sortedMessages)
+          
       }
     fetchDataCall()
     },[]);
@@ -105,19 +113,45 @@ export default function UnitStats() {
 
   
 
-  const handleClick = (elements) => {
+  const handleClick = (elements,name) => {
     if (elements.length > 0) {
       const clickedElement = elements[0];
       if("#1BBC63" === clickedElement.element.options.backgroundColor)
-        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+splits[6]+"/" + "Correct"+"/"+ "questionReview");
+        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/" + "Correct"+"/"+ "questionReview");
       else
-        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+splits[6]+"/" + "Incorrect"+"/"+ "questionReview");
+        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/" + "Incorrect"+"/"+ "questionReview");
 
       }
   };
 
+  const handleInCorrectClick = (name) => {
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/" + "Incorrect"+"/"+ "questionReview");
+  };
+
+  const handleCorrectClick = (name) => {
+    window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/" + "Correct"+"/"+ "questionReview");
+  };
+
+
+  const handleBackgroundColorClick = (event, chartElements, name) => {
+    if (chartElements.length > 0) {
+      const backgroundColor = chartElements[0]._model.backgroundColor;
+      if (backgroundColor === '#3CB371') {
+        // Perform your desired action for #3CB371 backgroundColor
+        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/" + "Correct"+"/"+ "questionReview");
+
+      }else{
+        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+name+"/" + "Correct"+"/"+ "questionReview");
+      }
+    }
+  };
+  
   const options = {
-    onClick: (_, elements) => handleClick(elements),
+    onClick: (event, chartElements) =>{
+    console.log('event=')
+    console.log(event)
+      return handleBackgroundColorClick(event, chartElements) // Pass the name field as a parameter
+    }
   };
   
 
@@ -169,7 +203,7 @@ export default function UnitStats() {
               <List sx={{ mb: 2 }}>
                 {messages.map(({ name, bad, correct }) => (
                   <React.Fragment key={name}>
-                    <ListItem Button onClick={(cls) => gotoStudent(name, cls)}>
+                    <ListItem Button>
                       <IconButton
                         edge="end"
                         aria-label="unitsStats"
@@ -207,7 +241,7 @@ export default function UnitStats() {
                         }
                         secondary={
                           <div>
-                              <div style= {{padding:'20px',width:'350px',marginTop:50,marginBottom:-400}}>
+                              <div style= {{padding:'20px',width:'320px',marginTop:50,marginBottom:-400,position:'relative',left:330}}>
                                   <Pie data={{
                                     labels: ['תשובות נכונות', 'תשובות שגויות'],
                                     datasets: [
@@ -216,7 +250,11 @@ export default function UnitStats() {
                                         backgroundColor: ['#3CB371', '#DC143C']
                                       },
                                     ]
-                                  }} options={options}/>
+                                  }} options={{onClick: (event, chartElements) =>{
+                                    console.log('event=')
+                                    console.log(event)
+                                      return handleClick(chartElements,name) // Pass the name field as a parameter
+                                    }}}/>
                                   
                             </div>
 
@@ -231,7 +269,7 @@ export default function UnitStats() {
                                 fontSize:20,
                                 fontWeight:600,
                                 position:'relative',
-                                right:'37%',
+                                right:'70%',
                                 marginTop:150,
                                 marginBottom:-150
                               }}
@@ -240,7 +278,7 @@ export default function UnitStats() {
                           <div style={{position:'relative'}}>
                             <span >{bad}&nbsp;</span>
                             <span>: </span>
-                            <span style={{textDecoration:'underline'}}>{"מספר תשובות שגויות"}</span>        
+                            <span style={{textDecoration:'underline'}} onClick={()=>handleInCorrectClick(name)}>{"מספר תשובות שגויות"}</span>        
                           </div>
 
                             </div>
@@ -255,7 +293,7 @@ export default function UnitStats() {
                                 fontSize:20,
                                 fontWeight:600,
                                 position:'relative',
-                                right:'37%',
+                                right:'70%',
                                 marginTop:150,
                                 marginBottom:-150
                               }}
@@ -264,7 +302,7 @@ export default function UnitStats() {
                               <div style={{position:'relative'}}>
                                 <span >{correct}&nbsp;</span>
                                 <span>: </span>
-                                <span style={{textDecoration:'underline'}}>{"מספר תשובות נכונות"}</span>        
+                                <span style={{textDecoration:'underline'}} onClick={()=>handleCorrectClick(name)}>{"מספר תשובות נכונות"}</span>        
                               </div>
 
                             </div>
@@ -308,6 +346,13 @@ export default function UnitStats() {
                                                 backgroundColor: solved_correctly
                                                   ? 'green'
                                                   : 'red'
+                                              }}
+                                              onClick={()=>{
+                                                if(solved_correctly){
+                                                  handleCorrectClick(name)
+                                                }else{
+                                                  handleInCorrectClick(name)
+                                                }
                                               }}
                                             />
                                             {index+1<timeline[name].length && <TimelineConnector
