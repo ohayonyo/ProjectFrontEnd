@@ -35,14 +35,10 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
 });
 
-const fetchData = async () =>{
-  const thisURL = window.location.href;
-  const splits = thisURL.split('/')
-  //todo make this use the teacher name
-  const url = "http://localhost:5000/getLessonCorrect?usernameT="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]+"&usernameS="+splits[6]+"&correct="+splits[7]
+const fetchData = async (url) =>{
   const result = await fetch(url)      
   const jsonResult = await result.json();
-  console.log("json result is ")
+  console.log("json2 result is ")
   console.log(jsonResult)
   return jsonResult;
 }
@@ -56,8 +52,12 @@ export default function QuestionReview() {
 
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const   questionType = splits[7]
+  const questionType = splits[7]
+  const studentName = splits[6]
 
+  console.log('studentName',studentName)
+
+console.log('teacherName',splits[3])
   const [messages, setMessages] = useState([]);
 
   useEffect(()=>{
@@ -88,65 +88,138 @@ export default function QuestionReview() {
   //primary - studentName
   //secondary - className
   
+  let counter = 0; // Counter variable to track the number of questions solved correctly
 
-
-
-
-  return (
-    <div>
-      <div className='background5'></div>
-      <div className='class-list' style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
-      <React.Fragment>
-      <CssBaseline />
-      <Paper square sx={{ pb: '50px' }}>
-        <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:2}}>
-        Question view {questionType}
-         </Typography>
-        <div style={{position:'relative',zIndex:2,direction: 'rtl', textAlign: 'right',marginRight:50}}>
-
-            {
-
-              timeline.map(({id,questionPreamble,question,solved_correctly}) => 
-
-                  <div>
-                    {/* <span>.{id}</span> */}
-                    
-                    <div style={{textDecoration:'underline',fontSize:18}}>
-                      <div>{solved_correctly}</div>
-                        
-                      <span> שאלה </span>
-                      <span>{id}:</span>
-                      
-                    </div>
-                    <span>{questionPreamble}</span>
-                    <span>{question}</span>
-                    {/* <span>השאלה:</span>
-                    <span>{questionPreamble}{<br></br>}</span>
-                    <span> של הפונקציה </span> */}
-
-                          {/* {question + " של הפונקציה "+questionPreamble}  */}
-                    
-                    
-                  </div>
-                )
-                // messages.map(question => 
-
-                //     <div>
-                //         {question.id}) {question.question}  &nbsp;&nbsp;&nbsp;&nbsp; {question.questionPreamble}   
-                      
-                      
-                //     </div>
-                //   )
-            }
-              
-        </div>
+  if(questionType==='Correct'){
+    return (
+      <div>
+        <div className='background5'></div>
+        <div className='class-list' style={{resize: 'both',
+      overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+        <React.Fragment>
+        <CssBaseline />
+        <Paper square sx={{ pb: '50px' }}>
+          <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:2}}>
+            <span style={{position:'relative',zIndex:2,fontSize:30,fontWeight:700,textDecoration:'underline'}}>צפייה בשאלות שהתלמיד צדק בהן</span>
+           </Typography>
+          <div style={{position:'relative',zIndex:2,direction: 'rtl', textAlign: 'right',marginRight:50}}>
+  
+          {
+    timeline[studentName] &&
+    timeline[studentName].map(({id, question_preamble, question, solved_correctly,correct_ans,answer1,answer2,answer3,answer4}, index) => {
       
-      </Paper>  
-    </React.Fragment>
-    </div>
-    </div>
-    
-    
-  );
+      if (solved_correctly) {
+        counter += 1; // Increment the counter only if solved_correctly is true
+      }
+      return (
+        <div key={id}>
+          {solved_correctly && (
+            <div>
+              <div >
+                <span style={{ textDecoration: 'underline', fontSize: 20,fontWeight:700 }}> שאלה </span>
+                <span style={{ textDecoration: 'underline', fontSize: 20,fontWeight:700 }}>{counter}:</span> {/* Use the counter variable as the index */}
+
+                <span>{question_preamble}</span>
+                &nbsp;
+              <span>{question}</span>
+              </div>
+              
+
+              <div >
+                <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>תשובה נכונה</span>
+                <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>:</span> {/* Use the counter variable as the index */}
+                <span style={{direction: 'ltr'}}>
+                  {correct_ans === 1 &&   <bdo dir="ltr">{answer1}</bdo>}
+                  {correct_ans === 2 && <bdo dir="ltr">{answer2}</bdo>}
+                  {correct_ans === 3 && <bdo dir="ltr">{answer3}</bdo>}
+                  {correct_ans === 4 && <bdo dir="ltr">{answer4}</bdo>}
+                </span>
+              </div>
+
+            </div>
+          )}
+        </div>
+      );
+    })
+  }
+                
+          </div>
+        
+        </Paper>  
+      </React.Fragment>
+      </div>
+      </div>
+      
+      
+    );
+  }else{
+
+    counter=0;
+    return (
+      <div>
+        <div className='background5'></div>
+        <div className='class-list' style={{resize: 'both',
+      overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+        <React.Fragment>
+        <CssBaseline />
+        <Paper square sx={{ pb: '50px' }}>
+          <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:2}}>
+          <span style={{position:'relative',zIndex:2,fontSize:30,fontWeight:700,textDecoration:'underline'}}>צפייה בשאלות שהתלמיד טעה בהן</span>
+           </Typography>
+          <div style={{position:'relative',zIndex:2,direction: 'rtl', textAlign: 'right',marginRight:50}}>
+  
+          {
+    timeline[studentName] &&
+    timeline[studentName].map(({ id, question_preamble, question, solved_correctly,correct_ans,answer1,answer2,answer3,answer4}, index) => {
+      
+      if (!solved_correctly) {
+        counter += 1; // Increment the counter only if solved_correctly is true
+      }
+      return (
+        <div key={id}>
+          {!solved_correctly && (
+            <div>
+              <div >
+                <span style={{ textDecoration: 'underline', fontSize: 20,fontWeight:700 }}> שאלה </span>
+                <span style={{ textDecoration: 'underline', fontSize: 20,fontWeight:700 }}>{counter}:</span> {/* Use the counter variable as the index */}
+
+                <span>{question_preamble}</span>
+                &nbsp;
+              <span>{question}</span>
+              </div>
+              
+
+              <div >
+                <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>תשובה נכונה</span>
+                <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>:</span> {/* Use the counter variable as the index */}
+                <span style={{direction: 'ltr'}}>
+                  {correct_ans === 1 &&   <bdo dir="ltr">{answer1}</bdo>}
+                  {correct_ans === 2 && <bdo dir="ltr">{answer2}</bdo>}
+                  {correct_ans === 3 && <bdo dir="ltr">{answer3}</bdo>}
+                  {correct_ans === 4 && <bdo dir="ltr">{answer4}</bdo>}
+                </span>
+              </div>
+
+            </div>
+          )}
+        </div>
+      );
+    })
+  }
+                
+          </div>
+        
+        </Paper>  
+      </React.Fragment>
+      </div>
+      </div>
+      
+      
+    );
+
+
+
+
+  }
+  
 }
