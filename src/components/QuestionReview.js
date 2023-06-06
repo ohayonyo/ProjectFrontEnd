@@ -81,7 +81,7 @@ export default function QuestionReview() {
   fetchDataCall2()
   },[]);
 
-
+  console.log("timeline",timeline)
 
 
 
@@ -103,17 +103,41 @@ export default function QuestionReview() {
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }} style={{textAlign:'center',marginRight:-100,position:'relative',zIndex:2}}>
         Question view {questionType}
          </Typography>
-        <div style={{position:'relative',zIndex:2}}>
+        <div style={{position:'relative',zIndex:2,direction: 'rtl', textAlign: 'right',marginRight:50}}>
 
             {
-                messages.map(question => 
 
-                    <div>
-                        {question.id}) {question.question}  &nbsp;&nbsp;&nbsp;&nbsp; {question.questionPreamble}   
-                      
+              timeline.map(({id,questionPreamble,question,solved_correctly}) => 
+
+                  <div>
+                    {/* <span>.{id}</span> */}
+                    
+                    <div style={{textDecoration:'underline',fontSize:18}}>
+                      <div>{solved_correctly}</div>
+                        
+                      <span> שאלה </span>
+                      <span>{id}:</span>
                       
                     </div>
-                  )
+                    <span>{questionPreamble}</span>
+                    <span>{question}</span>
+                    {/* <span>השאלה:</span>
+                    <span>{questionPreamble}{<br></br>}</span>
+                    <span> של הפונקציה </span> */}
+
+                          {/* {question + " של הפונקציה "+questionPreamble}  */}
+                    
+                    
+                  </div>
+                )
+                // messages.map(question => 
+
+                //     <div>
+                //         {question.id}) {question.question}  &nbsp;&nbsp;&nbsp;&nbsp; {question.questionPreamble}   
+                      
+                      
+                //     </div>
+                //   )
             }
               
         </div>

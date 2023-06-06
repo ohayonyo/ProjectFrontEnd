@@ -167,7 +167,7 @@ export default function UnitStats() {
     <div>
       <div className='background5'></div>
       <div
-        className='class-list'
+        className='class-list2'
         style={{
           resize: 'both',
           overflowY: 'auto',
@@ -241,7 +241,7 @@ export default function UnitStats() {
                         }
                         secondary={
                           <div>
-                              <div style= {{padding:'20px',width:'320px',marginTop:50,marginBottom:-400,position:'relative',left:330}}>
+                              <div style= {{padding:'20px',width:'320px',marginTop:50,marginBottom:-400,position:'relative',left:330,cursor:'pointer'}}>
                                   <Pie data={{
                                     labels: ['תשובות נכונות', 'תשובות שגויות'],
                                     datasets: [
@@ -278,7 +278,7 @@ export default function UnitStats() {
                           <div style={{position:'relative'}}>
                             <span >{bad}&nbsp;</span>
                             <span>: </span>
-                            <span style={{textDecoration:'underline'}} onClick={()=>handleInCorrectClick(name)}>{"מספר תשובות שגויות"}</span>        
+                            <span style={{textDecoration:'underline',cursor:'pointer'}} onClick={()=>handleInCorrectClick(name)}>{"מספר תשובות שגויות"}</span>        
                           </div>
 
                             </div>
@@ -302,7 +302,7 @@ export default function UnitStats() {
                               <div style={{position:'relative'}}>
                                 <span >{correct}&nbsp;</span>
                                 <span>: </span>
-                                <span style={{textDecoration:'underline'}} onClick={()=>handleCorrectClick(name)}>{"מספר תשובות נכונות"}</span>        
+                                <span style={{textDecoration:'underline',cursor:'pointer'}} onClick={()=>handleCorrectClick(name)}>{"מספר תשובות נכונות"}</span>        
                               </div>
 
                             </div>
@@ -345,7 +345,7 @@ export default function UnitStats() {
                                               style={{
                                                 backgroundColor: solved_correctly
                                                   ? 'green'
-                                                  : 'red'
+                                                  : 'red',cursor:'pointer'
                                               }}
                                               onClick={()=>{
                                                 if(solved_correctly){
@@ -450,7 +450,7 @@ export default function UnitStats() {
         backgroundColor: '#FF5722',
       },
       timelineConnector: {
-        backgroundColor: '#FF5722',
+        backgroundColor: 'black',
       },
       timelineContent: {
         backgroundColor: '#F5F5F5',

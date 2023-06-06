@@ -77,6 +77,20 @@
     z-index: 1;
   }
 
+
+  .class-list2 .MuiListItem-root {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .class-list2 .MuiListItem-root:hover {
+    background-color: #eee;
+    z-index: 1;
+  }
+
   .ListItem {
     border: 1px solid #ccc;
     border-radius: 4px;
