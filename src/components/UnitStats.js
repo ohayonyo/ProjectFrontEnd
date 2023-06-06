@@ -31,6 +31,9 @@ import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 import { Tmln } from './Tmln';
 import { fontSize, fontWeight } from '@mui/system';
+import { Pie,Line } from 'react-chartjs-2';
+import {Chart, ArcElement,Tooltip,Legend,CategoryScale,LineController,LineElement, PointElement, LinearScale, Title} from 'chart.js'
+
 
 // 
 
@@ -56,6 +59,7 @@ const fetchData = async (url) =>{
 }
 
 export default function UnitStats() {
+  Chart.register(ArcElement,Tooltip,Legend,CategoryScale,LineController,LineElement,PointElement, LinearScale, Title);
 
   const [messages, setMessages] = useState([]);
   const [timeline, setTimeline] = useState([]);
@@ -84,6 +88,7 @@ export default function UnitStats() {
     fetchDataCall()
     },[]);
 
+
   console.log(messages)
 
   useEffect(()=>{
@@ -98,7 +103,22 @@ export default function UnitStats() {
   },[]);
   console.log('TL',timeline)
 
+  
 
+  const handleClick = (elements) => {
+    if (elements.length > 0) {
+      const clickedElement = elements[0];
+      if("#1BBC63" === clickedElement.element.options.backgroundColor)
+        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+splits[6]+"/" + "Correct"+"/"+ "questionReview");
+      else
+        window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[4]+"/"+splits[5]+"/"+splits[6]+"/" + "Incorrect"+"/"+ "questionReview");
+
+      }
+  };
+
+  const options = {
+    onClick: (_, elements) => handleClick(elements),
+  };
   
 
 
@@ -187,19 +207,85 @@ export default function UnitStats() {
                         }
                         secondary={
                           <div>
+                              <div style= {{padding:'20px',width:'350px',marginTop:50,marginBottom:-400}}>
+                                  <Pie data={{
+                                    labels: ['תשובות נכונות', 'תשובות שגויות'],
+                                    datasets: [
+                                      {
+                                        data: [correct, bad],
+                                        backgroundColor: ['#3CB371', '#DC143C']
+                                      },
+                                    ]
+                                  }} options={options}/>
+                                  
+                            </div>
+
+                            <div
+                              style={{
+                                color: 'red',
+                                float: 'right',
+                                width: '100%',
+                                marginLeft: '10%',
+                                color: 'red',
+                                textAlign: 'right',
+                                fontSize:20,
+                                fontWeight:600,
+                                position:'relative',
+                                right:'37%',
+                                marginTop:150,
+                                marginBottom:-150
+                              }}
+                            >
+
+                          <div style={{position:'relative'}}>
+                            <span >{bad}&nbsp;</span>
+                            <span>: </span>
+                            <span style={{textDecoration:'underline'}}>{"מספר תשובות שגויות"}</span>        
+                          </div>
+
+                            </div>
+                            <div
+                              style={{
+                                color: 'green',
+                                float: 'right',
+                                width: '100%',
+                                marginLeft: '10%',
+                                color: 'green',
+                                textAlign: 'right',
+                                fontSize:20,
+                                fontWeight:600,
+                                position:'relative',
+                                right:'37%',
+                                marginTop:150,
+                                marginBottom:-150
+                              }}
+                            >
+
+                              <div style={{position:'relative'}}>
+                                <span >{correct}&nbsp;</span>
+                                <span>: </span>
+                                <span style={{textDecoration:'underline'}}>{"מספר תשובות נכונות"}</span>        
+                              </div>
+
+                            </div>
+
+
                             {console.log('TIMELINE---------', timeline[name])}
                             <div style={{...styles.container,marginLeft:'40%',overflowX: 'hidden'}}>
-                              <div
+
+                            <div
                                 style={{
                                   height: 350,
                                   width: 300,
                                   overflowY: 'scroll',
-                                  marginTop:-120,
+                                  marginTop:-180,
                                   overflowX: 'hidden',
                                   marginLeft:-50,
-                                  
+                                  position:'relative',
+                                  left:250
                                 }}
                               >
+                                
                                 <Timeline
                                   position="left"
                                   style={{...styles.timeline,marginLeft:200,width:'200%'}}
@@ -249,48 +335,11 @@ export default function UnitStats() {
                                   
                                 </Timeline>
                               </div>
-                            </div>
-  
-                            <div
-                              style={{
-                                color: 'red',
-                                float: 'right',
-                                width: '100%',
-                                marginLeft: '10%',
-                                color: 'red',
-                                textAlign: 'right',
-                                fontSize:20,
-                                fontWeight:600
-                              }}
-                            >
 
-                          <div style={{position:'relative'}}>
-                            <span >{bad}&nbsp;</span>
-                            <span>: </span>
-                            <span style={{textDecoration:'underline'}}>{"מספר תשובות שגויות"}</span>        
+                          
                           </div>
-
-                            </div>
-                            <div
-                              style={{
-                                color: 'green',
-                                float: 'right',
-                                width: '100%',
-                                marginLeft: '10%',
-                                color: 'green',
-                                textAlign: 'right',
-                                fontSize:20,
-                                fontWeight:600
-                              }}
-                            >
-
-                              <div style={{position:'relative'}}>
-                                <span >{correct}&nbsp;</span>
-                                <span>: </span>
-                                <span style={{textDecoration:'underline'}}>{"מספר תשובות נכונות"}</span>        
-                              </div>
-
-                            </div>
+  
+                            
                           </div>
                         }
                       />

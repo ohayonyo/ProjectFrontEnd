@@ -121,15 +121,15 @@ export default function UnitStats() {
 
   return (
     
-    <div className='class-list' style={{resize: 'both',
-    overflow: 'auto',width:'105%',paddingRight:'20%'}}>
+    <div style={{resize: 'both',
+    width:'105%',paddingRight:'20%'}}>
       
   <React.Fragment>
     <CssBaseline />
     <p style={{ fontSize: '2rem', fontWeight: 'bold' }}> {splits[6]}</p>
 
 
-      <div style= {{padding:'20px',width:'500px'}}>
+      <div style= {{padding:'20px',width:'300px'}}>
             <Pie data={{
               labels: ['Correct Questions', 'Incorrect Questions'],
               datasets: [
@@ -140,7 +140,7 @@ export default function UnitStats() {
               ]
             }} options={options} />
       </div>
-      <div style= {{padding:'20px',width:'500px'}}>
+      <div style= {{padding:'20px',width:'300px'}}>
             <Line data={datalast5Grades} />
       </div>
     
