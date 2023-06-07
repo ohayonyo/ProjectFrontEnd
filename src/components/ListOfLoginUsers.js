@@ -65,7 +65,7 @@ export default function ListOfLoginUsers() {
     useEffect(()=>{
 
       async function fetchDataCall(){
-          const url = "http://localhost:5000/getOnlineStudentsOfTeacher?teacher="+splits[3];
+          const url = "http://mathematix.duckdns.org:5000/getOnlineStudentsOfTeacher?teacher="+splits[3];
           const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
@@ -157,7 +157,7 @@ export default function ListOfLoginUsers() {
       console.log("className:" + className);
       console.log("teacherName:" + teacherName);
       const url =
-        "http://localhost:5000/removeUnit?unitName=" +
+        "http://mathematix.duckdns.org:5000/removeUnit?unitName=" +
         unitNameToDelete +
         "&className=" +
         className +

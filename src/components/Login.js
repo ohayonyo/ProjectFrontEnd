@@ -50,7 +50,7 @@ const Login = () => {
       setWrongPasswordOrUserName(false);
       
       console.log("if")
-      const urlToFetch='http://localhost:5000/login?username=' + username + '&password='+password;
+      const urlToFetch='http://mathematix.duckdns.org:5000/login?username=' + username + '&password='+password;
       console.log(urlToFetch)
       const response = await fetch(urlToFetch);
       console.log((response.status))

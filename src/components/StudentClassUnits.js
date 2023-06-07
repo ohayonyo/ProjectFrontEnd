@@ -43,7 +43,7 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassUnits?className="+splits[4]+"&teacher="+splits[3]
+  const url = "http://mathematix.duckdns.org:5000/getClassUnits?className="+splits[4]+"&teacher="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")
@@ -56,7 +56,7 @@ const fetchData2 = async (primary) =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
+  const url = "http://mathematix.duckdns.org:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json2 result is ")

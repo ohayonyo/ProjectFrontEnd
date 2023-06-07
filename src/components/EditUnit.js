@@ -23,12 +23,12 @@ const EditUnit = () => {
         setTimeLimit(a.maxTime)
         //setDueDate(a.dueDate)
     }
-  const url = "http://localhost:5000/getUnitDetails?unitName="+splits[5]+"&className="+splits[4]
+  const url = "http://mathematix.duckdns.org:5000/getUnitDetails?unitName="+splits[5]+"&className="+splits[4]
   fetchDataCall(url)
   },[]);
 
 
-  const url = "http://localhost:5000/getUnitDetails?teacher="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
+  const url = "http://mathematix.duckdns.org:5000/getUnitDetails?teacher="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
   console.log(url)
   const [name, setName] = useState(splits[5]);
   const [qnum, setQnum] = useState("");
@@ -53,7 +53,7 @@ const EditUnit = () => {
     }
 
     if((name.length>0 && desc.length>0)){
-      const url = "http://localhost:5000/editUnit?unitName="+splits[5]+
+      const url = "http://mathematix.duckdns.org:5000/editUnit?unitName="+splits[5]+
       "&className="+splits[4]+"&newDesc="+desc+"&newUnitName="+name
       +"&newQnum="+qnum+"&newMaxTime="+timeLimit+"&newSubDate="+dueDate
       console.log(url)

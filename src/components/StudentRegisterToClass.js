@@ -39,7 +39,7 @@ const fetchData = async () =>{
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
   //todo make this use the teacher name
-  const url = "http://localhost:5000/getUnapprovedStudents?teacher="+splits[3]
+  const url = "http://mathematix.duckdns.org:5000/getUnapprovedStudents?teacher="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
@@ -71,7 +71,7 @@ export default function StudentRequestsToClass() {
     console.log("in accept")
 
     const requestToClass = messages.filter((value)=> value.id === id)
-    const url = "http://localhost:5000/approveStudentToClass?student="+ requestToClass[0].primary+"&className="+ requestToClass[0].secondary+"&approve=True&teacher="+splits[3]
+    const url = "http://mathematix.duckdns.org:5000/approveStudentToClass?student="+ requestToClass[0].primary+"&className="+ requestToClass[0].secondary+"&approve=True&teacher="+splits[3]
     console.log(url)
     const promise =  await fetch(url)
 
@@ -89,7 +89,7 @@ export default function StudentRequestsToClass() {
     console.log("in reject")
     const requestToClass = messages.filter((value)=> value.id === id)
 
-    const url = "http://localhost:5000/approveStudentToClass?student="+ requestToClass[0].primary+"&className="+ requestToClass[0].secondary+"&approve=False&teacher="+splits[3]
+    const url = "http://mathematix.duckdns.org:5000/approveStudentToClass?student="+ requestToClass[0].primary+"&className="+ requestToClass[0].secondary+"&approve=False&teacher="+splits[3]
     const promise =  await fetch(url)
 
     if(promise.status ===200)

@@ -43,7 +43,7 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassesTeacher?teacher="+splits[3]
+  const url = "http://mathematix.duckdns.org:5000/getClassesTeacher?teacher="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
@@ -74,7 +74,7 @@ export default function TeacherClasses() {
         const splits = thisURL.split('/');
         setCantDeleteClass(false);
         setClassName(""); // Reset className state to an empty string
-        const url = "http://localhost:5000/openClass?teacher=" + splits[3] + "&className=" + className;
+        const url = "http://mathematix.duckdns.org:5000/openClass?teacher=" + splits[3] + "&className=" + className;
         const promise = await fetch(url);
         if (promise.status === 200) {
           var max_id = 0;
@@ -107,7 +107,7 @@ export default function TeacherClasses() {
     const classNameDelete = ClassToDelete[0].primary
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
-    const url = "http://localhost:5000/removeClass?teacher="+splits[3]+"&className=" + classNameDelete
+    const url = "http://mathematix.duckdns.org:5000/removeClass?teacher="+splits[3]+"&className=" + classNameDelete
     const promise =  await fetch(url)
     if(promise.status ===200){
       setMessages(messages.filter((value)=>value.id!=id));

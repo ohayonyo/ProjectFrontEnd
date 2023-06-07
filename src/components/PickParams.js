@@ -84,7 +84,7 @@ const PickParams = () => {
 
     // console.log('date: '+splits[13].getUTCDate())
 
-    const url = "http://localhost:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
+    const url = "http://mathematix.duckdns.org:5000/openUnit?teacher="+splits[3]+"&unitName="+nameS
     +"&className="+splits[4]+"&template="+parseTemp()+"&Qnum="+splits[11]+"&maxTime="+splits[12]
     +"&subDate="+splits[13]+"&first="+first+"&prev="+splits[6]+"&desc="+splits[14]
     console.log(url);

@@ -41,7 +41,7 @@ const fetchData = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getAllClassesNotIn?username="+splits[3];
+  const url = "http://mathematix.duckdns.org:5000/getAllClassesNotIn?username="+splits[3];
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
@@ -56,7 +56,7 @@ const fetchData2 = async () =>{
   //todo make this use the teacher name
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getAllClassesWaiting?username="+splits[3];
+  const url = "http://mathematix.duckdns.org:5000/getAllClassesWaiting?username="+splits[3];
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("json result is ")
@@ -109,7 +109,7 @@ export default function StudentRequestsToClass() {
 
 
     console.log("select value:"+select)
-    const url = "http://localhost:5000/registerClass?student="+ splits[3]+"&className="+ (select ? select : classes[0].className)
+    const url = "http://mathematix.duckdns.org:5000/registerClass?student="+ splits[3]+"&className="+ (select ? select : classes[0].className)
     console.log(url)
     const promise =  await fetch(url)
 
@@ -136,7 +136,7 @@ export default function StudentRequestsToClass() {
       const splits = thisURL.split('/')
       console.log(splits)
       const toDelete = classesWaiting.filter(x=> x.id =id)
-      const url = "http://localhost:5000/removeRegistrationClass?student="+ splits[3]+"&className="+ toDelete[0].className
+      const url = "http://mathematix.duckdns.org:5000/removeRegistrationClass?student="+ splits[3]+"&className="+ toDelete[0].className
       console.log(url)
       const promise =  await fetch(url)
   

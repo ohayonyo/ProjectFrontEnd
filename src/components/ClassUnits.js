@@ -65,7 +65,7 @@ export default function ClassUnits() {
     useEffect(()=>{
 
       async function fetchDataCall(){
-          const url = "http://localhost:5000/getClassUnits?teacher="+splits[3]+"&className="+className;
+          const url = "http://mathematix.duckdns.org:5000/getClassUnits?teacher="+splits[3]+"&className="+className;
           const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
@@ -131,7 +131,7 @@ export default function ClassUnits() {
 
   const handleSave = (event, index) =>{
     console.log("save")
-    const url = "http://localhost:5000/quickEditUnit?teacher="+splits[3]+"&unitName="+unitNamesAtUpload[index]+
+    const url = "http://mathematix.duckdns.org:5000/quickEditUnit?teacher="+splits[3]+"&unitName="+unitNamesAtUpload[index]+
     "&className="+className+"&newDesc="+UnitDescriptions[index]+"&newUnitName="+unitNames[index]
     console.log(url)
     const res = fetchData(url)
@@ -165,7 +165,7 @@ export default function ClassUnits() {
       console.log("className:" + className);
       console.log("teacherName:" + teacherName);
       const url =
-        "http://localhost:5000/removeUnit?unitName=" +
+        "http://mathematix.duckdns.org:5000/removeUnit?unitName=" +
         unitNameToDelete +
         "&className=" +
         className +
