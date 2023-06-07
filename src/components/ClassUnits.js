@@ -186,7 +186,7 @@ export default function ClassUnits() {
     <div>
       <div className='background5'></div>
 
-      <div className="class-list" style={{ resize: 'both', overflow: 'auto', width: '105%', paddingRight: '20%' }}>
+      <div className="class-list2" style={{ resize: 'both', overflow: 'auto', width: '105%', paddingRight: '20%'}}>
         <React.Fragment>
           <CssBaseline />
           <Paper square sx={{ pb: '50px' }}>
@@ -200,7 +200,7 @@ export default function ClassUnits() {
               <List sx={{ mb: 2 }}>
                 {messages.map(({ id, primary, secondary, due }) => (
                   <React.Fragment key={id}>
-                    <ListItem button>
+                    <ListItem>
                       <IconButton edge="end" aria-label="units" onClick={(cls) => gotoEdit(id, cls)}>
                         <FiEdit />
                       </IconButton>

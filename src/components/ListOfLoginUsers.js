@@ -178,7 +178,7 @@ export default function ListOfLoginUsers() {
     <div>
       <div className='background5'></div>
 
-      <div className="class-list" style={{ resize: 'both', overflow: 'auto', width: '105%', paddingRight: '20%' }}>
+      <div className="class-list2" style={{ resize: 'both', overflow: 'auto', width: '105%', paddingRight: '20%' }}>
         <React.Fragment>
           <CssBaseline />
           <Paper square sx={{ pb: '50px' }}>
@@ -191,7 +191,7 @@ export default function ListOfLoginUsers() {
               <List sx={{ mb: 2 }}>
                 {messages.map(({ id, username, isLoggedIn }) => (
                   <React.Fragment key={id}>
-                    <ListItem button>
+                    <ListItem>
                         <div style={{position:'relative', zIndex:2, marginLeft:850,paddingTop:10,paddingBottom:10 }}>
                              <LoginStatus username={username} isLoggedIn={isLoggedIn}/>
                         </div>
