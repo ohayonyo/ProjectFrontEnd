@@ -129,10 +129,37 @@ console.log('teacherName',splits[3])
                 <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>תשובה נכונה</span>
                 <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>:</span> {/* Use the counter variable as the index */}
                 <span style={{direction: 'ltr'}}>
-                  {correct_ans === 1 &&   <bdo dir="ltr">{answer1}</bdo>}
-                  {correct_ans === 2 && <bdo dir="ltr">{answer2}</bdo>}
-                  {correct_ans === 3 && <bdo dir="ltr">{answer3}</bdo>}
-                  {correct_ans === 4 && <bdo dir="ltr">{answer4}</bdo>}
+                {correct_ans === 1 && (
+                  answer1.startsWith('(') || answer1.startsWith('[') ? (
+                    <bdo dir="ltr">{answer1}</bdo>
+                  ) : (
+                    answer1
+                  )
+                )}
+                 {correct_ans === 2 && (
+                    answer2.startsWith('(') || answer2.startsWith('[') ? (
+                      <bdo dir="ltr">{answer2}</bdo>
+                    ) : (
+                      answer2
+                    )
+                  )}
+
+                  {correct_ans === 3 && (
+                    answer3.startsWith('(') || answer3.startsWith('[') ? (
+                      <bdo dir="ltr">{answer3}</bdo>
+                    ) : (
+                      answer3
+                    )
+                  )}
+
+
+                  {correct_ans === 4 && (
+                    answer4.startsWith('(') || answer4.startsWith('[') ? (
+                      <bdo dir="ltr">{answer4}</bdo>
+                    ) : (
+                      answer4
+                    )
+                  )}
                 </span>
               </div>
 
@@ -193,10 +220,37 @@ console.log('teacherName',splits[3])
                 <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>תשובה נכונה</span>
                 <span style={{ textDecoration: 'underline', fontSize: 16,fontWeight:500 }}>:</span> {/* Use the counter variable as the index */}
                 <span style={{direction: 'ltr'}}>
-                  {correct_ans === 1 &&   <bdo dir="ltr">{answer1}</bdo>}
-                  {correct_ans === 2 && <bdo dir="ltr">{answer2}</bdo>}
-                  {correct_ans === 3 && <bdo dir="ltr">{answer3}</bdo>}
-                  {correct_ans === 4 && <bdo dir="ltr">{answer4}</bdo>}
+                {correct_ans === 1 && (
+                  answer1.startsWith('(') || answer1.startsWith('[') ? (
+                    <bdo dir="ltr">{answer1}</bdo>
+                  ) : (
+                    answer1
+                  )
+                )}
+                 {correct_ans === 2 && (
+                    answer2.startsWith('(') || answer2.startsWith('[') ? (
+                      <bdo dir="ltr">{answer2}</bdo>
+                    ) : (
+                      answer2
+                    )
+                  )}
+
+                  {correct_ans === 3 && (
+                    answer3.startsWith('(') || answer3.startsWith('[') ? (
+                      <bdo dir="ltr">{answer3}</bdo>
+                    ) : (
+                      answer3
+                    )
+                  )}
+
+
+                  {correct_ans === 4 && (
+                    answer4.startsWith('(') || answer4.startsWith('[') ? (
+                      <bdo dir="ltr">{answer4}</bdo>
+                    ) : (
+                      answer4
+                    )
+                  )}
                 </span>
               </div>
 
