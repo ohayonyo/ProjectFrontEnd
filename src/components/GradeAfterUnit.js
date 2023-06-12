@@ -7,7 +7,7 @@ const fetchData = async () =>{
       const splits = thisURL.split('/')
   
       //todo make this use the teacher name
-      const url = "http://localhost:5000/getGrade?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]
+      const url = "http://87.71.64.163:5000/getGrade?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]
       console.log("fetching grade with url " + url)
       const result = await fetch(url)      
       const jsonResult = await result.json();

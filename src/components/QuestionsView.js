@@ -32,7 +32,7 @@ export var nextURL =""
 
 const fetchData = async () =>{
 
-  // const url = "http://localhost:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
+  // const url = "http://87.71.64.163:5000/startUnit?className="+splits[4]+"&username="+splits[3]+"&unitName="+primary
   // console.log("the url is" + url)
   // const result = await fetch(url)      
 
@@ -43,7 +43,7 @@ const fetchData = async () =>{
     const splits = thisURL.split('/')
 
     //todo make this use the teacher name
-    const url = "http://localhost:5000/getQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5] + "&qnum=" + splits[6]
+    const url = "http://87.71.64.163:5000/getQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5] + "&qnum=" + splits[6]
     console.log("fetching data questions with url " + url)
     const result = await fetch(url)      
     const jsonResult = await result.json();
@@ -135,7 +135,7 @@ export default function QuestionView() {
       //todo make this use the teacher name
       const thisURL = window.location.href;
       const splits = thisURL.split('/')
-      const url = "http://localhost:5000/startUnit?className="+splits[5]+"&username="+splits[3]+"&unitName="+primary
+      const url = "http://87.71.64.163:5000/startUnit?className="+splits[5]+"&username="+splits[3]+"&unitName="+primary
       const result = await fetch(url)      
       const jsonResult = await result.json();
       console.log("json2 result is ")
@@ -177,7 +177,7 @@ export default function QuestionView() {
         }
       }
       async function quit(){
-        const url = "http://localhost:5000/quitActiveUnit?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]
+        const url = "http://87.71.64.163:5000/quitActiveUnit?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]
         const promise = await fetch(url)
         nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits"
         console.log("the next URL is " + nextURL)
@@ -195,7 +195,7 @@ export default function QuestionView() {
         console.log("in submit single")
         const thisURL = window.location.href;
         const splits = thisURL.split('/')
-        const url = "http://localhost:5000/submitQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]+
+        const url = "http://87.71.64.163:5000/submitQuestion?username="+splits[3]+"&unitName="+ splits[4]+ "&className=" + splits[5]+
         "&ans="+qans +"&qnum=" +questions[0].id  
         
         const promise =  await fetch(url,{
@@ -213,8 +213,8 @@ export default function QuestionView() {
           setColors(newColors)
 
         }if(promise.status ===201 || promise.status ===202||promise.status ===203||promise.status ===204){
-          //http://localhost:3000/dan/math2/math2/1/QuestionView
-          //http://localhost:3000/dan/math2/studentClassUnits
+          //http://87.71.64.163:3000/dan/math2/math2/1/QuestionView
+          //http://87.71.64.163:3000/dan/math2/studentClassUnits
 
           const newColors = [...colors];
           newColors[qans]="red"
@@ -231,8 +231,8 @@ export default function QuestionView() {
 
         }
         else if(promise.status ===205){
-          //http://localhost:3000/dan/math2/math2/1/QuestionView
-          //http://localhost:3000/dan/math2/studentClassUnits
+          //http://87.71.64.163:3000/dan/math2/math2/1/QuestionView
+          //http://87.71.64.163:3000/dan/math2/studentClassUnits
           console.log(promise.body)
 
           const newColors = [...colors];

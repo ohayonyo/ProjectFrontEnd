@@ -44,7 +44,7 @@ const Register = () => {
       setUserNameIsAlreadyExists(false);
 
       console.log("im in")
-      const urlToFetch='http://localhost:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption;
+      const urlToFetch='http://87.71.64.163:5000/register?username=' + username + '&password='+password+"&typ="+selectedOption;
       console.log(urlToFetch)
       let isErrorAccured = false;
       while(true){

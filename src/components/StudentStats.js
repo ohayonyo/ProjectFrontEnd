@@ -56,7 +56,7 @@ export default function UnitStats() {
     useEffect(()=>{
 
       async function fetchDataCall2(){
-        const url = "http://localhost:5000/getStudentStats?username="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]+"&student="+splits[6]
+        const url = "http://87.71.64.163:5000/getStudentStats?username="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]+"&student="+splits[6]
           const a = await fetchData(url)
           console.log("in use effect2")
           setMessages(a)
@@ -69,7 +69,7 @@ export default function UnitStats() {
     useEffect(()=>{
 
       async function fetchDataCall(){
-        const url = "http://localhost:5000/individualStats?usernameT="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]+"&usernameS="+splits[6]
+        const url = "http://87.71.64.163:5000/individualStats?usernameT="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]+"&usernameS="+splits[6]
         console.log(url)
         const a = await fetchData(url)
         console.log("in use effect2")

@@ -8,7 +8,7 @@ export const Tmln = ({data}) => {
         {data.map(({question, questiom_preamble,solved_correctly}) => (
         <TimelineItem style={styles.timelineItem}>
           <TimelineSeparator>
-            <TimelineDot color="secondary" onClick={() => window.location.assign('http://localhost:3000/')} style={styles.timelineDot} />
+            <TimelineDot color="secondary" onClick={() => window.location.assign('http://87.71.64.163:3000/')} style={styles.timelineDot} />
             <TimelineConnector style={styles.timelineConnector} />
           </TimelineSeparator>
           <TimelineContent style={{marginTop: -55}}>{question}</TimelineContent>

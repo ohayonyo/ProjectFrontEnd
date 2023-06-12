@@ -44,7 +44,7 @@ const StyledFab = styled(Fab)({
 const fetchData = async () =>{
   const thisURL = window.location.href;
   const splits = thisURL.split('/')
-  const url = "http://localhost:5000/getClassesStudent?student="+splits[3]
+  const url = "http://87.71.64.163:5000/getClassesStudent?student="+splits[3]
   const result = await fetch(url)      
   const jsonResult = await result.json();
   console.log("in studentClasses")

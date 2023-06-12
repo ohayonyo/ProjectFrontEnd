@@ -80,7 +80,7 @@ export default function UnitStats() {
     useEffect(()=>{
 
       async function fetchDataCall(){
-        const url = "http://localhost:5000/getStats?username="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
+        const url = "http://87.71.64.163:5000/getStats?username="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
           const a = await fetchData(url)
           console.log("in use effect2")
           const sortedMessages = a.sort((a, b) => {
@@ -102,7 +102,7 @@ export default function UnitStats() {
   useEffect(()=>{
 
     async function fetchDataCall2(){
-      const url = "http://localhost:5000/getAllLessonQuestions?teacher="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
+      const url = "http://87.71.64.163:5000/getAllLessonQuestions?teacher="+splits[3]+"&unitName="+splits[5]+"&className="+splits[4]
         const a = await fetchData(url)
         console.log("in use effect2")
         setTimeline(a)

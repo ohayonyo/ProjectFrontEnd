@@ -9,7 +9,7 @@ const EditClass = () => {
   const [newClassName, setNewClassName] = useState('');
 
 async function doEdit(){
-  const url = "http://localhost:5000/editClass?teacher="+splits[3]+"&className=" + className+"&newClassName=" + newClassName
+  const url = "http://87.71.64.163:5000/editClass?teacher="+splits[3]+"&className=" + className+"&newClassName=" + newClassName
   const promise = await fetch(url)
     if(promise.status ===200){
       setClassName(newClassName);

@@ -37,7 +37,7 @@ const StudentToolbar = ({btn}) => {
     w3_close(name)
     const thisURL = window.location.href;
     const splits = thisURL.split('/');
-    const urlToFetch='http://localhost:5000/logout?username=' + splits[3]
+    const urlToFetch='http://87.71.64.163:5000/logout?username=' + splits[3]
     console.log(urlToFetch)
     const response = await fetch(urlToFetch);
     console.log(response.status)
