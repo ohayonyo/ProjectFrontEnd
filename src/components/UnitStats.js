@@ -163,6 +163,76 @@ export default function UnitStats() {
   }
   
 
+  const functionType ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית','polynomial':'פולינום', 'sin':'פונקציית סינוס','cos':'פונקציית קוסינוס','tan':'פונקציית טנגנס','cot':'פונקציית קוטנגנס','log':'פונקציית ln','eexp':'פונקציה מעריכית בבסיס e'
+,'2exp':'פונקציה מעריכית בבסיס 2','3exp':'פונקציה מעריכית בבסיס 3','root':'פונקצית שורש','3root':'פונקצית שורש שלישי'
+}
+
+  function getFunctionType(question){
+    if(question.includes("sin")){
+      return functionType['sin']
+    }else if(question.includes("cos")){
+      return functionType['cos']
+    }else if(question.includes("tan")){
+      return functionType['tan']
+    }else if(question.includes("cot")){
+      return functionType['cot']
+    }else if(question.includes("e^")||question.includes("e ^")){
+      return functionType['eexp']
+    }else if(question.includes("2^")||question.includes("2 ^")){
+      return functionType['2exp']
+    }else if(question.includes("3^")||question.includes("3 ^")){
+      return functionType['3exp']
+    }else if(question.includes("^ (1 / 2)")){
+      return functionType['root']
+    }else if(question.includes("ln")||question.includes("log")){
+      return functionType['log']
+    }else{
+      return functionType['polynomial']
+    }
+
+  }
+
+  const questionType ={'domain':'תחום הגדרה','intersection':'נקודות חיתוך עם הצירים','minMaxPoints':'נקודות קיצון','incDec':'תחומי עלייה וירידה'
+  ,'definiteIntegral':'אינטגרל מסוים','deriveFunc':'נגזרת','funcValue':'ערך הפונקציה בנקודה',
+  'posNeg':'תחומי חיוביות שליליות','asym':'אסימפטוטות', 'symmetry': 'סימטריה ואסימטריה', 'inflection': 'נקודות פיתול', 'convexConcave': 'תחומי קעירות וקמירות', 'oddEven': 'זוגיות ואי זוגיות'
+}
+
+
+  function getQuestionType(questionPreamble){
+    if(questionPreamble.includes("תחום הגדר")){
+      return questionType['domain']
+    }else if(questionPreamble.includes("נקודות חיתוך עם")){
+      return questionType['intersection']
+    }else if(questionPreamble.includes("קיצון")){
+      return questionType['minMaxPoints']
+    }else if(questionPreamble.includes("עלייה")){
+      return questionType['incDec']
+    }else if(questionPreamble.includes("אינטגרל")){
+      return questionType['definiteIntegral']
+    }else if(questionPreamble.includes("נגזרת")){
+      return questionType['deriveFunc']
+    }else if(questionPreamble.includes("ערך הפונקציה")){
+      return questionType['funcValue']
+    }else if(questionPreamble.includes("חיוביות")){
+      return questionType['posNeg']
+    }else if(questionPreamble.includes("אסימפטוטות")){
+      return questionType['asym']
+    }else if(questionPreamble.includes("סימטריה")){
+      return questionType['symmetry']
+    }else if(questionPreamble.includes("פיתול")){
+      return questionType['inflection']
+    }else if(questionPreamble.includes("קעירות")){
+      return questionType['convexConcave']
+    }else{
+      return questionType['oddEven']
+    }
+
+  }
+
+  function getTitleToTimeLineEvent(question,questionPreamble){
+      return getQuestionType(questionPreamble)+" של " +getFunctionType(question) 
+  }
+
   return (
     <div>
       <div className='background5'></div>
@@ -333,7 +403,7 @@ export default function UnitStats() {
                                   {timeline[name] &&
                                     timeline[name].map(
                                       (
-                                        { question, solved_correctly },
+                                        { question, solved_correctly ,question_preamble},
                                         index
                                       ) => (
                                         <TimelineItem
@@ -370,7 +440,16 @@ export default function UnitStats() {
                                               marginLeft:'5%'
                                             }}
                                           >
-                                            {(index+1)+". "+question}
+                                            <div dir="rtl">
+                                              <span>
+                                              {(index+1)+". "}
+                                              </span>
+                                              <span>
+                                                {getTitleToTimeLineEvent(question,question_preamble)}
+                                              </span>
+                                            
+                                            </div>
+                                            
                                           </TimelineContent>
                                         </TimelineItem>
                                       )

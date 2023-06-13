@@ -26,6 +26,7 @@ import OpenClass from './OpenClass';
 import './QuestionView.css'
 import { MyTimer } from './MyTimer';
 // import MathJax from 'react-mathjax2';
+import MathJax from 'react-mathjax';
 
 export var nextURL =""
 
