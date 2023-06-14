@@ -68,7 +68,12 @@ export default function ClassUnits() {
           const url = "http://localhost:5000/getClassUnits?teacher="+splits[3]+"&className="+className;
           const a = await fetchData(url)
           console.log("in use effect2")
-          setMessages(a)
+
+          const sortedMessages = [...a].sort((a, b) => {
+            return a.id > b.id ? 1 : a.id < b.id ? -1 : 0
+          });
+
+          setMessages(sortedMessages)
 
           
       }

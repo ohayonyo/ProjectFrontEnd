@@ -182,7 +182,7 @@ export default function UnitStats() {
       return functionType['2exp']
     }else if(question.includes("3^")||question.includes("3 ^")){
       return functionType['3exp']
-    }else if(question.includes("^ (1 / 2)")){
+    }else if(question.includes("sqrt")){
       return functionType['root']
     }else if(question.includes("ln")||question.includes("log")){
       return functionType['log']
