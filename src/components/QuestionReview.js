@@ -23,7 +23,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState,useEffect} from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import MathJax from 'react-mathjax';
+import 'katex/dist/katex.min.css';
+import { InlineMath } from 'react-katex';
 
 const StyledFab = styled(Fab)({
   position: 'absolute',
@@ -309,11 +310,16 @@ console.log('teacherName',splits[3])
           >
             {counter}:
           </span>
-          <span>{question_preamble}</span>
-          &nbsp;
-          <span>
-              {question}
-          </span>
+
+              <div>
+                <span>{question_preamble}</span>
+                &nbsp;
+
+                <span dir='ltr'>
+                <InlineMath math={`${question}`} />
+            </span>
+              </div>
+ 
         </div>
   
         <div>
@@ -335,30 +341,40 @@ console.log('teacherName',splits[3])
           >
             :
           </span>
-          <span style={{ direction: 'ltr' }}>
+          <span style={{ direction: 'ltr',fontSize: 16,
+              fontWeight: 500 }}>
             {correct_ans === 1 &&
               (answer1.startsWith('(') || answer1.startsWith('[') ? (
-                <bdo dir='ltr'>{answer1}</bdo>
+                (answer1.includes('y=') ? (<InlineMath math={`${answer1}`} />) : (<bdo dir='ltr'>{answer1}</bdo>))
               ) : (
-                answer1
+                <div dir={answer1.includes('y=') ? 'ltr' : 'rtl'}>
+                    <InlineMath math={`${answer1}`} />
+                </div>
+                
               ))}
             {correct_ans === 2 &&
               (answer2.startsWith('(') || answer2.startsWith('[') ? (
-                <bdo dir='ltr'>{answer2}</bdo>
+                (answer2.includes('y=') ? (<InlineMath math={`${answer2}`} />) : (<bdo dir='ltr'>{answer2}</bdo>))
               ) : (
-                answer2
+                <div dir={answer2.includes('y=') ? 'ltr' : 'rtl'}>
+                    <InlineMath math={`${answer2}`} />
+                </div>
               ))}
             {correct_ans === 3 &&
               (answer3.startsWith('(') || answer3.startsWith('[') ? (
-                <bdo dir='ltr'>{answer3}</bdo>
+                (answer3.includes('y=') ? (<InlineMath math={`${answer3}`} />) : (<bdo dir='ltr'>{answer3}</bdo>))
               ) : (
-                answer3
+                <div dir={answer3.includes('y=') ? 'ltr' : 'rtl'}>
+                    <InlineMath math={`${answer3}`} />
+                </div>
               ))}
             {correct_ans === 4 &&
               (answer4.startsWith('(') || answer4.startsWith('[') ? (
-                <bdo dir='ltr'>{answer4}</bdo>
+                (answer4.includes('y=') ? (<InlineMath math={`${answer4}`} />) : (<bdo dir='ltr'>{answer4}</bdo>))
               ) : (
-                answer4
+                <div dir={answer4.includes('y=') ? 'ltr' : 'rtl'}>
+                    <InlineMath math={`${answer4}`} />
+                </div>
               ))}
           </span>
         </div>

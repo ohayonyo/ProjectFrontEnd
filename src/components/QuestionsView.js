@@ -26,7 +26,8 @@ import OpenClass from './OpenClass';
 import './QuestionView.css'
 import { MyTimer } from './MyTimer';
 // import MathJax from 'react-mathjax2';
-import MathJax from 'react-mathjax';
+import 'katex/dist/katex.min.css';
+import { InlineMath } from 'react-katex';
 
 export var nextURL =""
 
@@ -282,7 +283,13 @@ export default function QuestionView() {
              
              
                <div className="multiple-choice questions_background" style={{marginLeft:30}}>
-                    <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;{questions[0].primary}</h2>
+                    <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {
+                      <span dir='ltr'>
+                          <InlineMath math={`${questions[0].primary}`} />
+                      </span>
+                      
+                    }</h2>
 
                 <ul className='ul'>
                 <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
@@ -290,7 +297,11 @@ export default function QuestionView() {
                       <h3 style={{ position: 'relative', zIndex: 1 }}>
                         <pre style={{ whiteSpace: 'pre-wrap' }}>
                           <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
-                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer1+")" : questions[0].answer1} 
+                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer1 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                            <span dir='ltr'>
+                              <InlineMath math={`${questions[0].answer1}`} />
+                            </span>
+                           : questions[0].answer1} 
                           </h3>
                         </pre>
                       </h3>    
@@ -301,7 +312,11 @@ export default function QuestionView() {
                       <h3 style={{ position: 'relative', zIndex: 1 }}>
                         <pre style={{ whiteSpace: 'pre-wrap' }}>
                           <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
-                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer2+")" : questions[0].answer2} 
+                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer2 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                            <span dir='ltr'>
+                              <InlineMath math={`${questions[0].answer2}`} />
+                            </span>
+                           : questions[0].answer2}  
                           </h3>
                         </pre>
                       </h3>    
@@ -312,7 +327,11 @@ export default function QuestionView() {
                       <h3 style={{ position: 'relative', zIndex: 1 }}>
                         <pre style={{ whiteSpace: 'pre-wrap' }}>
                           <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
-                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? "("+questions[0].answer3+")" : questions[0].answer3} 
+                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer3 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                            <span dir='ltr'>
+                              <InlineMath math={`${questions[0].answer3}`} />
+                            </span>
+                           : questions[0].answer3} 
                           </h3>
                         </pre>
                       </h3>    
@@ -323,7 +342,11 @@ export default function QuestionView() {
                       <h3 style={{ position: 'relative', zIndex: 1 }}>
                         <pre style={{ whiteSpace: 'pre-wrap' }}>
                           <h3 style={{ fontWeight: 800 ,fontSize:25,color:'black'}}>
-                            {questions[0].preamble === "מצא את נקודת הקיצון:" ? "(" + questions[0].answer4 + ")" : questions[0].answer4}
+                            {questions[0].preamble === "מצא את נקודת הקיצון:" ? questions[0].answer4 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                            <span dir='ltr'>
+                              <InlineMath math={`${questions[0].answer4}`} />
+                            </span>
+                           : questions[0].answer4}
                           </h3>
                         </pre>
                       </h3>    
