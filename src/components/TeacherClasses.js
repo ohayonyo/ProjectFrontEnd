@@ -102,7 +102,9 @@ export default function TeacherClasses() {
   async function deleteElement(id){
 
     const ClassToDelete = messages.filter((value)=> value.id === id)
-
+    if(ClassToDelete === null|| ClassToDelete[0] === null){
+      return;
+    } 
     setCantAddClass(false);
     const classNameDelete = ClassToDelete[0].primary
     const thisURL = window.location.href;

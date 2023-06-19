@@ -84,9 +84,9 @@ export default function ClassUnits() {
   }
   const numberOfUnits = messages.length;
 
-  let unitNamesAtUpload = messages.map((value)=>value.primary)
-  let UnitDescriptionsAtUpload=messages.map((value)=>value.secondary);
-  let dueDates=messages.map((value)=>new Date(value.due));
+  let unitNamesAtUpload = messages.length === 0 ? [] : messages.map((value)=>value.primary)
+  let UnitDescriptionsAtUpload = messages.length === 0 ? [] : messages.map((value)=>value.secondary);
+  let dueDates = messages.length === 0 ? [] : messages.map((value)=>new Date(value.due));
   console.log(dueDates)
   const now = new Date();
   console.log(now)
@@ -97,17 +97,17 @@ export default function ClassUnits() {
   const [UnitDescriptions,setUnitDescriptions] = useState([]);
   const [editButtonContents,setEditButtonContents] = useState([])
   useEffect(() => {
-    const unitNamesAtUpload = messages.map((value) => value.primary);
+    const unitNamesAtUpload = messages.length === 0 ? [] : messages.map((value) => value.primary);
     setUnitNames(unitNamesAtUpload);
   }, [messages]);
   
   useEffect(() => {
-    const UnitDescriptionsAtUpload = messages.map((value) => value.secondary);
+    const UnitDescriptionsAtUpload = messages.length === 0 ? [] : messages.map((value) => value.secondary);
     setUnitDescriptions(UnitDescriptionsAtUpload);
   }, [messages]);
   
   useEffect(() => {
-    const editButtonContentsAtUpload = messages.map((value) => value.secondary !== '');
+    const editButtonContentsAtUpload = messages.length === 0 ? [] : messages.map((value) => value.secondary !== '');
     setEditButtonContents(editButtonContentsAtUpload);
   }, [messages]);
 

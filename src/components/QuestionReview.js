@@ -345,34 +345,34 @@ console.log('teacherName',splits[3])
               fontWeight: 500 }}>
             {correct_ans === 1 &&
               (answer1.startsWith('(') || answer1.startsWith('[') ? (
-                (answer1.includes('y=') ? (<InlineMath math={`${answer1}`} />) : (<bdo dir='ltr'>{answer1}</bdo>))
+                (answer1.includes("y'=") ? (<InlineMath math={`${answer1}`} />) : (<bdo dir='ltr'>{answer1}</bdo>))
               ) : (
-                <div dir={answer1.includes('y=') ? 'ltr' : 'rtl'}>
+                <div dir={answer1.includes("y'=") ? 'ltr' : 'rtl'}>
                     <InlineMath math={`${answer1}`} />
                 </div>
                 
               ))}
             {correct_ans === 2 &&
               (answer2.startsWith('(') || answer2.startsWith('[') ? (
-                (answer2.includes('y=') ? (<InlineMath math={`${answer2}`} />) : (<bdo dir='ltr'>{answer2}</bdo>))
+                (answer2.includes("y'=") ? (<InlineMath math={`${answer2}`} />) : (<bdo dir='ltr'>{answer2}</bdo>))
               ) : (
-                <div dir={answer2.includes('y=') ? 'ltr' : 'rtl'}>
+                <div dir={answer2.includes("y'=") ? 'ltr' : 'rtl'}>
                     <InlineMath math={`${answer2}`} />
                 </div>
               ))}
             {correct_ans === 3 &&
               (answer3.startsWith('(') || answer3.startsWith('[') ? (
-                (answer3.includes('y=') ? (<InlineMath math={`${answer3}`} />) : (<bdo dir='ltr'>{answer3}</bdo>))
+                (answer3.includes("y'=") ? (<InlineMath math={`${answer3}`} />) : (<bdo dir='ltr'>{answer3}</bdo>))
               ) : (
-                <div dir={answer3.includes('y=') ? 'ltr' : 'rtl'}>
+                <div dir={answer3.includes("y'=") ? 'ltr' : 'rtl'}>
                     <InlineMath math={`${answer3}`} />
                 </div>
               ))}
             {correct_ans === 4 &&
               (answer4.startsWith('(') || answer4.startsWith('[') ? (
-                (answer4.includes('y=') ? (<InlineMath math={`${answer4}`} />) : (<bdo dir='ltr'>{answer4}</bdo>))
+                (answer4.includes("y'=") ? (<InlineMath math={`${answer4}`} />) : (<bdo dir='ltr'>{answer4}</bdo>))
               ) : (
-                <div dir={answer4.includes('y=') ? 'ltr' : 'rtl'}>
+                <div dir={answer4.includes("y'=") ? 'ltr' : 'rtl'}>
                     <InlineMath math={`${answer4}`} />
                 </div>
               ))}

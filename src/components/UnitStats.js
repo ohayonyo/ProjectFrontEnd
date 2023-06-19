@@ -163,7 +163,7 @@ export default function UnitStats() {
   }
   
 
-  const functionType ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית','polynomial':'פולינום', 'sin':'פונקציית סינוס','cos':'פונקציית קוסינוס','tan':'פונקציית טנגנס','cot':'פונקציית קוטנגנס','log':'פונקציית ln','eexp':'פונקציה מעריכית בבסיס e'
+  const functionType ={'linear':'פונקציה ליניארית', 'quadratic':'פונקציה ריבועית','polynomial':'פונקצית פולינום', 'sin':'פונקציית סינוס','cos':'פונקציית קוסינוס','tan':'פונקצית טנגנס','cot':'פונקצית קוטנגנס','log':'פונקצית ln','eexp':'פונקציה מעריכית בבסיס e'
 ,'2exp':'פונקציה מעריכית בבסיס 2','3exp':'פונקציה מעריכית בבסיס 3','root':'פונקצית שורש','3root':'פונקצית שורש שלישי'
 }
 
@@ -201,7 +201,7 @@ export default function UnitStats() {
   function getQuestionType(questionPreamble){
     if(questionPreamble.includes("תחום הגדר")){
       return questionType['domain']
-    }else if(questionPreamble.includes("נקודות חיתוך עם")){
+    }else if(questionPreamble.includes("נקודות החיתוך עם")){
       return questionType['intersection']
     }else if(questionPreamble.includes("קיצון")){
       return questionType['minMaxPoints']

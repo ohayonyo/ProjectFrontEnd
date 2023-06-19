@@ -69,29 +69,7 @@ export default function QuestionView() {
         0: "basic answer"
   })
   const [colors,setColors] = useState(["","","",""])
-    const [questions,setQuestions] = useState([{
-    id: "1",
-    primary:"y=2x+4",
-    secondary:"this is a cut axis question",
-    answer1:"(0,4) (2,0)",
-    answer2:"(0,2) (4,0)",
-    answer3:"(0,4) (-2,0)",
-    answer4:"(0,2) (-4,0)",
-    currentQuestion:"0",
-    questionsNeeded:"4"
-    }
-  ,
-  {
-    id: 2,
-    primary: "y=-8x^2+5x",
-    secondary: "this is a minima maxima question",
-    options : [
-      {id:0, text: "(0,3)(5,0)"}, 
-      {id:1, text:"(1,3)(5,0)"}, 
-      {id:2, text: "(2,3)(5,0)"}, 
-      {id:3, text: "(3,3)(5,0)"}]
-
-    }]);
+    const [questions,setQuestions] = useState([]);
     
     const thisURL = window.location.href;
     const splits = thisURL.split('/')
@@ -191,6 +169,8 @@ export default function QuestionView() {
       }
       
       async function submitSingle(qans,id){
+        if(questions===null || questions.length<1 || !questions[0])
+          return
         if(isThereGreen()){
           return
         }
@@ -269,102 +249,109 @@ export default function QuestionView() {
 
     return (
       <div>
+        
         <div className='background5'></div>
 
-        <div className='big-question' style={{position:'relative',zIndex:2,transform: 'scale(0.80)',marginTop:-55}}>
+        {questions.length>0 && questions[0] &&
+              <div className='big-question' style={{position:'relative',zIndex:2,transform: 'scale(0.80)',marginTop:-55}}>
           
-             <h1 className='header' style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginLeft:'12%',width:'60%'}}> 
-              {questions[0].preamble}
-             </h1>
-              <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
-               {remainingTime>0 && <div style={{position:'relative',zIndex:1,width:'80%',marginLeft:30}}>
-              <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
-             </div>}
+              <h1 className='header' style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginLeft:'12%',width:'60%'}}> 
+               {questions[0].preamble}
+              </h1>
+               <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
+                {remainingTime>0 && <div style={{position:'relative',zIndex:1,width:'80%',marginLeft:30}}>
+               <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
+              </div>}
+              
+              
+                <div className="multiple-choice questions_background" style={{marginLeft:30}}>
+                     <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;
+                     {
+                       <span dir='ltr'>
+                           <InlineMath math={`${questions[0].primary}`} />
+                       </span>
+                       
+                     }</h2>
+ 
+                 <ul className='ul'>
+                 <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
+                     <div>
+                       <h3 style={{ position: 'relative', zIndex: 1 }}>
+                         <pre style={{ whiteSpace: 'pre-wrap' }}>
+                           <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
+                             {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer1 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                             <span dir='ltr'>
+                               <InlineMath math={`${questions[0].answer1}`} />
+                             </span>
+                            : questions[0].answer1} 
+                           </h3>
+                         </pre>
+                       </h3>    
+                     </div>
+                   </li>
+                   <li style={{backgroundColor:colors[2]}} className="hover-resize2 li" onClick={() => submitSingle(2,questions[0].id)} >
+                     <div>
+                       <h3 style={{ position: 'relative', zIndex: 1 }}>
+                         <pre style={{ whiteSpace: 'pre-wrap' }}>
+                           <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
+                             {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer2 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                             <span dir='ltr'>
+                               <InlineMath math={`${questions[0].answer2}`} />
+                             </span>
+                            : questions[0].answer2}  
+                           </h3>
+                         </pre>
+                       </h3>    
+                     </div>
+                   </li>
+                   <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(3,questions[0].id)} >
+                     <div>
+                       <h3 style={{ position: 'relative', zIndex: 1 }}>
+                         <pre style={{ whiteSpace: 'pre-wrap' }}>
+                           <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
+                             {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer3 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                             <span dir='ltr'>
+                               <InlineMath math={`${questions[0].answer3}`} />
+                             </span>
+                            : questions[0].answer3} 
+                           </h3>
+                         </pre>
+                       </h3>    
+                     </div>
+                   </li>
+                   <li style={{backgroundColor:colors[4]}} className="hover-resize2 li" onClick={() => submitSingle(4,questions[0].id)} >
+                     <div>
+                       <h3 style={{ position: 'relative', zIndex: 1 }}>
+                         <pre style={{ whiteSpace: 'pre-wrap' }}>
+                           <h3 style={{ fontWeight: 800 ,fontSize:25,color:'black'}}>
+                             {questions[0].preamble === "מצא את נקודת הקיצון:" ? questions[0].answer4 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
+                             <span dir='ltr'>
+                               <InlineMath math={`${questions[0].answer4}`} />
+                             </span>
+                            : questions[0].answer4}
+                           </h3>
+                         </pre>
+                       </h3>    
+                     </div>
+                   </li>
+ 
+                 </ul>
+             </div>
+             <div style={{marginLeft:370}}>
+               <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
+                 השאלה הבאה
+               </button>
+               <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
+                 סיום נסיון מענה
+               </button>
+             </div>
              
-             
-               <div className="multiple-choice questions_background" style={{marginLeft:30}}>
-                    <h2 style={{fontWeight:800,position:'relative',zIndex:1}}>    &nbsp;&nbsp;&nbsp;&nbsp;
-                    {
-                      <span dir='ltr'>
-                          <InlineMath math={`${questions[0].primary}`} />
-                      </span>
-                      
-                    }</h2>
+         </div>
+        } 
+        
+        
 
-                <ul className='ul'>
-                <li style={{backgroundColor:colors[1]}} className="hover-resize2 li" onClick={() => submitSingle(1,questions[0].id)} >
-                    <div>
-                      <h3 style={{ position: 'relative', zIndex: 1 }}>
-                        <pre style={{ whiteSpace: 'pre-wrap' }}>
-                          <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
-                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer1 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
-                            <span dir='ltr'>
-                              <InlineMath math={`${questions[0].answer1}`} />
-                            </span>
-                           : questions[0].answer1} 
-                          </h3>
-                        </pre>
-                      </h3>    
-                    </div>
-                  </li>
-                  <li style={{backgroundColor:colors[2]}} className="hover-resize2 li" onClick={() => submitSingle(2,questions[0].id)} >
-                    <div>
-                      <h3 style={{ position: 'relative', zIndex: 1 }}>
-                        <pre style={{ whiteSpace: 'pre-wrap' }}>
-                          <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
-                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer2 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
-                            <span dir='ltr'>
-                              <InlineMath math={`${questions[0].answer2}`} />
-                            </span>
-                           : questions[0].answer2}  
-                          </h3>
-                        </pre>
-                      </h3>    
-                    </div>
-                  </li>
-                  <li style={{backgroundColor:colors[3]}} className="hover-resize2 li" onClick={() => submitSingle(3,questions[0].id)} >
-                    <div>
-                      <h3 style={{ position: 'relative', zIndex: 1 }}>
-                        <pre style={{ whiteSpace: 'pre-wrap' }}>
-                          <h3 style={{fontWeight:800,fontSize:25,color:'black'}}>
-                            {questions[0].preamble==="מצא את נקודת הקיצון:" ? questions[0].answer3 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
-                            <span dir='ltr'>
-                              <InlineMath math={`${questions[0].answer3}`} />
-                            </span>
-                           : questions[0].answer3} 
-                          </h3>
-                        </pre>
-                      </h3>    
-                    </div>
-                  </li>
-                  <li style={{backgroundColor:colors[4]}} className="hover-resize2 li" onClick={() => submitSingle(4,questions[0].id)} >
-                    <div>
-                      <h3 style={{ position: 'relative', zIndex: 1 }}>
-                        <pre style={{ whiteSpace: 'pre-wrap' }}>
-                          <h3 style={{ fontWeight: 800 ,fontSize:25,color:'black'}}>
-                            {questions[0].preamble === "מצא את נקודת הקיצון:" ? questions[0].answer4 : questions[0].preamble && questions[0].preamble.includes("נגזרת") ? 
-                            <span dir='ltr'>
-                              <InlineMath math={`${questions[0].answer4}`} />
-                            </span>
-                           : questions[0].answer4}
-                          </h3>
-                        </pre>
-                      </h3>    
-                    </div>
-                  </li>
-
-                </ul>
-            </div>
-            <div style={{marginLeft:370}}>
-              <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>nextPage()} style={{float: 'left'}}>
-                השאלה הבאה
-              </button>
-              <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
-                סיום נסיון מענה
-              </button>
-            </div>
-            
-        </div>
+        
       </div>
         
         
