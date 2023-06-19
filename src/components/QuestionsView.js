@@ -75,6 +75,7 @@ export default function QuestionView() {
     const splits = thisURL.split('/')
     const [remainingTime, setRemainingTime] = useState(splits[8]);
     const [nextLesson, setNextLesson] = useState("");
+    const unitNum=splits[9]
 
     useEffect(() => {
       if (remainingTime == 0) window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits");
@@ -131,10 +132,10 @@ export default function QuestionView() {
     
           let result = await fetchData2(primary)     
           console.log(result)
-          if (result == 0){
-            result = -1
+          if (result[0] == 0){
+            result[0] = -1
           }
-          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[5]+ "/"+1+ "/QuestionView"+"/"+remainingTime
+          const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[5]+ "/"+1+ "/QuestionView"+"/"+remainingTime + '/' +unitNum
           console.log("the next url is " +nextURL)
           window.location.assign(nextURL);
         
@@ -151,7 +152,7 @@ export default function QuestionView() {
         }
         else{
           if(nextURL.indexOf("studentClassUnits") == -1)
-            nextURL = nextURL + remainingTime
+            nextURL = nextURL + remainingTime +'/'+unitNum
           console.log("the next url is " +nextURL)
           window.location.assign(nextURL);
         }
@@ -255,13 +256,14 @@ export default function QuestionView() {
         {questions.length>0 && questions[0] &&
               <div className='big-question' style={{position:'relative',zIndex:2,transform: 'scale(0.80)',marginTop:-55}}>
           
+
               <h1 className='header' style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginLeft:'12%',width:'60%'}}> 
-               {questions[0].preamble}
-              </h1>
-               <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
-                {remainingTime>0 && <div style={{position:'relative',zIndex:1,width:'80%',marginLeft:30}}>
-               <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
-              </div>}
+              {questions[0].preamble}
+             </h1>
+              <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{unitNum} </h3> 
+               {remainingTime>0 && <div style={{position:'relative',zIndex:1,width:'80%',marginLeft:30}}>
+              <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
+             </div>}
               
               
                 <div className="multiple-choice questions_background" style={{marginLeft:30}}>
@@ -344,14 +346,11 @@ export default function QuestionView() {
                <button style={{position:'relative',zIndex:1}} className='form-submit' onClick={()=>quit()} style={{float: 'left'}}>
                  סיום נסיון מענה
                </button>
-             </div>
-             
+             </div>            
          </div>
         } 
         
-        
-
-        
+ 
       </div>
         
         

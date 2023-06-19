@@ -290,7 +290,7 @@ console.log('teacherName',splits[3])
     answer4
   ) {
     return (
-      <div key={id}>
+      <div key={counter}>
         <div>
           <span
             style={{
