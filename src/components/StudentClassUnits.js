@@ -93,10 +93,10 @@ export default function StudentClassUnits() {
       console.log("in start unit " + id +" " +primary)
       let result = await fetchData2(primary)     
       console.log(result)
-      if (result == 0){
-        result = -1
+      if (result[0] == 0){
+        result[0] = -1
       }
-      const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[4]+ "/"+1+ "/QuestionView"+"/"+(result*60)
+      const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[4]+ "/"+1+ "/QuestionView"+"/"+(result[0]*60)+"/"+result[1]
       console.log("the next url is " +nextURL)
       window.location.assign(nextURL);
     }

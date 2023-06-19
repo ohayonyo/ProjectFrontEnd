@@ -97,6 +97,7 @@ export default function QuestionView() {
     const splits = thisURL.split('/')
     const [remainingTime, setRemainingTime] = useState(splits[8]);
     const [nextLesson, setNextLesson] = useState("");
+    const unitNum=splits[9]
 
     useEffect(() => {
       if (remainingTime == 0) window.location.assign('http://'+splits[2]+"/"+splits[3]+"/"+splits[5]+"/studentClassUnits");
@@ -153,8 +154,8 @@ export default function QuestionView() {
     
           let result = await fetchData2(primary)     
           console.log(result)
-          if (result == 0){
-            result = -1
+          if (result[0] == 0){
+            result[0] = -1
           }
           const nextURL = 'http://'+splits[2]+"/"+splits[3]+"/"+primary+"/"+splits[5]+ "/"+1+ "/QuestionView"+"/"+remainingTime
           console.log("the next url is " +nextURL)
@@ -276,7 +277,7 @@ export default function QuestionView() {
              <h1 className='header' style={{position:'relative',zIndex:1,fontWeight:600,textAlign:'center',marginLeft:'12%',width:'60%'}}> 
               {questions[0].preamble}
              </h1>
-              <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{questions[0].totalUnits} </h3> 
+              <h3 style={{position:'relative',zIndex:1,marginRight:'7%'}}>question: {questions[0].currentQuestion}/{questions[0].questionsNeeded}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unit: {questions[0].currentUnit}/{unitNum} </h3> 
                {remainingTime>0 && <div style={{position:'relative',zIndex:1,width:'80%',marginLeft:30}}>
               <MyTimer style={{position:'relative',zIndex:1}} expiryTimestamp={expiryTime} />
              </div>}
